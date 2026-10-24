@@ -7,19 +7,23 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>NOMADS DMZ HUB | Modern Warfare 4 DMZ Gunsmith, Crafting Recipes and Hajin Map</title>
-<meta name="description" content="Free community tools for Call of Duty: Modern Warfare 4 DMZ. Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map with ingredient locations.">
+<title>NOMADS DMZ HUB | MW4 DMZ Gunsmith, Crafting Recipes &amp; Map</title>
+<meta name="description" content="Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://nomaddmzhub.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NOMADS DMZ HUB">
-<meta property="og:title" content="NOMADS DMZ HUB | Modern Warfare 4 DMZ Gunsmith, Crafting Recipes and Hajin Map">
-<meta property="og:description" content="Free community tools for Call of Duty: Modern Warfare 4 DMZ. Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map with ingredient locations.">
+<meta property="og:title" content="NOMADS DMZ HUB | MW4 DMZ Gunsmith, Crafting Recipes &amp; Map">
+<meta property="og:description" content="Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map.">
 <meta property="og:url" content="https://nomaddmzhub.com/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NOMADS DMZ HUB | Modern Warfare 4 DMZ Gunsmith, Crafting Recipes and Hajin Map">
-<meta name="twitter:description" content="Free community tools for Call of Duty: Modern Warfare 4 DMZ. Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map with ingredient locations.">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "NOMADS DMZ HUB", "url": "https://nomaddmzhub.com/", "description": "Free community tools for Call of Duty: Modern Warfare 4 DMZ. Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map with ingredient locations.", "inLanguage": "en"}</script>
+<meta property="og:image" content="https://nomaddmzhub.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://nomaddmzhub.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NOMADS DMZ HUB | MW4 DMZ Gunsmith, Crafting Recipes &amp; Map">
+<meta name="twitter:description" content="Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "NOMADS DMZ HUB", "url": "https://nomaddmzhub.com/", "description": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes and an interactive Hajin map.", "inLanguage": "en"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Saira+Condensed:wght@600;700&display=swap">
 <style>
 /* Layout: full-screen command hub; each module is a fixed screen with one shared top bar. Dark/gold single theme by design. */
@@ -482,7 +486,7 @@ button.ichip:hover{border-color:var(--gold);background:#1c1b10}.cost .muted{font
     <aside class="panel map-rail" id="mapRail" aria-label="Map legend"></aside>
     <section class="map-wrap" aria-label="Interactive map">
       <div class="map-viewport" id="mapViewport" tabindex="0" aria-label="Map of Hajin. Drag to pan, scroll or use the buttons to zoom.">
-        <div class="map-img" id="mapImg"><img id="mapImage" src="hajin-map.webp" width="4096" height="4096" alt="Top-down map of Hajin" draggable="false"></div>
+        <div class="map-img" id="mapImg"><img id="mapImage" data-src="hajin-map.webp" width="4096" height="4096" alt="Top-down map of Hajin" draggable="false"></div>
         <div id="mapMarkers"></div>
       </div>
       <div class="map-controls"><button class="map-ctl" id="zoomIn" aria-label="Zoom in">+</button><button class="map-ctl" id="zoomOut" aria-label="Zoom out">−</button><button class="map-ctl" id="zoomFit" aria-label="Fit whole map" title="Fit whole map">⤢</button></div>
@@ -498,7 +502,7 @@ button.ichip:hover{border-color:var(--gold);background:#1c1b10}.cost .muted{font
 <section class="screen" id="screen-gunsmith" aria-label="Gunsmith">
   <header class="modbar">
     <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
-    <div class="modtitle"><strong>Nomads Gunsmith</strong><span>MW4 beta catalogue // weapon builder</span></div>
+    <div class="modtitle"><strong>Nomads Gunsmith</strong><span>Weapon builder</span></div>
     <div class="modstat"><strong id="gsCount">0 / 5</strong><span>attachments</span></div>
     <button class="modbtn" type="button" id="gsClear">Clear</button>
   </header>
@@ -509,7 +513,7 @@ button.ichip:hover{border-color:var(--gold);background:#1c1b10}.cost .muted{font
       <div class="brief">
         <div class="gs-name" id="gsName"></div><div class="gs-cat" id="gsCat"></div>
         <p class="gs-desc" id="gsDesc"></p>
-        <div class="facts gs-facts"><div class="fact"><span>Unlock</span><strong id="gsUnlock"></strong></div><div class="fact"><span>Build cost</span><strong id="gsCost"></strong></div><div class="fact"><span>Weapon levels</span><strong id="gsLevels"></strong></div><div class="fact"><span>Attachments</span><strong id="gsAtt"></strong></div><div class="fact"><span>Catalogue data</span><strong id="gsData"></strong></div></div>
+        <div class="facts gs-facts"><div class="fact"><span>Unlock</span><strong id="gsUnlock"></strong></div><div class="fact"><span>Build cost</span><strong id="gsCost"></strong></div><div class="fact"><span>Weapon levels</span><strong id="gsLevels"></strong></div><div class="fact"><span>Attachments</span><strong id="gsAtt"></strong></div><div class="fact"><span>Attachment data</span><strong id="gsData"></strong></div></div>
         <div class="apex" id="gsApex" hidden><strong id="gsApexName"></strong><p id="gsApexCopy"></p></div>
       </div>
     </aside>
@@ -567,7 +571,7 @@ button.ichip:hover{border-color:var(--gold);background:#1c1b10}.cost .muted{font
 <script>
 /* ===== Core: navigation, toast ===== */
 const $=id=>document.getElementById(id);
-const VIEWS=['map','gunsmith','gear','traits'];
+const VIEWS=['map','gunsmith','gear'];
 const toastEl=$('toast');let toastT;
 function toast(msg){clearTimeout(toastT);toastEl.textContent=msg;toastEl.classList.add('show');toastT=setTimeout(()=>toastEl.classList.remove('show'),2400)}
 const inits={};const ready={};
@@ -596,7 +600,7 @@ document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',goHome));
 window.addEventListener('popstate',render);
 window.addEventListener('hashchange',render);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const lb=$('lightbox');if(!lb.hidden){lb.hidden=true;return}if(location.hash&&!document.body.classList.contains('rail-open'))goHome()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const dg=$('ingDlg');if(dg&&!dg.hidden){dg.hidden=true;return}const lb=$('lightbox');if(!lb)return;if(!lb.hidden){lb.hidden=true;return}if(location.hash&&!document.body.classList.contains('rail-open'))goHome()}});
 
 /* ===== Floating tooltip (traits) ===== */
 const tipEl=$('tip');
@@ -683,15 +687,15 @@ inits.gunsmith=function(){
   function load(id){
     weapon=CATALOG.weapons.find(w=>w.id===id)||CATALOG.weapons[0];picks={};sel.value=weapon.id;
     $('gsName').textContent=weapon.name;$('gsCat').textContent=weapon.category;$('gsDesc').textContent=weapon.description||'No description available yet.';
-    $('gsUnlock').textContent=(weapon.unlock||'—').replace(/\.$/,'');const offLv=OFFICIAL_LEVELS[weapon.id];$('gsLevels').textContent=offLv?offLv+' (in-game)':(weapon.levels||'—');$('gsLevels').title=offLv&&weapon.levels!==offLv?'In-game screen shows '+offLv+'; beta catalogue listed '+weapon.levels:'';$('gsAtt').textContent=weapon.attachment_count||0;$('gsCost').textContent=BASE_COST[weapon.id]?'$'+BASE_COST[weapon.id].toLocaleString('en-AU'):'—';
-    $('gsData').textContent=weapon.attachment_data_completeness==='substantial-beta-table'?'Full table':weapon.attachment_data_completeness==='partial-beta-table'?'Partial table':'Not public';
+    $('gsUnlock').textContent=(weapon.unlock||'—').replace(/\.$/,'');const offLv=OFFICIAL_LEVELS[weapon.id];$('gsLevels').textContent=offLv?offLv+' (in-game)':(weapon.levels||'—');$('gsLevels').title='';$('gsAtt').textContent=weapon.attachment_count||0;$('gsCost').textContent=BASE_COST[weapon.id]?'$'+BASE_COST[weapon.id].toLocaleString('en-AU'):'—';
+    $('gsData').textContent=weapon.attachment_data_completeness==='substantial-beta-table'?'Complete':weapon.attachment_data_completeness==='partial-beta-table'?'Partial':'Not available yet';
     $('gsApex').hidden=!weapon.apex_name;if(weapon.apex_name){$('gsApexName').textContent=weapon.apex_name;$('gsApexCopy').textContent=weapon.apex_description||''}
     renderSlots();draw();
   }
   function options(){const rows=CATALOG.mappings.filter(m=>m.weapon_id===weapon.id),by={};rows.forEach(r=>(by[r.slot]=by[r.slot]||[]).push(r));return by}
   function renderSlots(){
     const box=$('gsSlots');box.replaceChildren();const by=options(),slots=Object.keys(by).sort((a,b)=>SLOT_ORDER.indexOf(a)-SLOT_ORDER.indexOf(b));
-    if(!slots.length){box.innerHTML='<div class="no-slots">The beta catalogue has no public attachment table for this weapon yet.</div>';return}
+    if(!slots.length){box.innerHTML='<div class="no-slots">No attachment list for this weapon yet.</div>';return}
     slots.forEach(slot=>{
       const opts=by[slot].sort((a,b)=>(a.unlock_level??999)-(b.unlock_level??999)||a.attachment_name.localeCompare(b.attachment_name));
       const id='slot-'+slot.replace(/\W+/g,'-').toLowerCase();
@@ -903,7 +907,7 @@ inits.map=function(){
   $('railToggle').onclick=()=>{const o=document.body.classList.toggle('rail-open');$('railToggle').setAttribute('aria-expanded',String(o))};
   if('ResizeObserver' in window)new ResizeObserver(()=>mapLayout()).observe(vp);else addEventListener('resize',mapLayout);
   const im=$('mapImage');const done=()=>{$('mapLoad').hidden=true};
-  im.addEventListener('load',done);im.addEventListener('error',()=>{$('mapLoad').textContent='The map image could not be loaded. Make sure hajin-map.webp is uploaded next to index.html.'});if(im.complete&&im.naturalWidth)done();
+  im.addEventListener('load',done);if(!im.getAttribute('src'))im.src=im.dataset.src;im.addEventListener('error',()=>{$('mapLoad').textContent='The map image could not be loaded. Make sure hajin-map.webp is uploaded next to index.html.'});if(im.complete&&im.naturalWidth)done();
   vis();mapLayout();
 };
 
