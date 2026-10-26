@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://nomaddmzhub.com/</loc>
-    <lastmod>2026-10-24</lastmod>
-  </url>
+<url><loc>https://nomaddmzhub.com/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gunsmith/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/map/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/traits/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/dynamic-ops/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/loot/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/loot/irradiated-items/</loc><lastmod>2026-10-26</lastmod></url>
+<url><loc>https://nomaddmzhub.com/loot/river-heights/</loc><lastmod>2026-10-26</lastmod></url>
 </urlset>
