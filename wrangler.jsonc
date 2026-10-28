@@ -14,7 +14,7 @@
 
   // STEP 2 of the setup (see PATCH-NOTES-SETUP.md): after you create the KV store,
   // remove the two slashes at the start of each line below and paste your KV id.
-  //,"kv_namespaces": [
-  //  { "binding": "PATCHES", "id": "PASTE-YOUR-KV-ID-HERE" }
-  //]
-}
+  ,"kv_namespaces": [
+    { "binding": "PATCHES", "id": "cfcb4f25515f47e4a0a5d3b9f2976c5c" }
+  ]
+  }
