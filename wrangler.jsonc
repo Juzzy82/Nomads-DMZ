@@ -1,0 +1,20 @@
+{
+  // NOMADS DMZ HUB - Cloudflare Worker (website files + patch notes tracker)
+  "name": "nomads-dmz",
+  "main": "worker/index.mjs",
+  "compatibility_date": "2026-10-11",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS"
+  },
+  // Checks the official sources 4 times a day (UTC): 00:00, 06:00, 12:00, 18:00
+  "triggers": {
+    "crons": ["0 0,6,12,18 * * *"]
+  }
+
+  // STEP 2 of the setup (see PATCH-NOTES-SETUP.md): after you create the KV store,
+  // remove the two slashes at the start of each line below and paste your KV id.
+  //,"kv_namespaces": [
+  //  { "binding": "PATCHES", "id": "PASTE-YOUR-KV-ID-HERE" }
+  //]
+}

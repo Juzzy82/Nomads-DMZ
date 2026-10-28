@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Patch notes admin</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#080808;color:#e8e4d6;font:16px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 18px 60px}h1{margin:0 0 6px;font-size:1.5rem;color:#ffd275;letter-spacing:.04em}p{color:#b9bdb0;margin:0 0 18px}
+label{display:block;margin:0 0 8px;font-size:.9rem;color:#cfcbbb}input{width:100%;max-width:340px;padding:10px 12px;background:#0e0f0b;border:1px solid #3a3a2c;color:#fff;font:inherit}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 18px}button{padding:10px 16px;border:1px solid #9a7a3a;background:#241d0d;color:#ffd275;font:600 .8rem/1 ui-monospace,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}button:hover{background:#33290f}button:disabled{opacity:.5;cursor:wait}
+pre{white-space:pre-wrap;word-break:break-word;background:#0e0f0b;border:1px solid #2a2a20;padding:14px;min-height:120px;font:.85rem/1.5 ui-monospace,Consolas,monospace;color:#d8d4c6}a{color:#ffd275}
+</style></head><body><main>
+<h1>Patch notes admin</h1>
+<p>For the site owner only. The password is typed here each time and is never saved in this browser.</p>
+<label for="pw">Admin password</label><input id="pw" type="password" autocomplete="off" spellcheck="false">
+<div class="row"><button id="check">Check now</button><button id="review">Show held items</button><button id="diag">Show status</button></div>
+<pre id="out" aria-live="polite">Nothing run yet.</pre>
+<p><a href="/patch-notes/">Open the public Patch Notes page</a></p>
+</main>
+<script>
+const out=document.getElementById('out'),pw=document.getElementById('pw');
+const tm=i=>i?new Date(i).toLocaleString('en-AU',{timeZone:'Australia/Melbourne',day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'never';
+async function call(path,method){
+  if(pw.value.length<12){out.textContent='Type the admin password first.';return null}
+  document.querySelectorAll('button').forEach(b=>b.disabled=true);out.textContent='Working...';
+  try{const r=await fetch('/api/dmz-patches/admin/'+path,{method,headers:{authorization:'Bearer '+pw.value}});const d=await r.json().catch(()=>({}));
+    if(r.status===403){out.textContent='Wrong password, or the ADMIN_TOKEN secret has not been set in Cloudflare yet.';return null}
+    if(r.status===503){out.textContent='The patch notes store (KV) has not been connected yet. Follow step 2 of PATCH-NOTES-SETUP.md.';return null}
+    if(r.status===429){out.textContent=d.error||'Please wait a few minutes.';return null}
+    return d}catch(e){out.textContent='Could not reach the site.';return null}
+  finally{document.querySelectorAll('button').forEach(b=>b.disabled=false)}
+}
+document.getElementById('check').onclick=async()=>{
+  const d=await call('refresh','POST');if(!d)return;
+  if(d.skipped){out.textContent=d.skipped;return}
+  const L=[d.ok?'Check finished.':'Check finished with a problem: '+(d.error||'unknown'),'Time: '+tm(d.at),''];
+  if(d.baseline)L.push('This was the FIRST check. It recorded the existing notes as the starting point, so nothing is marked NEW.','');
+  for(const [id,s] of Object.entries(d.sources||{}))L.push((s.ok?'OK     ':'FAILED ')+id+(s.docs_read?' ('+s.docs_read+' pages read)':'')+(s.cards_dmz!=null?' ('+s.cards_dmz+' DMZ cards)':'')+(s.error?' - '+s.error:'')+((s.problems&&s.problems.length)?' - '+s.problems.join(' | '):''));
+  L.push('','New: '+d.added+'   Updated: '+d.updated+'   Removed: '+d.removed+'   Held for review: '+d.held+'   Not DMZ (left out): '+d.excluded,'Entries on the site now: '+(d.entries??'?'));
+  out.textContent=L.join('\n');
+};
+document.getElementById('review').onclick=async()=>{
+  const d=await call('review','GET');if(!d)return;const a=d.items||[];
+  out.textContent=a.length?a.map((x,i)=>(i+1)+'. ['+(x.path||[]).join(' > ')+'] '+x.text+'\n   '+x.reason).join('\n\n'):'Nothing is being held. Every item was either clearly DMZ (published) or clearly not (left out).';
+};
+document.getElementById('diag').onclick=async()=>{
+  const d=await call('diagnostics','GET');if(!d)return;const m=d.meta;
+  if(!m){out.textContent='No check has run yet. Press "Check now".';return}
+  const L=['Last successful check: '+tm(m.last_success),'Last attempt: '+tm(m.last_attempt),'Checks run: '+m.runs,'Starting point recorded: '+(m.baseline_done?tm(m.baseline_at):'no'),''];
+  for(const [id,s] of Object.entries(m.sources||{}))L.push((s.ok?'OK     ':'FAILED ')+s.name+' - last good '+tm(s.last_ok)+(s.last_error?' - '+s.last_error:''));
+  if((m.errors||[]).length){L.push('','Recent problems:');m.errors.slice(0,8).forEach(e=>L.push('  '+tm(e.at)+' ['+e.source+'] '+e.message))}
+  out.textContent=L.join('\n');
+};
+</script></body></html>

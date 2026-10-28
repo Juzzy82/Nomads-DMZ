@@ -681,6 +681,29 @@ a.tile-go{text-decoration:none}
 
 .up-rn{display:grid;grid-template-columns:26px minmax(0,1fr);align-items:center;column-gap:8px;row-gap:0}.up-rn img,.up-rn .up-cash-ic{grid-row:1/3}.up-rn span{grid-column:2}.up-rn em{grid-column:2;margin:0;padding:0;font-size:.6rem}
 
+/* ===== latest DMZ update (home) and patch notes page ===== */
+.latest{max-width:1120px;margin:22px auto 26px;padding:16px 18px;border:1px solid var(--line-2);background:linear-gradient(#12130f,#0b0c09)}
+.latest[hidden]{display:none}
+.latest-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.latest-head h2{margin:0;font:700 .8rem/1 var(--f-mono);letter-spacing:.2em;color:var(--gold)}
+.latest-all{padding:7px 12px;border:1px solid var(--line-2);background:none;color:#cfcbbb;font:600 .62rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.latest-all:hover{border-color:var(--gold);color:var(--gold-hi)}
+#latestList{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.latest-item{display:flex;flex-direction:column;gap:5px;width:100%;height:100%;padding:12px;text-align:left;border:1px solid var(--line);background:#0e0f0b;color:#e8e4d6;cursor:pointer}.latest-item:hover{border-color:var(--gold)}
+.latest-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:600 .58rem/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}.latest-cat{color:var(--gold)}.latest-date{color:var(--faint)}
+.latest-title{font:700 .95rem/1.25 var(--f-display);color:#f3ecda}.latest-sum{font-size:.82rem;line-height:1.4;color:#b9bdb0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.latest-meta{margin:10px 0 0;font:500 .66rem/1.2 var(--f-mono);color:var(--faint)}
+@media (max-width:820px){#latestList{grid-template-columns:1fr}}
+.pn-badge{display:inline-block;padding:3px 6px;font:700 .56rem/1 var(--f-mono);letter-spacing:.12em;border:1px solid}.pn-badge.new{color:#9ad47e;border-color:#3d5a2e;background:#142014}.pn-badge.upd{color:var(--gold-hi);border-color:#6b5427;background:#211b0c}.pn-badge.res{color:#7cc4ff;border-color:#2f5b86;background:#0f1a26}
+.pn-checked{max-width:1120px;margin:0 0 14px;color:var(--faint);font-size:.82rem}
+.pn-list{display:flex;flex-direction:column;gap:12px;max-width:1120px}
+.pn-card{padding:14px 16px;border:1px solid var(--line-2);background:linear-gradient(#12130f,#0b0c09)}.pn-card.hit{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.pn-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font:600 .6rem/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}.pn-cat{color:var(--gold)}.pn-date,.pn-rev{color:var(--faint)}
+.pn-card h3{margin:8px 0 4px;font:700 1.05rem/1.25 var(--f-display);color:#f3ecda}.pn-sum{margin:0 0 10px;color:#c8c4b6;font-size:.88rem;line-height:1.5}
+.pn-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}.pn-more{padding:7px 11px;border:1px solid var(--line-2);background:none;color:#cfcbbb;font:600 .62rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.pn-more:hover{border-color:var(--gold);color:var(--gold-hi)}
+.pn-src{color:var(--gold);font-size:.8rem;text-decoration:none}.pn-src:hover{text-decoration:underline}
+.pn-det{margin:12px 0 0;padding:12px 0 0 18px;border-top:1px solid var(--line);color:#d4d0c2;font-size:.86rem;line-height:1.5}.pn-det[hidden]{display:none}.pn-det li{margin:0 0 6px}
+.pn-error{max-width:1120px;padding:14px;border:1px solid #6b2f2f;background:#1a0e0e;color:#e8c4c4;display:flex;align-items:center;justify-content:space-between;gap:12px}.pn-error[hidden]{display:none}.pn-error p{margin:0}
+.pn-morewrap{max-width:1120px;margin:14px 0 40px}
+
 </style>
 </head>
 <body>
@@ -690,6 +713,11 @@ a.tile-go{text-decoration:none}
   <header class="masthead"><img src="about:blank#img:logo.webp" alt="NOMADS DMZ HUB" width="1952" height="272"></header>
   <p class="hub-intro">Free fan tools for Call of Duty: Modern Warfare 4 DMZ. Build weapon loadouts in the Gunsmith, browse every 3D printer recipe, explore the Hajin map and plan your operator traits.</p>
   <div class="hub-strip"><a class="discord" href="https://discord.gg/nomadoce" target="_blank" rel="noopener"><span>Join the Discord</span><b>discord.gg/nomadoce</b></a></div>
+  <section class="latest" id="latestUpdate" aria-label="Latest DMZ update" hidden>
+    <div class="latest-head"><h2>LATEST DMZ UPDATE</h2><button type="button" class="latest-all" data-open="patches">All patch notes</button></div>
+    <ul id="latestList"></ul>
+    <p class="latest-meta" id="latestMeta"></p>
+  </section>
   <div class="section-label">Select module</div>
   <ul class="modules">
     <li><button class="tile" type="button" data-open="map" aria-label="Open the Hajin field map">
@@ -885,6 +913,24 @@ a.tile-go{text-decoration:none}
   </main>
 </section>
 
+<!-- PATCH NOTES -->
+<section class="screen" id="screen-patches" aria-label="DMZ patch notes">
+  <header class="modbar">
+    <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
+    <div class="modtitle"><strong>DMZ Patch Notes</strong><span>Confirmed updates and fixes</span></div>
+  </header>
+  <main class="gear-body">
+    <section class="gear-hero"><div class="eyebrow">Modern Warfare 4</div><h1>DMZ Patch Notes</h1><p>Confirmed DMZ changes, hotfixes and resolved issues, newest first. Updates that apply only to other modes are left out.</p></section>
+    <p class="pn-checked" id="pnChecked"></p>
+    <div class="cm-tools"><input type="search" id="pnSearch" placeholder="Search patch notes" aria-label="Search patch notes"><div class="lt-chips" id="pnChips"></div></div>
+    <p class="up-empty" id="pnState" role="status"></p>
+    <div class="pn-error" id="pnError" hidden><p>Patch notes could not be loaded right now.</p><button type="button" class="up-undo" id="pnRetry">Try again</button></div>
+    <p class="up-empty" id="pnEmpty" hidden></p>
+    <div class="pn-list" id="pnList"></div>
+    <div class="pn-morewrap"><button type="button" class="up-undo" id="pnMore" hidden>Show older updates</button></div>
+  </main>
+</section>
+
 <!-- TRAITS -->
 <section class="screen" id="screen-traits" aria-label="Operator Traits builder">
   <header class="modbar">
@@ -904,19 +950,19 @@ a.tile-go{text-decoration:none}
 <script>
 (function(){const T='about:blank#img:';window.IMGS=window.IMGS||{};function fix(){document.querySelectorAll('img[src^="'+T+'"],image[href^="'+T+'"]').forEach(function(e){var a=e.tagName.toLowerCase()==='image'?'href':'src',k=e.getAttribute(a).slice(T.length),u=window.IMGS[k];if(u)e.setAttribute(a,u)})}window.__fixImgs=fix;new MutationObserver(fix).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['src','href']});document.querySelectorAll('script[data-imgs]').forEach(function(s){s.addEventListener('load',fix)});addEventListener('load',fix);fix()})();
 </script>
-<script>window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}};</script>
+<script>window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}, "/patch-notes/": {"t": "MW4 DMZ Patch Notes: Latest Updates, Hotfixes and Fixes | NOMADS DMZ HUB", "d": "Confirmed Modern Warfare 4 DMZ patch notes, hotfixes and resolved issues, checked four times a day and sorted by category. Search every update and read what changed."}};</script>
 <script>
 /* ===== Core: navigation, toast ===== */
 const $=id=>document.getElementById(id);
-const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos'];
+const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos','patches'];
 const toastEl=$('toast');let toastT;
 function toast(msg){clearTimeout(toastT);toastEl.textContent=msg;toastEl.classList.add('show');toastT=setTimeout(()=>toastEl.classList.remove('show'),2400)}
 const inits={};const ready={};
-const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/'};
+const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/',patches:'/patch-notes/'};
 function parseRoute(){
   let seg=location.pathname.split('/').filter(s=>s&&s!=='index.html');
   if(!seg.length&&location.hash.length>1)seg=location.hash.slice(1).split('/').filter(Boolean);
-  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';
+  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';if(v==='patch-notes')v='patches';
   return {view:VIEWS.includes(v)?v:null,arg:seg[1]};
 }
 function routePath(view,arg){return view?PATHS[view]+(arg?arg+'/':''):'/'}
@@ -937,6 +983,7 @@ function render(){
   if(view==='bosses'&&window.bossShow)bossShow(arg);
   if(view==='upgrades'&&window.upShow)upShow();
   if(view==='camos'&&window.camoShow)camoShow();
+  if(view==='patches'&&window.patchShow)patchShow();
   if(!view){const last=document.querySelector('[data-open="'+lastView+'"]');if(last)last.focus({preventScroll:true})}
   if(view)lastView=view;
   setMeta(routePath(view,arg));
@@ -1598,6 +1645,82 @@ inits.loot=function(){};
   };
   window.camoClose=function(){open=null;renderGrid();paintTop()};
   window.camoShow=function(){if($('cmGrid').children.length)paintTop()};
+})();
+
+/* ===== DMZ PATCH NOTES (data comes from /api/dmz-patches/*, filled by the scheduled checker) ===== */
+(function(){
+  const API='/api/dmz-patches';
+  const D=(iso,tz)=>{const t=Date.parse(iso);return Number.isNaN(t)?'':new Date(t).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric',timeZone:tz||'UTC'})};
+  const DT=iso=>{const t=Date.parse(iso);return Number.isNaN(t)?'':new Date(t).toLocaleString('en-AU',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',timeZone:'Australia/Melbourne',timeZoneName:'short'})};
+  const BADGE={NEW:'new',UPDATED:'upd',RESOLVED:'res'};
+  const get=async(path)=>{const c=new AbortController();const t=setTimeout(()=>c.abort(),12000);try{const r=await fetch(API+path,{signal:c.signal,headers:{accept:'application/json'}});if(r.status===503)return {notConfigured:true};if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}};
+  const when=e=>e.published_at?'Published '+D(e.published_at):(e.first_detected_at?'Detected '+D(e.first_detected_at,'Australia/Melbourne'):'');
+  const badge=e=>e.status?`<span class="pn-badge ${BADGE[e.status]||''}">${esc(e.status)}</span>`:'';
+
+  /* ---- home strip: top three updates ---- */
+  async function loadStrip(){
+    const box=document.getElementById('latestUpdate');if(!box)return;
+    try{
+      const d=await get('/latest?n=3');
+      if(!d||d.notConfigured||!d.items||!d.items.length){box.hidden=true;return}
+      document.getElementById('latestList').innerHTML=d.items.slice(0,3).map(e=>`<li><button type="button" class="latest-item" data-id="${esc(e.id)}"><span class="latest-top">${badge(e)}<span class="latest-cat">${esc(e.category)}</span><span class="latest-date">${esc(when(e))}</span></span><span class="latest-title">${esc(e.title)}</span><span class="latest-sum">${esc(e.summary)}</span></button></li>`).join('');
+      document.getElementById('latestMeta').textContent=d.last_success?'Last checked '+DT(d.last_success):'';
+      document.querySelectorAll('#latestList .latest-item').forEach(b=>b.onclick=()=>{try{sessionStorage.setItem('pnFocus',b.dataset.id)}catch(e){}openView('patches')});
+      box.hidden=false;
+    }catch(e){box.hidden=true}
+  }
+
+  /* ---- full page ---- */
+  const S={q:'',cat:'',page:1,pages:1,items:[],cats:[],loading:false,err:null,none:false};
+  const list=()=>document.getElementById('pnList');
+  const cardHTML=e=>{
+    const revs=(e.revisions&&e.revisions[0])?`<span class="pn-rev">Revision ${e.revision}: ${e.revisions[0].added} added, ${e.revisions[0].removed} removed</span>`:(e.revision>1?`<span class="pn-rev">Revision ${e.revision}</span>`:'');
+    return `<article class="pn-card" data-id="${esc(e.id)}"><div class="pn-top">${badge(e)}<span class="pn-cat">${esc(e.category)}</span><span class="pn-date">${esc(when(e))}</span>${revs}</div>
+      <h3>${esc(e.title)}</h3><p class="pn-sum">${esc(e.summary)}</p>
+      <div class="pn-actions"><button type="button" class="pn-more" aria-expanded="false">Show ${e.details.length} ${e.details.length===1?'change':'changes'}</button>${e.source_url?`<a class="pn-src" href="${esc(e.source_url)}" target="_blank" rel="noopener">${esc(e.source_name||'Official source')} &#8599;</a>`:''}</div>
+      <ul class="pn-det" hidden>${e.details.map(d=>`<li>${esc(d)}</li>`).join('')}</ul></article>`};
+  function paint(){
+    const L=list();if(!L)return;
+    document.getElementById('pnState').textContent=S.loading&&!S.items.length?'Loading patch notes...':'';
+    document.getElementById('pnError').hidden=!S.err;document.getElementById('pnEmpty').hidden=!(S.none&&!S.loading&&!S.err);
+    document.getElementById('pnEmpty').textContent=S.none==='setup'?'Patch note tracking is being set up. Official DMZ updates will appear here soon.':(S.q||S.cat?'No updates match that search.':'No DMZ patch notes have been published yet. Check back soon.');
+    L.innerHTML=S.items.map(cardHTML).join('');
+    L.querySelectorAll('.pn-card').forEach(c=>{const b=c.querySelector('.pn-more'),u=c.querySelector('.pn-det');b.onclick=()=>{const open=u.hidden;u.hidden=!open;b.setAttribute('aria-expanded',open);b.textContent=open?'Hide changes':'Show '+u.children.length+(u.children.length===1?' change':' changes')}});
+    document.getElementById('pnMore').hidden=!(S.page<S.pages);
+    const cs=document.getElementById('pnChips');
+    if(S.cats.length){cs.innerHTML=['All',...S.cats].map(c=>`<button type="button" class="lt-chip${(c==='All'?'':c)===S.cat?' on':''}" data-c="${esc(c==='All'?'':c)}">${esc(c)}</button>`).join('');cs.querySelectorAll('.lt-chip').forEach(b=>b.onclick=()=>{S.cat=b.dataset.c;load(true)})}
+  }
+  async function load(reset){
+    if(S.loading)return;S.loading=true;S.err=null;if(reset){S.page=1;S.items=[]}paint();
+    try{
+      const qs=new URLSearchParams({page:S.page,per:10});if(S.q)qs.set('q',S.q);if(S.cat)qs.set('cat',S.cat);
+      const d=await get('/history?'+qs);
+      if(d.notConfigured){S.none='setup';S.items=[]}
+      else{S.items=S.items.concat(d.items);S.pages=d.pages;if(d.categories&&d.categories.length&&!S.cats.length)S.cats=d.categories;S.none=S.items.length?false:true}
+    }catch(e){S.err=true}
+    S.loading=false;paint();focusEntry();
+  }
+  function focusEntry(){
+    let id=null;try{id=sessionStorage.getItem('pnFocus');if(id)sessionStorage.removeItem('pnFocus')}catch(e){}
+    if(!id)return;const c=[...document.querySelectorAll('#pnList .pn-card')].find(x=>x.dataset.id===id);
+    if(c){c.classList.add('hit');c.querySelector('.pn-more').click();c.scrollIntoView({block:'center'})}
+  }
+  async function loadStatus(){
+    try{
+      const s=await get('/status');const el=document.getElementById('pnChecked');
+      if(s.notConfigured){el.textContent='';return}
+      const bad=(s.sources||[]).filter(x=>x.ok===false);
+      el.textContent=(s.last_success?'Last checked '+DT(s.last_success)+'. ':'Not checked yet. ')+'The official sources are checked 4 times a day.'+(bad.length?' Some sources could not be reached at the last check; the most recent confirmed information is shown.':'');
+    }catch(e){}
+  }
+  inits.patches=function(){
+    let t;document.getElementById('pnSearch').oninput=e=>{clearTimeout(t);t=setTimeout(()=>{S.q=e.target.value.trim();load(true)},300)};
+    document.getElementById('pnMore').onclick=()=>{S.page++;load(false)};
+    document.getElementById('pnRetry').onclick=()=>load(true);
+    load(true);loadStatus();
+  };
+  window.patchShow=function(){if(S.items.length||S.none)focusEntry()};
+  loadStrip();
 })();
 
 /* ===== BOSS STRATS ===== */

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /patch-admin/
+Disallow: /api/
 
 Sitemap: https://nomaddmzhub.com/sitemap.xml
