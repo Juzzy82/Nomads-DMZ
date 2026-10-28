@@ -13,8 +13,8 @@ const MAX_DOCS = 8;          // newest Modern Warfare 4 patch note pages to read
 const MAX_INDEX = 1500;
 const MAX_INDEX_BYTES = 900000;
 
-async function fetchText(f, url, minLen = 200) {
-  const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 12000);
+async function fetchText(f, url, { minLen = 200, timeoutMs = 25000 } = {}) {
+  const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), timeoutMs);
   try {
     const r = await f(url, { signal: ctl.signal, redirect: 'follow', headers: { 'user-agent': UA, accept: 'text/html,application/json' } });
     if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -22,7 +22,15 @@ async function fetchText(f, url, minLen = 200) {
     if (!txt || txt.length < minLen) throw new Error('Empty or very short response');
     if (txt.length > 4000000) throw new Error('Response too large');
     return txt;
+  } catch (e) {
+    if (e && (e.name === 'AbortError' || /aborted/i.test(String(e.message)))) throw new Error(`Timed out after ${Math.round(timeoutMs / 1000)} seconds waiting for the site`);
+    throw e;
   } finally { clearTimeout(timer); }
+}
+// one more try when the site is slow or has a temporary server error
+async function fetchRetry(f, url, opts) {
+  try { return await fetchText(f, url, opts); }
+  catch (e) { if (/Timed out|HTTP 5/.test(String(e.message))) return await fetchText(f, url, opts); throw e; }
 }
 
 const safeMsg = (e) => String((e && e.message) || e).replace(/https?:\/\/\S+/g, '[url]').slice(0, 200);
@@ -32,6 +40,7 @@ const jput = async (env, k, v) => { try { await env.PATCHES.put(k, JSON.stringif
 export async function runCheck(env, trigger, deps = {}) {
   const f = deps.fetch || fetch;
   const now = (deps.now ? deps.now() : new Date()).toISOString();
+  const timeoutMs = deps.timeoutMs || 25000;
   if (!env || !env.PATCHES) return { ok: false, error: 'Storage (KV) is not connected yet.' };
   try {
     const lock = await env.PATCHES.get('lock');
@@ -57,14 +66,17 @@ export async function runCheck(env, trigger, deps = {}) {
     // ---- source 1: official patch notes pages ----
     const s1 = SOURCES[0];
     try {
-      const indexHtml = await fetchText(f, s1.page);
+      const t0 = Date.now();
+      const indexHtml = await fetchRetry(f, s1.page, { timeoutMs });
       const paths = discoverDocs(indexHtml);
       if (!paths.length) throw new Error('No Modern Warfare 4 patch note pages were found on the index page. The page layout may have changed.');
       let okDocs = 0; const docErrors = [];
-      for (const path of paths.slice(0, MAX_DOCS)) {
+      const pages = await Promise.all(paths.slice(0, MAX_DOCS).map((path) =>
+        fetchRetry(f, 'https://www.callofduty.com' + path, { timeoutMs }).then((html) => ({ path, html }), (error) => ({ path, error }))));
+      for (const { path, html, error: fetchError } of pages) {
         const url = 'https://www.callofduty.com' + path; const docId = slug(path.split('/').pop());
         try {
-          const html = await fetchText(f, url);
+          if (fetchError) throw fetchError;
           const parsed = parseDoc(html, url);
           if (parsed.blockCount < 5) throw new Error('Page content looked empty or malformed');
           const prev = await jget(env, 'doc:' + docId);
@@ -88,7 +100,7 @@ export async function runCheck(env, trigger, deps = {}) {
       if (!okDocs) throw new Error('None of the patch note pages could be read. ' + docErrors[0]);
       anyOk = true;
       meta.sources[s1.id] = { name: s1.name, ok: true, last_ok: now, last_error: docErrors.length ? docErrors.join(' | ').slice(0, 300) : null, docs_read: okDocs };
-      report.sources[s1.id] = { ok: true, docs_read: okDocs, problems: docErrors };
+      report.sources[s1.id] = { ok: true, docs_read: okDocs, problems: docErrors, ms: Date.now() - t0 };
     } catch (e) {
       logError(s1.id, e);
       meta.sources[s1.id] = { ...(meta.sources[s1.id] || { name: s1.name }), name: s1.name, ok: false, last_error: safeMsg(e), last_error_at: now };
@@ -98,7 +110,7 @@ export async function runCheck(env, trigger, deps = {}) {
     // ---- source 2: official Modern Warfare 4 Trello board ----
     const s2 = SOURCES[1];
     try {
-      const board = JSON.parse(await fetchText(f, s2.json, 20));
+      const board = JSON.parse(await fetchRetry(f, s2.json, { minLen: 20, timeoutMs }));
       const parsed = parseTrello(board);
       const prev = await jget(env, 'doc:trello');
       const fresh = await trelloEntries(parsed, s2);

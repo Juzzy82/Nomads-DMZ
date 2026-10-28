@@ -25,9 +25,10 @@ export async function handleApi(request, env, ctx) {
       if (!tokenOk(request, env)) return json({ error: 'forbidden' }, 403);
       if (request.method === 'POST' && path === '/api/dmz-patches/admin/refresh') {
         const last = await env.PATCHES.get('manual_last');
-        if (last && Date.now() - Date.parse(last) < 600000) return json({ ok: false, error: 'A manual check was run less than 10 minutes ago. Please wait.' }, 429);
-        await env.PATCHES.put('manual_last', new Date().toISOString(), { expirationTtl: 900 });
-        return json(await runCheck(env, 'manual'));
+        if (last && Date.now() - Date.parse(last) < 300000) return json({ ok: false, error: 'A manual check finished less than 5 minutes ago. Please wait a few minutes.' }, 429);
+        const result = await runCheck(env, 'manual');
+        if (result && result.ok && !result.skipped) await env.PATCHES.put('manual_last', new Date().toISOString(), { expirationTtl: 600 });
+        return json(result);
       }
       if (request.method === 'GET' && path === '/api/dmz-patches/admin/review') return json({ items: (await env.PATCHES.get('review', 'json')) || [] });
       if (request.method === 'GET' && path === '/api/dmz-patches/admin/diagnostics') return json({ meta: (await env.PATCHES.get('meta', 'json')) || null });
