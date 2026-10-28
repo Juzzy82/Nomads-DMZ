@@ -1,0 +1,5 @@
+worker/
+tests/
+wrangler.jsonc
+.assetsignore
+PATCH-NOTES-SETUP.md
