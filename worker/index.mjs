@@ -1,6 +1,7 @@
 // NOMADS DMZ HUB Worker: serves the website files (assets) and the patch notes API, and runs the scheduled checker.
 import { runCheck } from './check.mjs';
 import { latest, history, status } from './api.mjs';
+import { refreshYoutube, latestVideo } from './youtube.mjs';
 
 const JSON_HEADERS = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff' };
 const json = (obj, status = 200, cache = 'no-store') => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, 'cache-control': cache } });
@@ -19,6 +20,7 @@ export async function handleApi(request, env, ctx) {
   try {
     if (request.method === 'GET' && path === '/api/dmz-patches/latest') return json(await latest(env, Math.min(+url.searchParams.get('n') || 10, 20)), 200, 'public, max-age=300, s-maxage=300');
     if (request.method === 'GET' && path === '/api/dmz-patches/history') return json(await history(env, { q: url.searchParams.get('q'), cat: url.searchParams.get('cat'), page: url.searchParams.get('page'), per: url.searchParams.get('per') }), 200, 'public, max-age=300, s-maxage=300');
+    if (request.method === 'GET' && path === '/api/latest-video') return json(await latestVideo(env), 200, 'public, max-age=900, s-maxage=900');
     if (request.method === 'GET' && path === '/api/dmz-patches/status') return json(await status(env), 200, 'public, max-age=60, s-maxage=60');
 
     if (path.startsWith('/api/dmz-patches/admin/')) {
@@ -26,7 +28,7 @@ export async function handleApi(request, env, ctx) {
       if (request.method === 'POST' && path === '/api/dmz-patches/admin/refresh') {
         const last = await env.PATCHES.get('manual_last');
         if (last && Date.now() - Date.parse(last) < 300000) return json({ ok: false, error: 'A manual check finished less than 5 minutes ago. Please wait a few minutes.' }, 429);
-        const result = await runCheck(env, 'manual');
+        const result = await runCheck(env, 'manual'); result.youtube = await refreshYoutube(env);
         if (result && result.ok && !result.skipped) await env.PATCHES.put('manual_last', new Date().toISOString(), { expirationTtl: 600 });
         return json(result);
       }
@@ -40,8 +42,8 @@ export async function handleApi(request, env, ctx) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname.startsWith('/api/dmz-patches')) return handleApi(request, env, ctx);
+    if (url.pathname.startsWith('/api/dmz-patches') || url.pathname === '/api/latest-video') return handleApi(request, env, ctx);
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
   },
-  async scheduled(event, env, ctx) { ctx.waitUntil(runCheck(env, 'cron')); }
+  async scheduled(event, env, ctx) { ctx.waitUntil(Promise.allSettled([runCheck(env, 'cron'), refreshYoutube(env)])); }
 };

@@ -1,7 +1,8 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Loot Hot Spots gold bag tile, Korean titles and faded art, flexing arm Traits tile, bigger text, Item Search and everything since the Trello-only update
+Update: Item Search and all earlier updates plus: Hanex vault guide, Deadtown Waterfront Loot Run, route lines on the map, new Traits and Loot tile pictures, YouTube banner, tile progress, phone bar, per-page share previews, tinted tiles, motion, floating Korean background
 
+PATCH-NOTES-SETUP.md                       file
 app.css                                    the site styling
 app.js                                     the site code and data
 boss-strats/bale/index.html                page
@@ -24,20 +25,53 @@ gear/index.html                            page
 gunsmith/index.html                        page
 imgs-3.js                                  pictures used by the site
 imgs-4.js                                  pictures used by the site
+imgs-5.js                                  pictures used by the site
 index.html                                 page (home)
 items/index.html                           page
 loot-img/bunker-route.webp                 picture
+loot-img/vault-flow.webp                   picture
+loot-img/waterfront-run.webp               picture
 loot/bunker-route/index.html               page
+loot/deadtown-waterfront-run/index.html    page
+loot/hanex-bank-vault/index.html           page
 loot/index.html                            page
 loot/irradiated-items/index.html           page
 loot/river-heights/index.html              page
 map/index.html                             page
+og/boss-strats--bale.jpg                   file
+og/boss-strats--colossus.jpg               file
+og/boss-strats--deathstalker.jpg           file
+og/boss-strats--gorani.jpg                 file
+og/boss-strats--iskra.jpg                  file
+og/boss-strats--jang-ui.jpg                file
+og/boss-strats--jin-tae.jpg                file
+og/boss-strats--nk-battle-tank.jpg         file
+og/boss-strats--roze.jpg                   file
+og/boss-strats--the-chemist.jpg            file
+og/boss-strats--the-doctor.jpg             file
+og/boss-strats--the-scavenger.jpg          file
+og/boss-strats--the-warden.jpg             file
+og/boss-strats.jpg                         file
+og/camo-tracker.jpg                        file
+og/dynamic-ops.jpg                         file
+og/gear.jpg                                file
+og/gunsmith.jpg                            file
+og/items.jpg                               file
+og/loot--bunker-route.jpg                  file
+og/loot--deadtown-waterfront-run.jpg       file
+og/loot--hanex-bank-vault.jpg              file
+og/loot--irradiated-items.jpg              file
+og/loot--river-heights.jpg                 file
+og/loot.jpg                                file
+og/map.jpg                                 file
+og/patch-notes.jpg                         file
+og/traits.jpg                              file
+og/upgrades.jpg                            file
 patch-notes/index.html                     page
 sitemap.xml                                search engine page list
 traits/index.html                          page
 upgrades/index.html                        page
-
-DELETE THESE FROM GITHUB (no longer used):
-imgs-5.js
+worker/index.mjs                           patch notes system
+worker/youtube.mjs                         patch notes system
 
 Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.

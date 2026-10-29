@@ -30,3 +30,11 @@ tests/
 wrangler.jsonc
 .assetsignore
 PATCH-NOTES-SETUP.md
+
+## What is checked
+Only the official Modern Warfare 4 Trello board is checked (known issues and fixes). The official patch notes page check is built but switched off, because callofduty.com does not answer requests that come from Cloudflare.
+If a way to reach it is found later, switch it on by adding a Cloudflare variable (not a secret) named `ENABLE_PATCH_PAGES` with the value `1`.
+
+## YouTube banner on the home page
+The banner at the bottom of the home page opens your newest YouTube video. The Worker reads your channel's public video list a few times a day (the same schedule as the patch notes check) and saves the newest video.
+After you upload this update, open `/patch-admin/`, type your password and press **Check now** once. That fetches the first video straight away. Until then, or if YouTube does not answer, the banner opens your channel's Shorts page.
