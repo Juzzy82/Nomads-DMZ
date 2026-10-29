@@ -1,35 +1,39 @@
-Use this set ONLY if you did not upload the previous update (the Hajin Bunker Loot Route one).
-Upload every file here, keeping the folders.
+UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-app.css
-app.js
-boss-strats/bale/index.html
-boss-strats/colossus/index.html
-boss-strats/deathstalker/index.html
-boss-strats/gorani/index.html
-boss-strats/index.html
-boss-strats/iskra/index.html
-boss-strats/jang-ui/index.html
-boss-strats/jin-tae/index.html
-boss-strats/nk-battle-tank/index.html
-boss-strats/roze/index.html
-boss-strats/the-chemist/index.html
-boss-strats/the-doctor/index.html
-boss-strats/the-scavenger/index.html
-boss-strats/the-warden/index.html
-camo-tracker/index.html
-dynamic-ops/index.html
-gear/index.html
-gunsmith/index.html
-imgs-3.js
-index.html
-loot-img/bunker-route.webp
-loot/bunker-route/index.html
-loot/index.html
-loot/irradiated-items/index.html
-loot/river-heights/index.html
-map/index.html
-patch-notes/index.html
-sitemap.xml
-traits/index.html
-upgrades/index.html
+Update: Item Search, key text and rarity, banks, safes, loot rockets, keypad doors, bunker guide and all earlier updates (everything since the Trello-only update)
+
+app.css                                    the site styling
+app.js                                     the site code and data
+boss-strats/bale/index.html                page
+boss-strats/colossus/index.html            page
+boss-strats/deathstalker/index.html        page
+boss-strats/gorani/index.html              page
+boss-strats/index.html                     page
+boss-strats/iskra/index.html               page
+boss-strats/jang-ui/index.html             page
+boss-strats/jin-tae/index.html             page
+boss-strats/nk-battle-tank/index.html      page
+boss-strats/roze/index.html                page
+boss-strats/the-chemist/index.html         page
+boss-strats/the-doctor/index.html          page
+boss-strats/the-scavenger/index.html       page
+boss-strats/the-warden/index.html          page
+camo-tracker/index.html                    page
+dynamic-ops/index.html                     page
+gear/index.html                            page
+gunsmith/index.html                        page
+imgs-3.js                                  pictures used by the site
+index.html                                 page (home)
+items/index.html                           page
+loot-img/bunker-route.webp                 picture
+loot/bunker-route/index.html               page
+loot/index.html                            page
+loot/irradiated-items/index.html           page
+loot/river-heights/index.html              page
+map/index.html                             page
+patch-notes/index.html                     page
+sitemap.xml                                search engine page list
+traits/index.html                          page
+upgrades/index.html                        page
+
+Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.

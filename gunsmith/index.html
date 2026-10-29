@@ -36,16 +36,24 @@
   <header class="masthead"><img src="about:blank#img:logo.webp" alt="NOMADS DMZ HUB" width="1952" height="272"></header>
   <p class="hub-intro">Free fan tools for Call of Duty: Modern Warfare 4 DMZ. Build weapon loadouts in the Gunsmith, browse every 3D printer recipe, explore the Hajin map and plan your operator traits.</p>
   <div class="hub-strip"><a class="discord" href="https://discord.gg/nomadoce" target="_blank" rel="noopener"><span>Join the Discord</span><b>discord.gg/nomadoce</b></a></div>
+  <div class="hub-row">
   <section class="latest" id="latestUpdate" aria-label="Latest DMZ update" hidden>
     <div class="latest-head"><h2>LATEST DMZ UPDATE</h2><button type="button" class="latest-all" data-open="patches">All patch notes</button></div>
     <ul id="latestList"></ul>
     <p class="latest-meta" id="latestMeta"></p>
   </section>
+    <section class="isearch" id="itemSearchBox" aria-label="Item search">
+      <h2>ITEM SEARCH</h2>
+      <p class="is-sub">Find where an item comes from, what it is needed for and what it makes.</p>
+      <div class="is-wrap"><input id="isHome" type="search" role="combobox" aria-expanded="false" aria-controls="isHomeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search a material, gear item, key or upgrade" aria-label="Search for an item"><ul class="is-list" id="isHomeList" role="listbox" hidden></ul></div>
+      <p class="is-try">Try <button type="button" data-q="Control Unit">Control Unit</button><button type="button" data-q="Reactive Metals">Reactive Metals</button><button type="button" data-q="Bank Upgrade">Bank Upgrade</button></p>
+    </section>
+  </div>
   <div class="section-label">Select module</div>
   <ul class="modules">
     <li><button class="tile" type="button" data-open="map" aria-label="Open the Hajin field map">
       <div class="tile-art"><img src="about:blank#img:tile-map.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">Hajin // 286 markers</span><span class="tile-title">Map</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">Hajin // 337 markers</span><span class="tile-title">Map</span></div><span class="tile-go">Open</span></div>
     </button></li>
     <li><button class="tile" type="button" data-open="gunsmith" aria-label="Open the Gunsmith weapon builder">
       <div class="tile-art"><img src="about:blank#img:tile-gun.webp" alt=""></div>
@@ -251,6 +259,19 @@
     <p class="up-empty" id="pnEmpty" hidden></p>
     <div class="pn-list" id="pnList"></div>
     <div class="pn-morewrap"><button type="button" class="up-undo" id="pnMore" hidden>Show older updates</button></div>
+  </main>
+</section>
+
+<!-- ITEMS -->
+<section class="screen" id="screen-items" aria-label="Item search">
+  <header class="modbar">
+    <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
+    <div class="modtitle"><strong>Item Search</strong><span>Where to find it and what it is for</span></div>
+  </header>
+  <main class="gear-body">
+    <section class="gear-hero"><div class="eyebrow">Items</div><h1>Item Search</h1><p>Search any material, gear item, key or upgrade. See where to find it, what it is needed for in upgrades and what gear it makes.</p></section>
+    <div class="is-wrap is-page"><input id="isPage" type="search" role="combobox" aria-expanded="false" aria-controls="isPageList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search a material, gear item, key or upgrade" aria-label="Search for an item"><ul class="is-list" id="isPageList" role="listbox" hidden></ul></div>
+    <div id="itBody"></div>
   </main>
 </section>
 
