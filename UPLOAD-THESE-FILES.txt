@@ -1,6 +1,6 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Item Search, key text and rarity, banks, safes, loot rockets, keypad doors, bunker guide and all earlier updates (everything since the Trello-only update)
+Update: Loot Hot Spots gold bag tile, Korean titles and faded art, flexing arm Traits tile, bigger text, Item Search and everything since the Trello-only update
 
 app.css                                    the site styling
 app.js                                     the site code and data
@@ -23,6 +23,7 @@ dynamic-ops/index.html                     page
 gear/index.html                            page
 gunsmith/index.html                        page
 imgs-3.js                                  pictures used by the site
+imgs-4.js                                  pictures used by the site
 index.html                                 page (home)
 items/index.html                           page
 loot-img/bunker-route.webp                 picture
@@ -35,5 +36,8 @@ patch-notes/index.html                     page
 sitemap.xml                                search engine page list
 traits/index.html                          page
 upgrades/index.html                        page
+
+DELETE THESE FROM GITHUB (no longer used):
+imgs-5.js
 
 Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.

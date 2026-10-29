@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://nomaddmzhub.com/og-image.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "description": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play.", "url": "https://nomaddmzhub.com/dynamic-ops/", "isPartOf": {"@type": "WebSite", "name": "NOMADS DMZ HUB", "url": "https://nomaddmzhub.com/"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nomaddmzhub.com/"}, {"@type": "ListItem", "position": 2, "name": "MW4 DMZ Dynamic Ops guide", "item": "https://nomaddmzhub.com/dynamic-ops/"}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Saira+Condensed:wght@600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Saira+Condensed:wght@600;700&family=Noto+Sans+KR:wght@500;700&family=Nanum+Brush+Script&display=swap">
 <link rel="stylesheet" href="/app.css">
 <script src="/app.js" defer></script>
 </head>
@@ -45,48 +45,47 @@
     <section class="isearch" id="itemSearchBox" aria-label="Item search">
       <h2>ITEM SEARCH</h2>
       <p class="is-sub">Find where an item comes from, what it is needed for and what it makes.</p>
-      <div class="is-wrap"><input id="isHome" type="search" role="combobox" aria-expanded="false" aria-controls="isHomeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search a material, gear item, key or upgrade" aria-label="Search for an item"><ul class="is-list" id="isHomeList" role="listbox" hidden></ul></div>
+      <div class="is-wrap"><input id="isHome" type="search" role="combobox" aria-expanded="false" aria-controls="isHomeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search for an item" aria-label="Search for an item"><ul class="is-list" id="isHomeList" role="listbox" hidden></ul></div>
       <p class="is-try">Try <button type="button" data-q="Control Unit">Control Unit</button><button type="button" data-q="Reactive Metals">Reactive Metals</button><button type="button" data-q="Bank Upgrade">Bank Upgrade</button></p>
     </section>
   </div>
   <div class="section-label">Select module</div>
   <ul class="modules">
-    <li><button class="tile" type="button" data-open="map" aria-label="Open the Hajin field map">
+    <li><button class="tile" type="button" data-open="map" aria-label="Open the Hajin field map"><span class="tile-bg k2" data-ko="지도" aria-hidden="true"></span>
       <div class="tile-art"><img src="about:blank#img:tile-map.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">Hajin // 337 markers</span><span class="tile-title">Map</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">Hajin // 337 markers</span><span class="tile-title">Map <span class="ko" lang="ko">지도</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="gunsmith" aria-label="Open the Gunsmith weapon builder">
+    <li><button class="tile" type="button" data-open="gunsmith" aria-label="Open the Gunsmith weapon builder"><span class="tile-bg k3" data-ko="총기 개조" aria-hidden="true"></span>
       <div class="tile-art"><img src="about:blank#img:tile-gun.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">33 weapons // 5 slots</span><span class="tile-title">Gunsmith</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">33 weapons // 5 slots</span><span class="tile-title">Gunsmith <span class="ko" lang="ko">총기 개조</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="gear" aria-label="Open the 3D Printer gear guide">
+    <li><button class="tile" type="button" data-open="gear" aria-label="Open the 3D Printer gear guide"><span class="tile-bg k2" data-ko="장비" aria-hidden="true"></span>
       <div class="tile-art"><img class="narrow" src="about:blank#img:tile-printer.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">Printer // 95 recipes</span><span class="tile-title">Gear</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">Printer // 95 recipes</span><span class="tile-title">Gear <span class="ko" lang="ko">장비</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="traits" aria-label="Open the Operator Traits builder">
-      <div class="tile-art"><img class="narrow" src="about:blank#img:tile-traits.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">18 major traits // 18 pts</span><span class="tile-title">Traits</span></div><span class="tile-go">Open</span></div>
+    <li><button class="tile" type="button" data-open="traits" aria-label="Open the Operator Traits builder"><span class="tile-bg k2" data-ko="특성" aria-hidden="true"></span>
+      <div class="tile-art"><img class="tall" src="about:blank#img:tile-traits.svg" alt=""></div>
+      <div class="tile-meta"><div><span class="tile-fact">18 major traits // 18 pts</span><span class="tile-title">Traits <span class="ko" lang="ko">특성</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="dynops" aria-label="Open the Dynamic Ops guide">
+    <li><button class="tile" type="button" data-open="dynops" aria-label="Open the Dynamic Ops guide"><span class="tile-bg k4" data-ko="다이나믹 옵스" aria-hidden="true"></span>
       <div class="tile-art"><img class="tall" src="about:blank#img:tile-dynops.svg" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">12 ops // rewards</span><span class="tile-title">Dynamic Ops</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">12 ops // rewards</span><span class="tile-title">Dynamic Ops <span class="ko" lang="ko">다이나믹 옵스</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="upgrades" aria-label="Open the Upgrades tracker">
+    <li><button class="tile" type="button" data-open="upgrades" aria-label="Open the Upgrades tracker"><span class="tile-bg k3" data-ko="업그레이드" aria-hidden="true"></span>
       <div class="tile-art"><img class="tall" src="about:blank#img:tile-upgrades.svg" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">28 upgrades // 9 lines</span><span class="tile-title">Upgrades</span><span class="tile-note">Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">28 upgrades // 9 lines</span><span class="tile-title">Upgrades <span class="ko" lang="ko">업그레이드</span></span><span class="tile-note">Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><button class="tile" type="button" data-open="camos" aria-label="Open the Camo Tracker">
+    <li><button class="tile" type="button" data-open="camos" aria-label="Open the Camo Tracker"><span class="tile-bg k3" data-ko="위장 추적기" aria-hidden="true"></span>
       <div class="tile-art"><img class="narrow" src="about:blank#img:tile-camo.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">33 weapons // 630 camos</span><span class="tile-title">Camo Tracker</span><span class="tile-note">Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">33 weapons // 630 camos</span><span class="tile-title">Camo Tracker <span class="ko" lang="ko">위장 추적기</span></span><span class="tile-note">Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
     </button></li>
-    <li><section class="tile loot-tile" aria-label="Loot Hot Spots">
-      <div class="tile-art loot-art"><ul class="loot-list" id="lootList">  
-  </ul></div>
-      <div class="tile-meta"><div><span class="tile-fact" id="lootCount">2 hot spots</span><span class="tile-title">Loot Hot Spots</span><span class="tile-note">Know a hot spot? Submit it in our Discord: discord.gg/nomadoce</span></div><a class="tile-go" href="/loot/" data-open="loot">Open</a></div>
-    </section></li>
-    <li><button class="tile" type="button" data-open="bosses" aria-label="Open Boss Strats">
+    <li><button class="tile" type="button" data-open="loot" aria-label="Open Loot Hot Spots"><span class="tile-bg k3" data-ko="전리품 명소" aria-hidden="true"></span>
+      <div class="tile-art"><img class="tall" src="about:blank#img:tile-loot.svg" alt=""></div>
+      <div class="tile-meta"><div><span class="tile-fact" id="lootCount">3 hot spots</span><span class="tile-title">Loot Hot Spots <span class="ko" lang="ko">전리품 명소</span></span><span class="tile-note">Know a hot spot? Submit it in our Discord: discord.gg/nomadoce</span></div><span class="tile-go">Open</span></div>
+    </button></li>
+    <li><button class="tile" type="button" data-open="bosses" aria-label="Open Boss Strats"><span class="tile-bg k3" data-ko="보스 공략" aria-hidden="true"></span>
       <div class="tile-art"><img class="narrow" src="about:blank#img:tile-boss.webp" alt=""></div>
-      <div class="tile-meta"><div><span class="tile-fact">13 bosses // strategies</span><span class="tile-title">Boss Strats</span></div><span class="tile-go">Open</span></div>
+      <div class="tile-meta"><div><span class="tile-fact">13 bosses // strategies</span><span class="tile-title">Boss Strats <span class="ko" lang="ko">보스 공략</span></span></div><span class="tile-go">Open</span></div>
     </button></li>
   
   </ul>
@@ -295,6 +294,5 @@
 <script src="/imgs-2.js" data-imgs async></script>
 <script src="/imgs-3.js" data-imgs async></script>
 <script src="/imgs-4.js" data-imgs async></script>
-<script src="/imgs-5.js" data-imgs async></script>
 </body>
 </html>

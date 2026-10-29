@@ -718,3 +718,29 @@ a.tile-go{text-decoration:none}
 .it-tier{padding:10px 12px;margin:0 0 10px;border:1px solid var(--line);background:#0e0f0b;width:100%}.it-tier-h{display:flex;align-items:center;gap:12px;margin-bottom:4px;font-weight:700}.it-tier-h em{font:500 .66rem/1 var(--f-mono);color:var(--faint);font-style:normal}.it-tier p{margin:0 0 8px;color:#c8c4b6;font-size:.86rem}
 .it-browse{display:flex;flex-wrap:wrap;gap:4px 10px}
 @media (max-width:640px){.it-name{font-size:1.25rem}.it-head>img,.it-keyic{width:56px;height:56px}}
+
+/* ===== Korean titles and the faded Korean art behind each tile ===== */
+.tile{isolation:isolate}
+.tile-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.tile-bg::before{content:"";position:absolute;inset:0;opacity:.085;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72' fill='none' stroke='%23e8a848' stroke-width='1'%3E%3Cpath d='M0 36h72M36 0v72'/%3E%3Cpath d='M18 18h36v36H18z'/%3E%3Cpath d='M36 18l18 18-18 18-18-18z'/%3E%3Ccircle cx='36' cy='36' r='5'/%3E%3Cpath d='M0 0l18 18M72 0L54 18M0 72l18-18M72 72L54 54'/%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse at 100% 100%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%);mask-image:radial-gradient(ellipse at 100% 100%,#000 0,rgba(0,0,0,.55) 38%,transparent 72%)}
+.tile-bg::after{content:attr(data-ko);position:absolute;right:-.04em;bottom:-.2em;font:400 11rem/1 'Nanum Brush Script','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo','Noto Sans CJK KR',serif;white-space:nowrap;color:var(--gold);opacity:.075;letter-spacing:-.02em}
+.tile-bg.k3::after{font-size:6.6rem}.tile-bg.k4::after{font-size:5.2rem}
+@supports (font-size:1cqw){.tile{container-type:inline-size}.tile-bg::after{font-size:36cqw}.tile-bg.k3::after{font-size:20cqw}.tile-bg.k4::after{font-size:15.5cqw}}
+.tile-art,.tile-meta{position:relative;z-index:1}
+.tile-title .ko{display:inline-block;margin-left:.55em;font:500 .52em/1 'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo','Noto Sans CJK KR',sans-serif;letter-spacing:.02em;text-transform:none;color:var(--gold);vertical-align:.12em}
+/* ===== bigger text: Latest DMZ Update and Item Search ===== */
+.latest,.isearch{padding:20px 22px}
+.latest-head h2,.isearch h2{font-size:1.05rem;letter-spacing:.18em}
+.latest-all{font-size:.8rem;padding:9px 14px}
+.latest-top{font-size:.76rem;gap:6px 10px}
+.latest-title{font-size:1.28rem;line-height:1.22}
+.latest-sum{font-size:1.04rem;line-height:1.42}
+.latest-item{padding:15px;gap:7px}
+.latest-meta{font-size:.82rem}
+.pn-badge{font-size:.7rem;padding:4px 8px}
+.is-sub{font-size:1.04rem;line-height:1.45}
+.is-wrap input{font-size:1.22rem;padding:15px 16px}
+.is-list li{font-size:1.14rem;padding:11px 12px;gap:12px}
+.is-list img{width:38px;height:38px}.is-key{width:38px;height:38px}
+.is-tp{font-size:.7rem;padding:4px 8px}
+.is-try{font-size:.86rem;line-height:1.8}
