@@ -1,0 +1,35 @@
+Use this set ONLY if you did not upload the previous update (the Hajin Bunker Loot Route one).
+Upload every file here, keeping the folders.
+
+app.css
+app.js
+boss-strats/bale/index.html
+boss-strats/colossus/index.html
+boss-strats/deathstalker/index.html
+boss-strats/gorani/index.html
+boss-strats/index.html
+boss-strats/iskra/index.html
+boss-strats/jang-ui/index.html
+boss-strats/jin-tae/index.html
+boss-strats/nk-battle-tank/index.html
+boss-strats/roze/index.html
+boss-strats/the-chemist/index.html
+boss-strats/the-doctor/index.html
+boss-strats/the-scavenger/index.html
+boss-strats/the-warden/index.html
+camo-tracker/index.html
+dynamic-ops/index.html
+gear/index.html
+gunsmith/index.html
+imgs-3.js
+index.html
+loot-img/bunker-route.webp
+loot/bunker-route/index.html
+loot/index.html
+loot/irradiated-items/index.html
+loot/river-heights/index.html
+map/index.html
+patch-notes/index.html
+sitemap.xml
+traits/index.html
+upgrades/index.html
