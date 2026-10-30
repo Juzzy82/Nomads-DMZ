@@ -1,6 +1,6 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Item Search and all earlier updates plus: Hanex vault guide, Deadtown Waterfront Loot Run, route lines on the map, new Traits and Loot tile pictures, YouTube banner, tile progress, phone bar, per-page share previews, tinted tiles, motion, floating Korean background
+Update: Gunsmith: all 33 base prices, live attachment lists and prices, Apex prices, discount box; X01 infil layer; map route fixes and Loot runs switch; plus everything since the Trello-only update
 
 PATCH-NOTES-SETUP.md                       file
 app.css                                    the site styling

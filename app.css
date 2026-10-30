@@ -797,3 +797,11 @@ a.tile-go{text-decoration:none}
   .screen{padding-bottom:calc(66px + env(safe-area-inset-bottom,0px))}
   .home{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
 }
+
+.gc-disc{width:64px;padding:4px 6px;background:#0e0f0b;border:1px solid var(--line-2);color:#fff;font:600 .9rem var(--f-mono);text-align:right}
+
+/* ===== map: clear-route chip, Season 1 badge and card picture ===== */
+.map-chip{position:absolute;left:14px;bottom:56px;z-index:12;padding:9px 14px;border:1px solid var(--gold);background:rgba(10,10,8,.9);color:var(--gold-hi);font:700 .66rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.map-chip:hover{background:rgba(232,168,72,.2)}
+.soon-badge{display:inline-block;margin:6px 0 4px;padding:4px 9px;border:1px solid #22d3ee;color:#7ee9f5;background:rgba(34,211,238,.1);font:700 .62rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.card-pic{display:block;width:100%;height:auto;margin:8px 0 6px;border:1px solid var(--line-2)}
