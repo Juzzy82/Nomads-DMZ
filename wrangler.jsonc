@@ -17,7 +17,7 @@
   ]
 
   // ACCOUNTS (see ACCOUNTS-SETUP.md): after you create the D1 database, remove the two slashes at the start of each line below and paste its id.
-  //,"d1_databases": [
-  //  { "binding": "DB", "database_name": "nomads-dmz", "database_id": "PASTE-YOUR-D1-ID-HERE" }
-  //]
+  ,"d1_databases": [
+  { "binding": "DB", "database_name": "nomads-dmz", "database_id": "9413be09-4616-4b33-b43a-3c62485e2d21" }
+]
 }
