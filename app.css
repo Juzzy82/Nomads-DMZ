@@ -827,3 +827,10 @@ a.tile-go{text-decoration:none}
 .acct-b{padding:11px 16px;border:1px solid var(--line-2);background:#14150f;color:#e6e2d4;font:700 .72rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .acct-b:hover{border-color:var(--gold);color:var(--gold-hi)}.acct-b.primary{border-color:var(--gold);background:rgba(232,168,72,.18);color:var(--gold-hi)}.acct-b.danger{border-color:#a8453a;background:rgba(200,70,50,.16);color:#ff9d8e}
 @media (max-width:700px){.acct{flex:1 1 100%}.acct-btn{width:100%;justify-content:center}.acct-menu{left:0;right:0}}
+
+/* login button: Discord logo and colour, full label */
+.acct-btn.login{gap:12px;padding:10px 24px;background:#5865F2;border-color:#5865F2;color:#fff;font:700 .84rem/1.1 var(--f-mono);letter-spacing:.1em;box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
+.acct-btn.login:hover{background:#4752C4;border-color:#4752C4}
+.acct-btn.login:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.acct-btn.login svg{width:30px;height:30px}
+.acct-btn.login span{max-width:none;overflow:visible;text-overflow:clip;white-space:nowrap}
