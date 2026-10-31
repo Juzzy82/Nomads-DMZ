@@ -10,11 +10,14 @@
   // Checks the official sources 4 times a day (UTC): 00:00, 06:00, 12:00, 18:00
   "triggers": {
     "crons": ["0 0,6,12,18 * * *"]
-  }
-
-  // STEP 2 of the setup (see PATCH-NOTES-SETUP.md): after you create the KV store,
-  // remove the two slashes at the start of each line below and paste your KV id.
-  ,"kv_namespaces": [
+  },
+  // Patch notes store (KV). Already connected.
+  "kv_namespaces": [
     { "binding": "PATCHES", "id": "cfcb4f25515f47e4a0a5d3b9f2976c5c" }
   ]
-  }
+
+  // ACCOUNTS (see ACCOUNTS-SETUP.md): after you create the D1 database, remove the two slashes at the start of each line below and paste its id.
+  //,"d1_databases": [
+  //  { "binding": "DB", "database_name": "nomads-dmz", "database_id": "PASTE-YOUR-D1-ID-HERE" }
+  //]
+}

@@ -2,6 +2,7 @@
 import { runCheck } from './check.mjs';
 import { latest, history, status } from './api.mjs';
 import { refreshYoutube, latestVideo } from './youtube.mjs';
+import { handleAccount } from './account.mjs';
 
 const JSON_HEADERS = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff' };
 const json = (obj, status = 200, cache = 'no-store') => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, 'cache-control': cache } });
@@ -42,7 +43,9 @@ export async function handleApi(request, env, ctx) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname.startsWith('/api/dmz-patches') || url.pathname === '/api/latest-video') return handleApi(request, env, ctx);
+    const p = url.pathname;
+    if (p.startsWith('/auth/') || p === '/api/me' || p === '/api/sync' || p.startsWith('/api/account') || p.startsWith('/api/pins')) return handleAccount(request, env, ctx);
+    if (p.startsWith('/api/dmz-patches') || p === '/api/latest-video') return handleApi(request, env, ctx);
     return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
   },
   async scheduled(event, env, ctx) { ctx.waitUntil(Promise.allSettled([runCheck(env, 'cron'), refreshYoutube(env)])); }

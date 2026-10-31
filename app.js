@@ -77,7 +77,7 @@ const Store={
   load(){if(this.data)return this.data;let d={};try{d=JSON.parse(localStorage.getItem(this.key)||'{}')}catch(e){this.ok=false}this.data=(d&&typeof d==='object')?d:{};
     try{localStorage.setItem(this.key+'.t','1');localStorage.removeItem(this.key+'.t')}catch(e){this.ok=false}return this.data},
   get(ns){const d=this.load();return d[ns]||(d[ns]={})},
-  save(){try{localStorage.setItem(this.key,JSON.stringify(this.data))}catch(e){this.ok=false}}
+  save(silent){try{localStorage.setItem(this.key,JSON.stringify(this.data))}catch(e){this.ok=false}if(!silent&&typeof Account!=='undefined')Account.changed()}
 };
 const nfmt=n=>(Math.max(0,Math.round(+n||0))).toLocaleString('en-AU');
 
@@ -666,9 +666,10 @@ inits.loot=function(){};
       paintCard(L,card)});
     paintTotals();
   }
+  window.upRender=()=>render();
   inits.upgrades=function(){
-    $('upNote').textContent=Store.load()&&Store.ok?'Saved in this browser only. Clearing your browser data removes it.':'This browser is blocking saving, so your progress will be lost when you close the page.';
-    $('upReset').onclick=()=>{if(confirm('Clear all of your upgrade progress in this browser?')){Store.get('upgrades');Store.data.upgrades={};Store.save();render()}};
+    Account.paintNotes();
+    $('upReset').onclick=()=>{if(confirm(Account.user?'Clear all of your upgrade progress? It will also be cleared from your account.':'Clear all of your upgrade progress in this browser?')){Store.get('upgrades');Store.data.upgrades={};Store.save();render()}};
     render();
   };
   window.upShow=function(){if($('upGrid').children.length)paintTotals()};
@@ -725,12 +726,13 @@ inits.loot=function(){};
     $('cmGlobal').innerHTML=CAMO_GLOBAL.map((c,i)=>{const on=gDone(i);return `<button type="button" class="cm-row${on?' on':''}" data-g="${i}" role="checkbox" aria-checked="${on}"><span class="cm-tick">${on?'✓':''}</span>${sw(c,i)}<span class="cm-rt"><b>${esc(c[1])}</b><small>${esc(c[0]==='X'?'Mastery // ':'')}${esc(req(c))}</small></span></button>`}).join('');
     $('cmGlobal').querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{const i=+b.dataset.g,v=!gDone(i);setG(i,v);b.classList.toggle('on',v);b.setAttribute('aria-checked',v);b.querySelector('.cm-tick').textContent=v?'✓':'';paintTop()});
   }
+  window.cmRender=()=>{renderGrid();renderGlobal();paintTop()};
   inits.camos=function(){
-    $('cmNote').textContent=Store.load()&&Store.ok?'Saved in this browser only. Clearing your browser data removes it.':'This browser is blocking saving, so your progress will be lost when you close the page.';
+    Account.paintNotes();
     const chips=['All',...CATS];$('cmChips').innerHTML=chips.map(c=>`<button type="button" class="lt-chip${c===filter?' on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('');
     $('cmChips').querySelectorAll('.lt-chip').forEach(b=>b.onclick=()=>{filter=b.dataset.c;$('cmChips').querySelectorAll('.lt-chip').forEach(x=>x.classList.toggle('on',x===b));renderGrid()});
     $('cmSearch').oninput=e=>{query=e.target.value;renderGrid()};
-    $('cmReset').onclick=()=>{if(confirm('Clear all of your camo progress in this browser?')){Store.get('camos');Store.data.camos={};Store.save();renderGrid();renderGlobal();paintTop()}};
+    $('cmReset').onclick=()=>{if(confirm(Account.user?'Clear all of your camo progress? It will also be cleared from your account.':'Clear all of your camo progress in this browser?')){Store.get('camos');Store.data.camos={};Store.save();renderGrid();renderGlobal();paintTop()}};
     renderGrid();renderGlobal();paintTop();
   };
   window.camoClose=function(){open=null;renderGrid();paintTop()};
@@ -1064,6 +1066,189 @@ inits.loot=function(){};
     }catch(e){}
   })();
 })();
+
+/* ===== ACCOUNT: Log in with Discord, and keep Upgrades and Camo progress on every device ===== */
+const Account=(function(){
+  const NS=['upgrades','camos'],LABEL={upgrades:'Upgrades',camos:'Camo Tracker'};
+  const S={configured:false,user:null,status:'',timer:0,busy:false,lastPull:0,retry:0};
+  const isO=o=>o&&typeof o==='object'&&!Array.isArray(o);
+  const meta=()=>{const m=Store.get('sync');m.rev=m.rev||{};m.dirty=m.dirty||{};return m};
+  const snap={};   // what each section looked like the last time it matched the account
+
+  /* ---------- tidy copies of the data, used to compare and to combine ---------- */
+  function norm(ns,d){
+    d=isO(d)?d:{};const out={};const pos=v=>Math.max(0,Math.round(+v||0));
+    if(ns==='upgrades'){out.done={};Object.entries(isO(d.done)?d.done:{}).forEach(([k,v])=>{const n=Math.min(10,pos(v));if(n)out.done[k]=n});
+      out.have={};Object.entries(isO(d.have)?d.have:{}).forEach(([t,mats])=>{if(!isO(mats))return;const o={};Object.entries(mats).forEach(([m,v])=>{const n=pos(v);if(n)o[m]=n});if(Object.keys(o).length)out.have[t]=o})}
+    else{out.w={};Object.entries(isO(d.w)?d.w:{}).forEach(([id,marks])=>{if(!isO(marks))return;const o={};Object.entries(marks).forEach(([i,v])=>{if(v)o[i]=1});if(Object.keys(o).length)out.w[id]=o});
+      out.g={};Object.entries(isO(d.g)?d.g:{}).forEach(([i,v])=>{if(v)out.g[i]=1});
+      out.lvl={};Object.entries(isO(d.lvl)?d.lvl:{}).forEach(([id,v])=>{const n=pos(v);if(n)out.lvl[id]=n})}
+    return out;
+  }
+  const canon=o=>JSON.stringify(o,(k,v)=>isO(v)?Object.keys(v).sort().reduce((a,x)=>(a[x]=v[x],a),{}):v);
+  const empty=(ns,d)=>{const n=norm(ns,d);return Object.values(n).every(x=>!Object.keys(x).length)};
+  function merge(ns,a,b){
+    a=norm(ns,a);b=norm(ns,b);const out=JSON.parse(JSON.stringify(a));
+    if(ns==='upgrades'){Object.entries(b.done).forEach(([k,v])=>{out.done[k]=Math.max(out.done[k]||0,v)});
+      Object.entries(b.have).forEach(([t,mats])=>{out.have[t]=out.have[t]||{};Object.entries(mats).forEach(([m,v])=>{out.have[t][m]=Math.max(out.have[t][m]||0,v)})})}
+    else{Object.entries(b.w).forEach(([id,marks])=>{out.w[id]=Object.assign(out.w[id]||{},marks)});Object.assign(out.g,b.g);Object.entries(b.lvl).forEach(([id,v])=>{out.lvl[id]=Math.max(out.lvl[id]||0,v)})}
+    return out;
+  }
+
+  /* ---------- talking to the site's Worker ---------- */
+  async function api(path,o={}){
+    try{
+      const r=await fetch(path,{credentials:'same-origin',...o,headers:{'content-type':'application/json','x-ndh':'1',...(o.headers||{})}});
+      let j=null;try{j=await r.json()}catch(e){}
+      return {ok:r.ok,status:r.status,json:j};
+    }catch(e){return {ok:false,status:0,json:null}}
+  }
+
+  /* ---------- notes that say where progress is saved ---------- */
+  function noteText(){
+    if(!Store.load()||!Store.ok)return 'This browser is blocking saving, so your progress will be lost when you close the page.';
+    if(S.user)return S.status||'Saved to your Discord account. It follows you to every device.';
+    if(S.configured)return 'Saved in this browser only. Clearing your browser data removes it.';
+    return 'Saved in this browser only. Clearing your browser data removes it.';
+  }
+  function paintNotes(){
+    ['upNote','cmNote'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.textContent=noteText();if(!S.user&&S.configured){const b=document.createElement('button');b.type='button';b.className='acct-link';b.textContent='Log in with Discord';b.onclick=login;el.append(' ',b,' to keep it on every device.')}});
+    document.querySelectorAll('[data-savenote]').forEach(el=>{el.textContent=S.user?'Saved to your Discord account.':(S.configured?'Saved in this browser. Log in with Discord to keep it everywhere.':'Saved in this browser only. Clearing your browser data removes it.')});
+  }
+  const setStatus=t=>{S.status=t;paintNotes();const s=document.getElementById('acctState');if(s)s.textContent=t||'All changes saved.'};
+
+  /* ---------- the button and menu on the home page ---------- */
+  const avatarUrl=u=>u&&u.avatar?`https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.${u.avatar.startsWith('a_')?'gif':'png'}?size=64`:null;
+  const DISCORD_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="9" cy="11.5" r="1.3" fill="currentColor"/><circle cx="15" cy="11.5" r="1.3" fill="currentColor"/></svg>';
+  function paintChip(){
+    const box=document.getElementById('acct');if(!box)return;
+    if(!S.configured){box.hidden=true;box.replaceChildren();return}
+    box.hidden=false;
+    if(!S.user){box.innerHTML=`<button type="button" class="acct-btn" id="acctLogin">${DISCORD_SVG}<span>Log in with Discord</span></button>`;document.getElementById('acctLogin').onclick=login;return}
+    const av=avatarUrl(S.user);
+    box.innerHTML=`<button type="button" class="acct-btn on" id="acctBtn" aria-haspopup="true" aria-expanded="false">${av?`<img src="${av}" alt="" referrerpolicy="no-referrer">`:`<i>${esc(S.user.name.slice(0,1).toUpperCase())}</i>`}<span>${esc(S.user.name)}</span><b aria-hidden="true">▾</b></button>
+    <div class="acct-menu" id="acctMenu" role="menu" hidden>
+      <div class="am-h">Signed in with Discord</div><div class="am-n">${esc(S.user.name)}</div>
+      <div class="am-s" id="acctState">${esc(S.status||'All changes saved.')}</div>
+      <a role="menuitem" href="/api/account/export" download>Download my data</a>
+      <a role="menuitem" href="/privacy/">What we store</a>
+      <button type="button" role="menuitem" id="acctOut">Log out</button>
+      <button type="button" role="menuitem" id="acctDel" class="danger">Delete my account</button>
+    </div>`;
+    const btn=document.getElementById('acctBtn'),menu=document.getElementById('acctMenu');
+    const close=()=>{menu.hidden=true;btn.setAttribute('aria-expanded','false')};
+    btn.onclick=e=>{e.stopPropagation();const open=menu.hidden;menu.hidden=!open;btn.setAttribute('aria-expanded',open)};
+    menu.addEventListener('keydown',e=>{if(e.key==='Escape'){close();btn.focus()}});
+    document.getElementById('acctOut').onclick=()=>{close();logoutDialog()};
+    document.getElementById('acctDel').onclick=()=>{close();deleteDialog()};
+  }
+
+  /* ---------- small dialog used for choices ---------- */
+  function dialog({title,body,buttons,focus}){
+    return new Promise(resolve=>{
+      let d=document.getElementById('acctDlg');if(d)d.remove();d=document.createElement('div');d.id='acctDlg';d.className='acct-dlg';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','acctDlgT');
+      d.innerHTML=`<div class="acct-card"><h3 id="acctDlgT">${esc(title)}</h3><div class="acct-body">${body}</div><div class="acct-btns">${buttons.map((b,i)=>`<button type="button" class="acct-b${b.kind?' '+b.kind:''}" data-i="${i}">${esc(b.label)}</button>`).join('')}</div></div>`;
+      document.body.appendChild(d);const done=v=>{dialog.last={};d.querySelectorAll('input').forEach(x=>{dialog.last[x.id]=x.value});d.remove();resolve(v)};
+      d.querySelectorAll('.acct-b').forEach(b=>b.onclick=()=>done(buttons[+b.dataset.i].value));
+      d.addEventListener('keydown',e=>{if(e.key==='Escape'&&buttons.some(b=>b.value==='cancel'))done('cancel')});
+      (d.querySelector('[data-i="'+(focus||0)+'"]')||d.querySelector('.acct-b')).focus();
+    });
+  }
+
+  /* ---------- choosing between this browser and the account ---------- */
+  async function conflict(ns,srv){
+    const choice=await dialog({title:LABEL[ns]+': two different saves',focus:2,
+      body:'<p>Your Discord account already has '+esc(LABEL[ns])+' progress saved, and this browser has different progress.</p><p>Which should we keep?</p><p class="acct-hint">Combine keeps the most progress from both. It is the safe choice if you used the tracker on two devices.</p>',
+      buttons:[{label:'Use my account\'s',value:'server'},{label:'Use this browser\'s',value:'local'},{label:'Combine both',value:'merge',kind:'primary'}]});
+    const m=meta();
+    if(choice==='server')return adopt(ns,srv);
+    const data=choice==='merge'?merge(ns,Store.get(ns),srv.data):Store.get(ns);
+    if(choice==='merge'){Store.data[ns]=data;Store.save(true)}
+    m.rev[ns]=srv.rev;m.dirty[ns]=true;Store.save(true);await push(ns);refreshViews();
+  }
+  function adopt(ns,srv){const m=meta();Store.data[ns]=srv.data;m.rev[ns]=srv.rev;m.dirty[ns]=false;Store.save(true);snap[ns]=canon(norm(ns,srv.data));refreshViews()}
+  function refreshViews(){
+    if(window.tileProgress)tileProgress();
+    try{if(document.getElementById('screen-upgrades').classList.contains('active')&&window.upRender)upRender()}catch(e){}
+    try{if(document.getElementById('screen-camos').classList.contains('active')&&window.cmRender)cmRender()}catch(e){}
+  }
+
+  /* ---------- saving and loading ---------- */
+  async function push(ns){
+    const m=meta();setStatus('Saving...');
+    const r=await api('/api/sync',{method:'PUT',body:JSON.stringify({ns,baseRev:m.rev[ns]||0,data:Store.get(ns)})});
+    if(r.ok){m.rev[ns]=r.json.rev;m.dirty[ns]=false;Store.save(true);snap[ns]=canon(norm(ns,Store.get(ns)));if(!NS.some(n=>m.dirty[n]))setStatus('');return true}
+    if(r.status===409){const cur=r.json&&r.json.current;if(!cur){m.rev[ns]=0;Store.save(true);return push(ns)}await conflict(ns,cur);return true}
+    if(r.status===429){clearTimeout(S.retry);S.retry=setTimeout(pushDirty,3000);return false}
+    if(r.status===401){S.user=null;paintChip();setStatus('');toast('You were logged out. Log in again to keep saving to your account.');return false}
+    setStatus('Not saved to your account yet. We will try again.');clearTimeout(S.retry);S.retry=setTimeout(pushDirty,15000);return false;
+  }
+  async function pushDirty(){
+    if(!S.user||S.busy)return;S.busy=true;
+    try{for(const ns of NS){if(meta().dirty[ns])await push(ns)}}finally{S.busy=false}
+  }
+  function changed(){
+    if(!S.user)return;const m=meta();let any=false;
+    NS.forEach(ns=>{const now=canon(norm(ns,Store.get(ns)));if(now!==snap[ns]){m.dirty[ns]=true;any=true}});
+    if(any){Store.save(true);setStatus('Saving...');clearTimeout(S.timer);S.timer=setTimeout(pushDirty,2500)}
+  }
+  async function reconcile(ns,srv){
+    const m=meta(),local=Store.get(ns),has=!empty(ns,local),dirty=!!m.dirty[ns];
+    if(!srv){snap[ns]='';if(has){m.dirty[ns]=true;Store.save(true);await push(ns)}return}
+    const same=canon(norm(ns,local))===canon(norm(ns,srv.data));
+    if(same){m.rev[ns]=srv.rev;m.dirty[ns]=false;Store.save(true);snap[ns]=canon(norm(ns,srv.data));return}
+    snap[ns]=snap[ns]||'';
+    if(!has)return adopt(ns,srv);
+    const known=m.rev[ns]||0;
+    if(known===srv.rev){m.dirty[ns]=true;Store.save(true);await push(ns);return}          // only this browser changed it
+    if(known>0&&known<srv.rev&&!dirty)return adopt(ns,srv);                             // only another device changed it
+    return conflict(ns,srv);                                                            // both changed, or never synced
+  }
+  async function pull(){
+    if(!S.user)return;const r=await api('/api/sync');if(!r.ok)return;
+    const m=meta();if(m.user!==S.user.id){m.user=S.user.id;m.rev={};m.dirty={};Store.save(true)}
+    for(const ns of NS)await reconcile(ns,r.json&&r.json[ns]);
+    S.lastPull=Date.now();paintNotes();
+  }
+
+  /* ---------- log in, log out, delete ---------- */
+  function login(){location.href='/auth/login'}
+  async function logoutDialog(){
+    const c=await dialog({title:'Log out?',body:'<p>Your progress stays safe in your account. You can also remove it from this browser, which is a good idea on a shared computer.</p>',
+      buttons:[{label:'Cancel',value:'cancel'},{label:'Log out and keep it here',value:'keep'},{label:'Log out and clear this browser',value:'clear',kind:'primary'}]});
+    if(c==='cancel')return;
+    await api('/auth/logout',{method:'POST',body:'{}'});
+    if(c==='clear'){NS.forEach(ns=>{Store.data[ns]={}});}
+    const m=meta();m.user=null;m.rev={};m.dirty={};Store.save(true);S.user=null;NS.forEach(ns=>delete snap[ns]);
+    paintChip();paintNotes();refreshViews();toast('Logged out.');
+  }
+  async function deleteDialog(){
+    const c=await dialog({title:'Delete my account?',body:'<p>This removes your account, your saved progress and your logins from our database straight away. It cannot be undone.</p><p>Progress saved in this browser is not touched.</p><label class="acct-lab">Type <b>DELETE</b> to confirm<input id="acctDelIn" autocomplete="off" spellcheck="false"></label>',
+      buttons:[{label:'Cancel',value:'cancel'},{label:'Delete my account',value:'go',kind:'danger'}]});
+    if(c!=='go')return;
+    const typed=(dialog.last||{}).acctDelIn;
+    if(typed!=='DELETE')return toast('Nothing was deleted. Type DELETE to confirm.');
+    const r=await api('/api/account',{method:'DELETE',body:JSON.stringify({confirm:'DELETE'})});
+    if(!r.ok)return toast('Could not delete the account. Please try again.');
+    const m=meta();m.user=null;m.rev={};m.dirty={};Store.save(true);S.user=null;NS.forEach(ns=>delete snap[ns]);
+    paintChip();paintNotes();toast('Your account and its data were deleted.');
+  }
+  document.addEventListener('click',e=>{const mn=document.getElementById('acctMenu'),bx=document.getElementById('acct');if(mn&&!mn.hidden&&bx&&!bx.contains(e.target)){mn.hidden=true;const b=document.getElementById('acctBtn');if(b)b.setAttribute('aria-expanded','false')}});
+
+  /* ---------- start ---------- */
+  async function init(){
+    const q=new URLSearchParams(location.search),lg=q.get('login');
+    if(lg){history.replaceState(null,'',location.pathname);setTimeout(()=>toast(lg==='ok'?'Logged in with Discord.':lg==='cancelled'?'Login cancelled.':'Login did not work. Please try again.'),400)}
+    const r=await api('/api/me',{headers:{}});
+    S.configured=!!(r.ok&&r.json&&r.json.configured);S.user=r.ok&&r.json&&r.json.loggedIn?r.json.user:null;
+    paintChip();paintNotes();
+    if(S.user)await pull();
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.user&&Date.now()-S.lastPull>60000)pull()});
+    window.addEventListener('online',()=>{if(S.user)pushDirty()});
+  }
+  return {init,changed,noteText,paintNotes,get user(){return S.user},get configured(){return S.configured}};
+})();
+Account.init();
 
 /* ===== BOSS STRATS ===== */
 (function(){

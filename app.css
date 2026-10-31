@@ -805,3 +805,25 @@ a.tile-go{text-decoration:none}
 .map-chip:hover{background:rgba(232,168,72,.2)}
 .soon-badge{display:inline-block;margin:6px 0 4px;padding:4px 9px;border:1px solid #22d3ee;color:#7ee9f5;background:rgba(34,211,238,.1);font:700 .62rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
 .card-pic{display:block;width:100%;height:auto;margin:8px 0 6px;border:1px solid var(--line-2)}
+
+/* ===== accounts: login button, menu and dialogs ===== */
+.acct{position:relative;display:flex;align-items:stretch}.acct[hidden]{display:none}
+.acct-btn{display:flex;align-items:center;gap:10px;padding:10px 20px;border:1px solid #6b5427;background:rgba(232,168,72,.08);color:var(--gold-hi);font:700 .8rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;min-height:62px}
+.acct-btn:hover{background:rgba(232,168,72,.18)}.acct-btn svg{width:26px;height:26px;flex:none}
+.acct-btn img{width:32px;height:32px;border-radius:50%;object-fit:cover;flex:none}.acct-btn i{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#2a220f;color:var(--gold-hi);font-style:normal;flex:none}
+.acct-btn span{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.acct-btn b{color:var(--gold);font-size:.9rem}
+.acct-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:80;min-width:250px;padding:8px;background:#0d0e0a;border:1px solid var(--gold);box-shadow:0 14px 36px rgba(0,0,0,.65);display:flex;flex-direction:column;gap:2px}
+.acct-menu[hidden]{display:none}
+.am-h{font:600 .58rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--faint);padding:6px 8px 0}.am-n{padding:2px 8px 4px;font-weight:700;color:#fff3d6}.am-s{padding:0 8px 8px;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--line);margin-bottom:4px}
+.acct-menu a,.acct-menu button{display:block;width:100%;text-align:left;padding:10px 8px;border:0;background:none;color:#e6e2d4;font:500 .92rem var(--f-body);text-decoration:none;cursor:pointer}
+.acct-menu a:hover,.acct-menu button:hover{background:#1e1a0e;color:var(--gold-hi)}.acct-menu .danger{color:#ff8b7a}
+.acct-link{margin:0;padding:0;border:0;background:none;color:var(--gold);font:inherit;text-decoration:underline;cursor:pointer}
+.acct-dlg{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);padding:16px}
+.acct-card{width:min(520px,100%);max-height:90vh;overflow:auto;padding:22px 24px;background:#0d0e0a;border:1px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.acct-card h3{margin:0 0 12px;font:700 1.15rem/1.2 var(--f-display);letter-spacing:.06em;color:#ffd275;text-transform:uppercase}
+.acct-body p{margin:0 0 10px;color:#d4d0c2;line-height:1.5}.acct-hint{font-size:.84rem;color:var(--faint)!important}
+.acct-lab{display:block;margin-top:10px;color:#d4d0c2}.acct-lab input{display:block;width:100%;margin-top:6px;padding:10px 12px;background:#0e0f0b;border:1px solid var(--line-2);color:#fff;font:600 1rem var(--f-mono)}
+.acct-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:16px}
+.acct-b{padding:11px 16px;border:1px solid var(--line-2);background:#14150f;color:#e6e2d4;font:700 .72rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.acct-b:hover{border-color:var(--gold);color:var(--gold-hi)}.acct-b.primary{border-color:var(--gold);background:rgba(232,168,72,.18);color:var(--gold-hi)}.acct-b.danger{border-color:#a8453a;background:rgba(200,70,50,.16);color:#ff9d8e}
+@media (max-width:700px){.acct{flex:1 1 100%}.acct-btn{width:100%;justify-content:center}.acct-menu{left:0;right:0}}
