@@ -4,7 +4,7 @@ import { login, callback, logout, getSession, configured, setCookie, COOKIE_SESS
 
 const JSON_H = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff', 'cache-control': 'no-store' };
 const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj), { status, headers: { ...JSON_H, ...extra } });
-export const NAMESPACES = ['upgrades', 'camos'];
+export const NAMESPACES = ['upgrades', 'camos', 'schematics'];
 const MAX_BODY = 100 * 1024, MAX_STORED = 64 * 1024;
 
 /* ---------- checks and cleaning: only the exact shapes the trackers use are ever stored ---------- */
@@ -36,7 +36,12 @@ export function cleanCamos(d) {
   if (isObj(d.lvl)) for (const [id, v] of Object.entries(d.lvl).slice(0, 60)) { const n = int(v, 0, 500); if (idKey(id) && n !== null) out.lvl[id] = n; }
   return out;
 }
-export const clean = { upgrades: cleanUpgrades, camos: cleanCamos };
+export function cleanSchematics(d) {
+  const out = { found: {} }; if (!isObj(d) || !isObj(d.found)) return out;
+  for (const [k, v] of Object.entries(d.found).slice(0, 120)) if (v && idKey(k)) out.found[k] = 1;
+  return out;
+}
+export const clean = { upgrades: cleanUpgrades, camos: cleanCamos, schematics: cleanSchematics };
 
 
 /* ---------- private map pins ---------- */
@@ -100,7 +105,7 @@ async function readJson(request) {
 
 async function getSync(env, session) {
   const { results } = await env.DB.prepare('SELECT ns, data, rev, updated_at FROM progress WHERE user_id = ?').bind(session.userId).all();
-  const out = { upgrades: null, camos: null };
+  const out = { upgrades: null, camos: null, schematics: null };
   for (const r of results || []) if (NAMESPACES.includes(r.ns)) { try { out[r.ns] = { data: JSON.parse(r.data), rev: r.rev, updated_at: r.updated_at }; } catch (e) { /* skip a damaged row */ } }
   return out;
 }
@@ -126,7 +131,7 @@ async function exportAll(env, session) {
   const sync = await getSync(env, session);
   const { results: pins } = await env.DB.prepare('SELECT id, x, y, name, note, color, icon, created_at, updated_at FROM pins WHERE user_id = ?').bind(session.userId).all();
   const body = { exported_at: new Date().toISOString(), site: 'nomaddmzhub.com', user: u ? { id: u.id, name: u.name, avatar: u.avatar, created_at: u.created_at } : null,
-    progress: { upgrades: sync.upgrades ? sync.upgrades.data : null, camos: sync.camos ? sync.camos.data : null }, pins: pins || [] };
+    progress: { upgrades: sync.upgrades ? sync.upgrades.data : null, camos: sync.camos ? sync.camos.data : null, schematics: sync.schematics ? sync.schematics.data : null }, pins: pins || [] };
   return new Response(JSON.stringify(body, null, 2), { status: 200, headers: { ...JSON_H, 'content-disposition': 'attachment; filename="nomads-dmz-hub-my-data.json"' } });
 }
 

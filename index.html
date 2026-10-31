@@ -91,6 +91,10 @@
       <div class="tile-art"><img class="narrow" src="about:blank#img:tile-camo.webp" alt=""></div>
       <div class="tile-meta"><div><span class="tile-fact">33 weapons // 630 camos</span><span class="tile-title">Camo Tracker <span class="ko" lang="ko">위장 추적기</span></span><span class="tile-prog" data-prog="camos"><span class="tp-bar"><i></i></span><span class="tp-txt"></span></span><span class="tile-note" data-savenote>Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
     </button></li>
+    <li><button class="tile" type="button" data-open="schematics" aria-label="Open the Schematic Tracker"><span class="tile-bg k3" data-ko="설계도 추적기" aria-hidden="true"></span>
+      <div class="tile-art"><img class="tall" src="about:blank#img:tile-schematic.svg" alt=""></div>
+      <div class="tile-meta"><div><span class="tile-fact">45 schematics to find</span><span class="tile-title">Schematic Tracker <span class="ko" lang="ko">설계도 추적기</span></span><span class="tile-prog" data-prog="schematics"><span class="tp-bar"><i></i></span><span class="tp-txt"></span></span><span class="tile-note" data-savenote>Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
+    </button></li>
     <li><button class="tile" type="button" data-open="loot" aria-label="Open Loot Hot Spots"><span class="tile-bg k3" data-ko="전리품 명소" aria-hidden="true"></span>
       <div class="tile-art"><img class="tall" src="about:blank#img:tile-loot2.webp" alt=""></div>
       <div class="tile-meta"><div><span class="tile-fact" id="lootCount">3 hot spots</span><span class="tile-title">Loot Hot Spots <span class="ko" lang="ko">전리품 명소</span></span><span class="tile-note">Know a hot spot? Submit it in our Discord: discord.gg/nomadoce</span></div><span class="tile-go">Open</span></div>
@@ -313,6 +317,19 @@
       <button type="button" class="ul-reset" id="ulReset">Reset my counts</button>
     </div>
     <div class="ul-list" id="ulList"></div>
+  </main>
+</section>
+
+<!-- SCHEMATIC TRACKER -->
+<section class="screen" id="screen-schematics" aria-label="Schematic tracker">
+  <header class="modbar">
+    <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
+    <div class="modtitle"><strong>Schematic Tracker</strong><span>Click each one when you find it</span></div>
+  </header>
+  <main class="gear-body">
+    <section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Schematic Tracker</h1><p>Every recipe that can only be found in Hajin. Click a schematic when you have found it and extracted with it. Hover over one to see its name.</p></section>
+    <div class="box sc-top"><div class="up-sum"><div><span class="eyebrow">Found</span><strong id="scDone">0 / 45</strong></div><div class="up-bar big"><i id="scBar"></i></div><button type="button" class="up-undo" id="scReset">Reset all</button></div><p class="up-note" id="scNote"></p></div>
+    <div class="sc-grid" id="scGrid" role="group" aria-label="Schematics"></div>
   </main>
 </section>
 

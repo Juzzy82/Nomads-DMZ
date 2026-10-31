@@ -1,6 +1,6 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Home panel, Full Upgrade Item List, tracker tips, private pins and the patch notes card that finds the newest official post by itself.
+Update: Schematic Tracker, plus everything from the last updates (home panel, Full Upgrade Item List, tracker tips, private pins, automatic patch notes card).
 Keep the folders as they are. Your wrangler.jsonc is NOT in this set, so your settings are safe.
 
 ACCOUNTS-SETUP.md
@@ -25,6 +25,7 @@ dynamic-ops/index.html
 gear/index.html
 gunsmith/index.html
 imgs-3.js
+imgs-5.js
 index.html
 items/index.html
 loot/bunker-route/index.html
@@ -34,9 +35,11 @@ loot/index.html
 loot/irradiated-items/index.html
 loot/river-heights/index.html
 map/index.html
+og/schematic-tracker.jpg
 og/upgrade-items.jpg
 patch-notes/index.html
 privacy/index.html
+schematic-tracker/index.html
 sitemap.xml
 traits/index.html
 upgrade-items/index.html
