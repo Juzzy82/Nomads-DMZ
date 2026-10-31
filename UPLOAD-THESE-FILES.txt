@@ -1,12 +1,46 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Private map pins (add, edit, move, delete, hide), saved to the account
+Update: Home panel, Full Upgrade Item List, tracker tips, private pins and the patch notes card that finds the newest official post by itself.
+Keep the folders as they are. Your wrangler.jsonc is NOT in this set, so your settings are safe.
 
-ACCOUNTS-SETUP.md                          file
-app.css                                    the site styling
-app.js                                     the site code and data
-imgs-3.js                                  pictures used by the site
-privacy/index.html                         page
-worker/account.mjs                         patch notes system
-
-Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.
+ACCOUNTS-SETUP.md
+app.css
+app.js
+boss-strats/bale/index.html
+boss-strats/colossus/index.html
+boss-strats/deathstalker/index.html
+boss-strats/gorani/index.html
+boss-strats/index.html
+boss-strats/iskra/index.html
+boss-strats/jang-ui/index.html
+boss-strats/jin-tae/index.html
+boss-strats/nk-battle-tank/index.html
+boss-strats/roze/index.html
+boss-strats/the-chemist/index.html
+boss-strats/the-doctor/index.html
+boss-strats/the-scavenger/index.html
+boss-strats/the-warden/index.html
+camo-tracker/index.html
+dynamic-ops/index.html
+gear/index.html
+gunsmith/index.html
+imgs-3.js
+index.html
+items/index.html
+loot/bunker-route/index.html
+loot/deadtown-waterfront-run/index.html
+loot/hanex-bank-vault/index.html
+loot/index.html
+loot/irradiated-items/index.html
+loot/river-heights/index.html
+map/index.html
+og/upgrade-items.jpg
+patch-notes/index.html
+privacy/index.html
+sitemap.xml
+traits/index.html
+upgrade-items/index.html
+upgrades/index.html
+worker/account.mjs
+worker/codlatest.mjs
+worker/index.mjs

@@ -36,17 +36,29 @@
   <header class="masthead"><img src="about:blank#img:logo.webp" alt="NOMADS DMZ HUB" width="1952" height="272"></header>
   <p class="hub-intro">Free fan tools for Call of Duty: Modern Warfare 4 DMZ. Build weapon loadouts in the Gunsmith, browse every 3D printer recipe, explore the Hajin map and plan your operator traits.</p>
   <div class="hub-strip"><a class="discord" href="https://discord.gg/nomadoce" target="_blank" rel="noopener"><span>Join the Discord</span><b>discord.gg/nomadoce</b></a><div class="acct" id="acct" hidden></div></div>
-  <div class="hub-row">
-  <section class="latest" id="latestUpdate" aria-label="Latest DMZ update" hidden>
-    <div class="latest-head"><h2>LATEST DMZ UPDATE</h2><button type="button" class="latest-all" data-open="patches">All patch notes</button></div>
-    <ul id="latestList"></ul>
-    <p class="latest-meta" id="latestMeta"></p>
-  </section>
+  <div class="hub-row hp3">
+    <section class="cod-card" id="codCard" aria-label="Latest COD patch notes">
+      <h2 class="hp-h"><a href="https://www.callofduty.com/patchnotes" target="_blank" rel="noopener noreferrer">Latest COD Patch Notes <span aria-hidden="true">&#8599;</span></a></h2>
+      <a class="cod-link" id="codLink" href="https://www.callofduty.com/patchnotes" target="_blank" rel="noopener noreferrer">
+        <span class="cod-img" id="codImg"><span class="cod-fb" aria-hidden="true"><b>MW4</b><i>Patch notes</i></span></span>
+        <span class="cod-tags"><b>MW4</b><i>Patch notes</i></span>
+        <span class="cod-title" id="codTitle">Patch notes</span>
+        <span class="cod-when" id="codWhen"></span>
+        <span class="cod-go">Read patch notes <span aria-hidden="true">&rarr;</span><span class="sr-only"> (opens the official site in a new tab)</span></span>
+      </a>
+    </section>
+    <section class="latest" id="latestUpdate" aria-label="Latest DMZ update" hidden>
+      <div class="latest-head"><h2 class="hp-h">Latest DMZ Update</h2><button type="button" class="latest-all" data-open="patches">All bug updates <span aria-hidden="true">&rarr;</span></button></div>
+      <ul id="latestList"></ul>
+      <p class="latest-meta" id="latestMeta"></p>
+    </section>
     <section class="isearch" id="itemSearchBox" aria-label="Item search">
-      <h2>ITEM SEARCH</h2>
-      <p class="is-sub">Find where an item comes from, what it is needed for and what it makes.</p>
-      <div class="is-wrap"><input id="isHome" type="search" role="combobox" aria-expanded="false" aria-controls="isHomeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search for an item" aria-label="Search for an item"><ul class="is-list" id="isHomeList" role="listbox" hidden></ul></div>
-      <p class="is-try">Try <button type="button" data-q="Control Unit">Control Unit</button><button type="button" data-q="Reactive Metals">Reactive Metals</button><button type="button" data-q="Bank Upgrade">Bank Upgrade</button></p>
+      <h2 class="hp-h">Item Search</h2>
+      <p class="is-sub">Find item locations, crafting uses and upgrade requirements.</p>
+      <div class="is-wrap has-ic"><span class="is-mag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.500 15.500L21 21"/></svg></span><input id="isHome" type="search" role="combobox" aria-expanded="false" aria-controls="isHomeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search items..." aria-label="Search for an item"><ul class="is-list" id="isHomeList" role="listbox" hidden></ul></div>
+      <p class="is-try-h">Try an item</p>
+      <div class="is-try is-chips"><button type="button" data-q="Control Unit">Control Unit</button><button type="button" data-q="Reactive Metals">Reactive Metals</button><button type="button" data-q="Bank Upgrade">Bank Upgrade</button></div>
+      <button type="button" class="is-full" data-open="upgradeitems"><span>Full Upgrade Item List</span><span aria-hidden="true">&rarr;</span></button>
     </section>
   </div>
   <div class="section-label">Select module</div>
@@ -229,7 +241,7 @@
     <div class="box up-top">
       <div class="up-sum"><div><span class="eyebrow">Progress</span><strong id="upDone">0 / 28</strong></div><div class="up-bar big"><i id="upBar"></i></div><button type="button" class="up-undo" id="upReset">Reset all</button></div>
       <p class="up-note" id="upNote"></p>
-      <div class="eyebrow up-nh">Still to collect for your current upgrades</div><div id="upNeed"></div>
+      <div class="up-nh-row"><div class="eyebrow up-nh">Still to collect for your current upgrades</div><button type="button" class="up-full" data-open="upgradeitems">Full item list <span aria-hidden="true">&rarr;</span></button></div><p class="up-hint">Hover over an item, or tap it, to see where to find it.</p><div id="upNeed"></div>
     </div>
     <div class="up-grid" id="upGrid"></div>
   </main>
@@ -282,6 +294,25 @@
     <section class="gear-hero"><div class="eyebrow">Items</div><h1>Item Search</h1><p>Search any material, gear item, key or upgrade. See where to find it, what it is needed for in upgrades and what gear it makes.</p></section>
     <div class="is-wrap is-page"><input id="isPage" type="search" role="combobox" aria-expanded="false" aria-controls="isPageList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Search a material, gear item, key or upgrade" aria-label="Search for an item"><ul class="is-list" id="isPageList" role="listbox" hidden></ul></div>
     <div id="itBody"></div>
+  </main>
+</section>
+
+<!-- FULL UPGRADE ITEM LIST -->
+<section class="screen" id="screen-upgradeitems" aria-label="Full upgrade item list">
+  <header class="modbar">
+    <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
+    <div class="modtitle"><strong>Full Upgrade Item List</strong><span>Everything for every FOB upgrade</span></div>
+  </header>
+  <main class="gear-body">
+    <section class="gear-hero"><div class="eyebrow">Forward Operating Base</div><h1>Full Upgrade Item List</h1><p>Everything you need to finish every upgrade in your FOB. Use the + and - buttons to set how many you have, and the list shows how many you still need and where to find each item.</p></section>
+    <div class="box ul-top"><div id="ulSum"></div><p class="up-note" id="ulNote"></p></div>
+    <div class="ul-tools">
+      <input id="ulFilter" type="search" autocomplete="off" spellcheck="false" placeholder="Filter this list" aria-label="Filter this list">
+      <label class="ul-sel">Sort <select id="ulSort"><option value="need">Most needed</option><option value="left">Most still to collect</option><option value="az">A to Z</option></select></label>
+      <label class="ul-chk"><input type="checkbox" id="ulHide"> Hide collected</label>
+      <button type="button" class="ul-reset" id="ulReset">Reset my counts</button>
+    </div>
+    <div class="ul-list" id="ulList"></div>
   </main>
 </section>
 

@@ -1,16 +1,16 @@
 (function(){const T='about:blank#img:';window.IMGS=window.IMGS||{};function fix(){document.querySelectorAll('img[src^="'+T+'"],image[href^="'+T+'"]').forEach(function(e){var a=e.tagName.toLowerCase()==='image'?'href':'src',k=e.getAttribute(a).slice(T.length),u=window.IMGS[k];if(u)e.setAttribute(a,u)})}window.__fixImgs=fix;new MutationObserver(fix).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['src','href']});document.querySelectorAll('script[data-imgs]').forEach(function(s){s.addEventListener('load',fix)});addEventListener('load',fix);fix()})();
-window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/loot/bunker-route/": {"t": "Hajin Bunker Loot Route in MW4 DMZ: All Six Bunkers in Order | NOMADS DMZ HUB", "d": "A six-stop loot route along the west side of Hajin in MW4 DMZ. See where each numbered bunker is and the best order to run them from north to south."}, "/loot/hanex-bank-vault/": {"t": "How to Open a Hanex Bank Vault in MW4 DMZ: Car Battery, Access Card and Code | NOMADS DMZ HUB", "d": "Step-by-step guide to the Hanex branch vaults in MW4 DMZ: restore power with a Car Battery, find the Bank Branch Vault Access card, read the code note and open the keypad."}, "/loot/deadtown-waterfront-run/": {"t": "Deadtown Waterfront Compound Loot Run in MW4 DMZ: 5-Stop Tech Loot Route | NOMADS DMZ HUB", "d": "A compact 5-stop loot loop through the waterfront compound in Deadtown, Hajin. Check the best tech containers for Comms Modules, Printed Circuit Boards and Electronics."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}, "/patch-notes/": {"t": "MW4 DMZ Known Issues and Fixes: Latest Updates | NOMADS DMZ HUB", "d": "Known Modern Warfare 4 DMZ issues and fixes from the official developer tracker, checked four times a day. Search every issue and see which ones have been resolved."}, "/items/": {"t": "MW4 DMZ Item Search: Where to Find Every Material, Key and Upgrade Item | NOMADS DMZ HUB", "d": "Search any Modern Warfare 4 DMZ material, gear item, locked door key or FOB upgrade. See where to find it, which upgrades need it and what gear it makes."}};
+window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/upgrade-items/": {"t": "MW4 DMZ Full Upgrade Item List: Every FOB Upgrade Material | NOMADS DMZ HUB", "d": "Every item and the DMZ Cash you need to finish all FOB upgrades in Modern Warfare 4 DMZ, with a counter for what you have and where to find each item."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/loot/bunker-route/": {"t": "Hajin Bunker Loot Route in MW4 DMZ: All Six Bunkers in Order | NOMADS DMZ HUB", "d": "A six-stop loot route along the west side of Hajin in MW4 DMZ. See where each numbered bunker is and the best order to run them from north to south."}, "/loot/hanex-bank-vault/": {"t": "How to Open a Hanex Bank Vault in MW4 DMZ: Car Battery, Access Card and Code | NOMADS DMZ HUB", "d": "Step-by-step guide to the Hanex branch vaults in MW4 DMZ: restore power with a Car Battery, find the Bank Branch Vault Access card, read the code note and open the keypad."}, "/loot/deadtown-waterfront-run/": {"t": "Deadtown Waterfront Compound Loot Run in MW4 DMZ: 5-Stop Tech Loot Route | NOMADS DMZ HUB", "d": "A compact 5-stop loot loop through the waterfront compound in Deadtown, Hajin. Check the best tech containers for Comms Modules, Printed Circuit Boards and Electronics."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}, "/patch-notes/": {"t": "MW4 DMZ Known Issues and Fixes: Latest Updates | NOMADS DMZ HUB", "d": "Known Modern Warfare 4 DMZ issues and fixes from the official developer tracker, checked four times a day. Search every issue and see which ones have been resolved."}, "/items/": {"t": "MW4 DMZ Item Search: Where to Find Every Material, Key and Upgrade Item | NOMADS DMZ HUB", "d": "Search any Modern Warfare 4 DMZ material, gear item, locked door key or FOB upgrade. See where to find it, which upgrades need it and what gear it makes."}};
 /* ===== Core: navigation, toast ===== */
 const $=id=>document.getElementById(id);
-const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos','patches','items'];
+const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos','patches','items','upgradeitems'];
 const toastEl=$('toast');let toastT;
 function toast(msg){clearTimeout(toastT);toastEl.textContent=msg;toastEl.classList.add('show');toastT=setTimeout(()=>toastEl.classList.remove('show'),2400)}
 const inits={};const ready={};
-const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/',patches:'/patch-notes/',items:'/items/'};
+const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/',patches:'/patch-notes/',items:'/items/',upgradeitems:'/upgrade-items/'};
 function parseRoute(){
   let seg=location.pathname.split('/').filter(s=>s&&s!=='index.html');
   if(!seg.length&&location.hash.length>1)seg=location.hash.slice(1).split('/').filter(Boolean);
-  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';if(v==='patch-notes')v='patches';
+  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';if(v==='patch-notes')v='patches';if(v==='upgrade-items')v='upgradeitems';
   const view=VIEWS.includes(v)?v:null;
   return {view,arg:view==='items'?new URLSearchParams(location.search).get('i'):seg[1]};
 }
@@ -30,6 +30,7 @@ function render(){
   hideTip();
   if(view&&!ready[view]&&inits[view]){inits[view]();ready[view]=true}
   if(view==='map'&&window.mapLayout)mapLayout();
+  if(view==='upgradeitems'&&window.upItemsRender)upItemsRender();
   if(view==='loot'&&window.lootShow)lootShow(arg);
   if(view==='bosses'&&window.bossShow)bossShow(arg);
   if(view==='upgrades'&&window.upShow)upShow();
@@ -705,11 +706,33 @@ inits.loot=function(){};
   const reqs=t=>{const r=[];if(t.cash)r.push({m:'DMZ Cash',need:t.cash,cash:true});t.c.forEach(([n,q])=>r.push({m:n,need:q}));return r};
   const lineName=L=>L.key.replace(/ Upgrade$/,'');
   function totals(){const out={cash:0,items:{}};LINES.forEach(L=>{const d=done(L);if(d>=L.tiers.length)return;const t=L.tiers[d];reqs(t).forEach(r=>{const left=Math.max(0,r.need-haveOf(t,r.m));if(r.cash)out.cash+=left;else out.items[r.m]=(out.items[r.m]||0)+left})});return out}
+  /* hover (or tap) an item in "Still to collect" to see where to get it */
+  const CASH_TIP='<b>DMZ Cash</b>There is no single place to find it. Dynamic Ops, Side Ops and Story Mission replays all pay cash.';
+  function chipTip(n){
+    if(n==='DMZ Cash')return {html:CASH_TIP,id:null};
+    const i=window.itemInfo?itemInfo(n):null;
+    const w=i&&i.where.length?i.where.slice(0,2).map(esc).join('<br>'):'Where to find it is not known yet.';
+    return {html:`<b>${esc(n)}</b>${w}${i&&i.hasMap?'<br><i>Marked on the map.</i>':''}${i?'<br><em class="tip-hint">Click for the full details</em>':''}`,id:i?i.id:null};
+  }
+  function bindChips(){
+    const canHover=window.matchMedia&&matchMedia('(hover:hover)').matches;
+    document.querySelectorAll('#upNeed .up-chip').forEach(c=>{
+      const n=c.dataset.n,show=()=>{const t=chipTip(n);showTip(c,t.html,c.classList.contains('cash')?'var(--gold)':undefined)};
+      if(canHover){c.onmouseenter=show;c.onmouseleave=hideTip}
+      c.onfocus=show;c.onblur=hideTip;
+      c.onclick=()=>{const t=chipTip(n);
+        if(!t.id){show();return}
+        if(canHover||c.dataset.armed==='1'){hideTip();openView('items/'+t.id);return}
+        document.querySelectorAll('#upNeed .up-chip').forEach(x=>x.dataset.armed='');c.dataset.armed='1';show();
+      };
+    });
+  }
+  document.addEventListener('pointerdown',e=>{if(!e.target.closest('#upNeed .up-chip')){hideTip();document.querySelectorAll('#upNeed .up-chip').forEach(x=>x.dataset.armed='')}});
   function paintTotals(){
     const t=totals(),items=Object.entries(t.items).filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]);
     const total=UPG.length,dn=LINES.reduce((s,L)=>s+done(L),0);
     $('upDone').textContent=dn+' / '+total;$('upBar').style.width=(100*dn/total)+'%';$('upStat').textContent=dn;
-    $('upNeed').innerHTML=(items.length||t.cash)?`<div class="up-need-list">${t.cash?`<span class="up-chip cash"><b>$${nfmt(t.cash)}</b> DMZ Cash</span>`:''}${items.map(([n,q])=>`<span class="up-chip"><img src="${ingIcon(n)}" alt=""><b>${nfmt(q)}</b> ${esc(n)}</span>`).join('')}</div>`:'<p class="up-empty">Everything for your current upgrades is collected.</p>'}
+    $('upNeed').innerHTML=(items.length||t.cash)?`<div class="up-need-list">${t.cash?`<button type="button" class="up-chip cash" data-n="DMZ Cash"><b>$${nfmt(t.cash)}</b> DMZ Cash</button>`:''}${items.map(([n,q])=>`<button type="button" class="up-chip" data-n="${esc(n)}"><img src="${ingIcon(n)}" alt=""><b>${nfmt(q)}</b> ${esc(n)}</button>`).join('')}</div>`:'<p class="up-empty">Everything for your current upgrades is collected.</p>';bindChips()}
   function paintCard(L,card){
     const d=done(L),t=L.tiers[d];if(!t)return;const rs=reqs(t);let ready=0;
     rs.forEach((r,i)=>{const h=haveOf(t,r.m),ok=h>=r.need;if(ok)ready++;const row=card.querySelector(`[data-r="${i}"]`);if(!row)return;row.classList.toggle('ok',ok);row.querySelector('.up-bar i').style.width=Math.min(100,100*h/Math.max(1,r.need))+'%'});
@@ -743,7 +766,7 @@ inits.loot=function(){};
   window.upRender=()=>render();
   inits.upgrades=function(){
     Account.paintNotes();
-    $('upReset').onclick=()=>{if(confirm(Account.user?'Clear all of your upgrade progress? It will also be cleared from your account.':'Clear all of your upgrade progress in this browser?')){Store.get('upgrades');Store.data.upgrades={};Store.save();render()}};
+    $('upReset').onclick=()=>{if(confirm(Account.user?'Clear all of your upgrade progress? It will also be cleared from your account.':'Clear all of your upgrade progress in this browser?')){const keep=Store.get('upgrades').stock;Store.data.upgrades={};if(keep)Store.data.upgrades.stock=keep;Store.save();render()}};
     render();
   };
   window.upShow=function(){if($('upGrid').children.length)paintTotals()};
@@ -829,7 +852,9 @@ inits.loot=function(){};
     try{
       const d=await get('/latest?n=3');
       if(!d||d.notConfigured||!d.items||!d.items.length){box.hidden=true;return}
-      document.getElementById('latestList').innerHTML=d.items.slice(0,3).map(e=>`<li><button type="button" class="latest-item" data-id="${esc(e.id)}"><span class="latest-top">${badge(e)}<span class="latest-cat">${esc(e.category)}</span><span class="latest-date">${esc(when(e))}</span></span><span class="latest-title">${esc(e.title)}</span><span class="latest-sum">${esc(e.summary)}</span></button></li>`).join('');
+      const kind=e=>/resol|fixed/i.test(e.category||'')?'lt-ok':/investig|known|monitor/i.test(e.category||'')?'lt-watch':'lt-other';
+      const shortDate=e=>e.published_at?D(e.published_at):(e.first_detected_at?D(e.first_detected_at,'Australia/Melbourne'):'');
+      document.getElementById('latestList').innerHTML=d.items.slice(0,3).map(e=>`<li><button type="button" class="latest-item" data-id="${esc(e.id)}"><span class="latest-top"><span class="lt-badge ${kind(e)}">${esc(e.category)}</span>${e.status?`<span class="lt-new">${esc(e.status)}</span>`:''}</span><span class="latest-date">${esc(shortDate(e))}</span><span class="latest-title">${esc(e.title)}</span><span class="latest-sum">${esc(e.summary)}</span><span class="latest-read">Read update <span aria-hidden="true">&rarr;</span></span></button></li>`).join('');
       document.getElementById('latestMeta').textContent=d.last_success?'Last checked '+DT(d.last_success):'';
       document.querySelectorAll('#latestList .latest-item').forEach(b=>b.onclick=()=>{try{sessionStorage.setItem('pnFocus',b.dataset.id)}catch(e){}openView('patches')});
       box.hidden=false;
@@ -1084,6 +1109,127 @@ inits.loot=function(){};
     document.querySelectorAll('#itemSearchBox [data-q]').forEach(b=>b.onclick=()=>{build();const h=search(b.dataset.q,1)[0];if(h)openView('items/'+h.id)});
   }
   homeInit();
+
+  /* plain-text answers for other pages (tooltips and the Full Upgrade Item List) */
+  function whereMentionPlain(name){
+    const out=[],n=norm(name),nn=n.replace(/s$/,'');
+    BOSS_STRATS.forEach(b=>{const r=norm(b.rewards||'');if(r&&(r.includes(n)||r.includes(nn)))out.push('Possible reward from '+b.name+(b.location?' ('+b.location+')':''))});
+    LOOT_SPOTS.forEach(s=>{const hay=norm([s.name,s.summary,s.intro,(s.steps||[]).map(x=>x.h+' '+x.p).join(' ')].join(' '));if(hay.includes(n)||hay.includes(nn))out.push('Mentioned in the loot guide '+s.name)});
+    return out;
+  }
+  window.itemInfo=function(name){
+    build();const x=BY.get('m-'+slug(name));if(!x)return null;
+    const m=x.mat,where=[],mi=m.map;
+    if(mi&&mi.w)where.push(String(mi.w));
+    if(m.craft&&m.craft.u){const t=m.craft.u.replace(/^Where /,'');const nt=norm(t);if(!where.some(w=>{const nw=norm(w);return nw===nt||nw.includes(nt)||nt.includes(nw)}))where.push(t)}
+    whereMentionPlain(m.name).forEach(t=>where.push(t));
+    const words=s=>norm(s).split(' ').filter(w=>w.length>2);
+    const similar=(a,b)=>{const A=new Set(words(a)),B=words(b);if(!A.size||!B.length)return false;return B.filter(w=>A.has(w)).length/Math.min(A.size,B.length)>=0.7};
+    const real=[];where.filter(w=>!GENERIC_WHERE.test(w)).forEach(w=>{if(!real.some(r=>similar(r,w)))real.push(w)});   // drop lines that say the same thing twice
+    return {id:x.id,where:real,hasMap:!!(mi&&mi.m&&mi.m.length),mapCount:mi&&mi.m?mi.m.length:0,craftable:!!(m.craft&&m.craft.c&&m.craft.c.length)};
+  };
+  window.itemShowOnMap=function(name){openView('map');requestAnimationFrame(()=>mapShowIngredient(name))};
+})();
+
+/* ===== FULL UPGRADE ITEM LIST: everything needed for every FOB upgrade, with a counter for what you have ===== */
+(function(){
+  const UPG=GEAR_DATA.find(g=>g.c==='Upgrades').r;
+  const S={q:'',sort:'need',hide:false};
+  const stock=()=>{const s=Store.get('upgrades');if(!s.stock)s.stock={};return s.stock};
+  const have=n=>Math.max(0,Math.round(+(stock()[n]||0)));
+  const CASH_WHERE='Cash has no single place to find it. Dynamic Ops, Side Ops and Story Mission replays all pay cash.';
+  let LIST=null;
+  function build(){
+    if(LIST)return LIST;const m=new Map();let cash=0,cashTiers=0;
+    UPG.forEach(t=>{if(t.cash){cash+=t.cash;cashTiers++}t.c.forEach(([n,q])=>{const r=m.get(n)||{name:n,need:0,uses:0};r.need+=q;r.uses++;m.set(n,r)})});
+    LIST=[{name:'DMZ Cash',need:cash,cash:true,uses:cashTiers},...m.values()];return LIST;
+  }
+  const step=r=>r.cash?10000:1;
+  const fmt=(r,n)=>r.cash?'$'+nfmt(n):nfmt(n);
+  const wherePlain=r=>{if(r.cash)return [CASH_WHERE];const i=window.itemInfo?itemInfo(r.name):null;return i&&i.where.length?i.where.slice(0,3):[]};
+  function rowHTML(r){
+    const i=r.cash||!window.itemInfo?null:itemInfo(r.name),w=wherePlain(r),h=have(r.name);
+    const ic=r.cash?'<span class="ul-ic cash">$</span>':`<span class="ul-ic"><img src="${ingIcon(r.name)}" alt=""></span>`;
+    const name=i?`<button type="button" class="ul-name" data-more>${esc(r.name)}</button>`:`<span class="ul-name">${esc(r.name)}</span>`;
+    const acts=(i&&i.hasMap?`<button type="button" class="ul-btn" data-map>Show on map</button>`:'')+(i?`<button type="button" class="ul-btn" data-more>Full details</button>`:'');
+    return `<article class="ul-row" data-n="${esc(r.name)}">${ic}
+      <div class="ul-main">${name}<div class="ul-where">${w.length?w.map(t=>`<span>${esc(t)}</span>`).join(''):'<span class="ul-unk">Where to find it is not known yet.</span>'}</div>${acts?`<div class="ul-act">${acts}</div>`:''}</div>
+      <div class="ul-nd"><span class="ul-lab">Need</span><b>${fmt(r,r.need)}</b></div>
+      <div class="ul-hv"><span class="ul-lab">Have</span><div class="ul-step"><button type="button" data-d="-1" aria-label="Fewer ${esc(r.name)}">&minus;</button><input type="number" min="0" inputmode="numeric" value="${h}" aria-label="How many ${esc(r.name)} you have"><button type="button" data-d="1" aria-label="More ${esc(r.name)}">+</button></div></div>
+      <div class="ul-lf"><span class="ul-lab">Still need</span><b></b></div><div class="ul-bar" aria-hidden="true"><i></i></div></article>`;
+  }
+  function paintRow(el,r){
+    const h=have(r.name),left=Math.max(0,r.need-h),inp=el.querySelector('input');
+    if(document.activeElement!==inp)inp.value=h;
+    el.classList.toggle('ok',left===0);el.querySelector('.ul-lf b').textContent=left===0?'Collected':fmt(r,left);
+    el.querySelector('.ul-bar i').style.width=Math.min(100,100*h/Math.max(1,r.need))+'%';
+  }
+  function paintSum(){
+    const L=build(),done=L.filter(r=>have(r.name)>=r.need).length;
+    document.getElementById('ulSum').innerHTML=`<div class="up-sum"><div><span class="eyebrow">Collected</span><strong>${done} / ${L.length}</strong></div><div class="up-bar big"><i style="width:${100*done/L.length}%"></i></div></div><p class="ul-fine">${L.length-1} different items plus DMZ Cash, across ${UPG.length} upgrade tiers.</p>`;
+  }
+  function visible(){
+    const L=build(),q=S.q.trim().toLowerCase();
+    let out=L.filter(r=>(!q||r.name.toLowerCase().includes(q))&&(!S.hide||have(r.name)<r.need));
+    const cash=out.filter(r=>r.cash),rest=out.filter(r=>!r.cash);
+    const left=r=>Math.max(0,r.need-have(r.name));
+    rest.sort(S.sort==='az'?(a,b)=>a.name.localeCompare(b.name):S.sort==='left'?(a,b)=>left(b)-left(a)||a.name.localeCompare(b.name):(a,b)=>b.need-a.need||a.name.localeCompare(b.name));
+    return [...cash,...rest];
+  }
+  function render(){
+    const list=document.getElementById('ulList');if(!list)return;
+    const rows=visible();
+    list.innerHTML=rows.length?rows.map(rowHTML).join(''):'<p class="ul-empty">Nothing matches. Clear the filter or untick Hide collected.</p>';
+    const byName=new Map(build().map(r=>[r.name,r]));
+    list.querySelectorAll('.ul-row').forEach(el=>{
+      const r=byName.get(el.dataset.n),inp=el.querySelector('input');paintRow(el,r);
+      const set=v=>{const n=Math.max(0,Math.min(1e9,Math.round(+v||0)));const s=stock();if(n)s[r.name]=n;else delete s[r.name];Store.save();paintRow(el,r);paintSum()};
+      el.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>set(have(r.name)+(+b.dataset.d)*step(r)));
+      inp.onchange=()=>set(inp.value);inp.onblur=()=>paintRow(el,r);
+      inp.onkeydown=e=>{if(e.key==='Enter')inp.blur()};
+      el.querySelectorAll('[data-more]').forEach(b=>b.onclick=()=>{const i=itemInfo(r.name);if(i)openView('items/'+i.id)});
+      const mp=el.querySelector('[data-map]');if(mp)mp.onclick=()=>itemShowOnMap(r.name);
+    });
+    paintSum();if(window.Account)Account.paintNotes();
+  }
+  window.upItemsRender=render;
+  inits.upgradeitems=function(){
+    const $f=document.getElementById('ulFilter'),$s=document.getElementById('ulSort'),$h=document.getElementById('ulHide');
+    $f.oninput=()=>{S.q=$f.value;render()};$s.onchange=()=>{S.sort=$s.value;render()};$h.onchange=()=>{S.hide=$h.checked;render()};
+    document.getElementById('ulReset').onclick=()=>{if(confirm(Account.user?'Reset all of your counts on this list? It will also reset them in your account.':'Reset all of your counts on this list in this browser?')){Store.get('upgrades').stock={};Store.save();render()}};
+    render();
+  };
+})();
+
+/* ===== LATEST COD PATCH NOTES: link-preview card for the newest official MW4 post (found automatically by the Worker) ===== */
+(function(){
+  const box=document.getElementById('codCard');if(!box)return;
+  const INDEX='https://www.callofduty.com/patchnotes';
+  // shown until the Worker answers, and kept if it never does
+  const FALL={short:'Launch Patch Notes',updated:'2026-10-29',url:INDEX,
+    image:'https://imgs.callofduty.com/content/dam/atvi/callofduty/cod-touchui/patchnotes/body/mw4/mp/launch/MW4-00-LAUNCH-PATCH-NOTES-TOUT-C.webp'};
+  const ago=iso=>{if(!iso)return '';const t=Date.parse(iso+'T12:00:00Z');if(Number.isNaN(t))return '';const d=Math.floor((Date.now()-t)/864e5);
+    if(d<=0)return 'Last updated today';if(d===1)return 'Last updated yesterday';if(d<60)return 'Last updated '+d+' days ago';
+    return 'Last updated '+new Date(t).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})};
+  const holder=document.getElementById('codImg');let shown='';
+  function picture(src){
+    if(!src||src===shown)return;shown=src;
+    const im=new Image();im.alt='';im.decoding='async';im.referrerPolicy='no-referrer';im.onload=()=>{if(shown===src)holder.replaceChildren(im)};im.src=src;   // if it cannot load, the gold panel stays
+  }
+  function paint(p){
+    document.getElementById('codTitle').textContent=p.short;
+    document.getElementById('codWhen').textContent=ago(p.updated);
+    document.getElementById('codLink').href=p.url;
+    picture(p.image);
+  }
+  const official=p=>p&&typeof p.url==='string'&&p.url.startsWith(INDEX+'/')&&typeof p.short==='string'&&p.short&&(!p.image||(typeof p.image==='string'&&p.image.startsWith('https://imgs.callofduty.com/')));
+  async function latest(){
+    const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
+    try{const r=await fetch('/api/cod-latest',{signal:c.signal,headers:{accept:'application/json'}});if(!r.ok)return null;const d=await r.json();return official(d&&d.post)?d.post:null}catch(e){return null}finally{clearTimeout(t)}
+  }
+  paint({...FALL,image:null});                                   // words first; the picture waits for the Worker so only one picture is ever fetched
+  let done=false;const wait=setTimeout(()=>{if(!done)picture(FALL.image)},2500);
+  latest().then(p=>{done=true;clearTimeout(wait);paint(p?{short:p.short,updated:p.updated||null,url:p.url,image:p.image||FALL.image}:FALL)});
 })();
 
 /* ===== HOME EXTRAS: tile progress, phone bar highlight, floating Korean background, YouTube banner ===== */
@@ -1155,7 +1301,8 @@ const Account=(function(){
   function norm(ns,d){
     d=isO(d)?d:{};const out={};const pos=v=>Math.max(0,Math.round(+v||0));
     if(ns==='upgrades'){out.done={};Object.entries(isO(d.done)?d.done:{}).forEach(([k,v])=>{const n=Math.min(10,pos(v));if(n)out.done[k]=n});
-      out.have={};Object.entries(isO(d.have)?d.have:{}).forEach(([t,mats])=>{if(!isO(mats))return;const o={};Object.entries(mats).forEach(([m,v])=>{const n=pos(v);if(n)o[m]=n});if(Object.keys(o).length)out.have[t]=o})}
+      out.have={};Object.entries(isO(d.have)?d.have:{}).forEach(([t,mats])=>{if(!isO(mats))return;const o={};Object.entries(mats).forEach(([m,v])=>{const n=pos(v);if(n)o[m]=n});if(Object.keys(o).length)out.have[t]=o})
+      out.stock={};Object.entries(isO(d.stock)?d.stock:{}).forEach(([k,v])=>{const n=pos(v);if(n)out.stock[k]=n})}
     else{out.w={};Object.entries(isO(d.w)?d.w:{}).forEach(([id,marks])=>{if(!isO(marks))return;const o={};Object.entries(marks).forEach(([i,v])=>{if(v)o[i]=1});if(Object.keys(o).length)out.w[id]=o});
       out.g={};Object.entries(isO(d.g)?d.g:{}).forEach(([i,v])=>{if(v)out.g[i]=1});
       out.lvl={};Object.entries(isO(d.lvl)?d.lvl:{}).forEach(([id,v])=>{const n=pos(v);if(n)out.lvl[id]=n})}
@@ -1166,7 +1313,8 @@ const Account=(function(){
   function merge(ns,a,b){
     a=norm(ns,a);b=norm(ns,b);const out=JSON.parse(JSON.stringify(a));
     if(ns==='upgrades'){Object.entries(b.done).forEach(([k,v])=>{out.done[k]=Math.max(out.done[k]||0,v)});
-      Object.entries(b.have).forEach(([t,mats])=>{out.have[t]=out.have[t]||{};Object.entries(mats).forEach(([m,v])=>{out.have[t][m]=Math.max(out.have[t][m]||0,v)})})}
+      Object.entries(b.have).forEach(([t,mats])=>{out.have[t]=out.have[t]||{};Object.entries(mats).forEach(([m,v])=>{out.have[t][m]=Math.max(out.have[t][m]||0,v)})})
+      Object.entries(b.stock).forEach(([k,v])=>{out.stock[k]=Math.max(out.stock[k]||0,v)})}
     else{Object.entries(b.w).forEach(([id,marks])=>{out.w[id]=Object.assign(out.w[id]||{},marks)});Object.assign(out.g,b.g);Object.entries(b.lvl).forEach(([id,v])=>{out.lvl[id]=Math.max(out.lvl[id]||0,v)})}
     return out;
   }
@@ -1188,7 +1336,7 @@ const Account=(function(){
     return 'Saved in this browser only. Clearing your browser data removes it.';
   }
   function paintNotes(){
-    ['upNote','cmNote'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.textContent=noteText();if(!S.user&&S.configured){const b=document.createElement('button');b.type='button';b.className='acct-link';b.textContent='Log in with Discord';b.onclick=login;el.append(' ',b,' to keep it on every device.')}});
+    ['upNote','cmNote','ulNote'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.textContent=noteText();if(!S.user&&S.configured){const b=document.createElement('button');b.type='button';b.className='acct-link';b.textContent='Log in with Discord';b.onclick=login;el.append(' ',b,' to keep it on every device.')}});
     document.querySelectorAll('[data-savenote]').forEach(el=>{el.textContent=S.user?'Saved to your Discord account.':(S.configured?'Saved in this browser. Log in with Discord to keep it everywhere.':'Saved in this browser only. Clearing your browser data removes it.')});
   }
   const setStatus=t=>{S.status=t;paintNotes();const s=document.getElementById('acctState');if(s)s.textContent=t||'All changes saved.'};
@@ -1247,6 +1395,7 @@ const Account=(function(){
     if(window.tileProgress)tileProgress();
     try{if(document.getElementById('screen-upgrades').classList.contains('active')&&window.upRender)upRender()}catch(e){}
     try{if(document.getElementById('screen-camos').classList.contains('active')&&window.cmRender)cmRender()}catch(e){}
+    try{if(document.getElementById('screen-upgradeitems').classList.contains('active')&&window.upItemsRender)upItemsRender()}catch(e){}
   }
 
   /* ---------- saving and loading ---------- */

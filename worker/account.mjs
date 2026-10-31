@@ -15,13 +15,14 @@ const int = (v, lo, hi) => { const n = Math.round(Number(v)); return Number.isFi
 const idx = (s, hi) => (/^\d{1,3}$/.test(String(s)) && +s <= hi ? +s : null);
 const isObj = (o) => o && typeof o === 'object' && !Array.isArray(o);
 export function cleanUpgrades(d) {
-  const out = { done: {}, have: {} }; if (!isObj(d)) return out;
+  const out = { done: {}, have: {}, stock: {} }; if (!isObj(d)) return out;
   if (isObj(d.done)) for (const [k, v] of Object.entries(d.done).slice(0, 40)) { const n = int(v, 0, 10); if (textKey(k) && n !== null) out.done[k] = n; }
   if (isObj(d.have)) for (const [tier, mats] of Object.entries(d.have).slice(0, 200)) {
     if (!textKey(tier) || !isObj(mats)) continue; const o = {};
     for (const [m, v] of Object.entries(mats).slice(0, 16)) { const n = int(v, 0, 1e9); if (textKey(m) && n !== null) o[m] = n; }
     if (Object.keys(o).length) out.have[tier] = o;
   }
+  if (isObj(d.stock)) for (const [k, v] of Object.entries(d.stock).slice(0, 80)) { const n = int(v, 0, 1e9); if (textKey(k) && n) out.stock[k] = n; }
   return out;
 }
 export function cleanCamos(d) {
