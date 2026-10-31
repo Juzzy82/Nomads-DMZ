@@ -1,87 +1,12 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Accounts round 1 (Discord login, saved Upgrades and Camo progress, export and delete, privacy page) plus everything since the Trello-only update
+Update: Private map pins (add, edit, move, delete, hide), saved to the account
 
-.assetsignore                              patch notes system
 ACCOUNTS-SETUP.md                          file
-PATCH-NOTES-SETUP.md                       file
-_headers                                   file
 app.css                                    the site styling
 app.js                                     the site code and data
-boss-strats/bale/index.html                page
-boss-strats/colossus/index.html            page
-boss-strats/deathstalker/index.html        page
-boss-strats/gorani/index.html              page
-boss-strats/index.html                     page
-boss-strats/iskra/index.html               page
-boss-strats/jang-ui/index.html             page
-boss-strats/jin-tae/index.html             page
-boss-strats/nk-battle-tank/index.html      page
-boss-strats/roze/index.html                page
-boss-strats/the-chemist/index.html         page
-boss-strats/the-doctor/index.html          page
-boss-strats/the-scavenger/index.html       page
-boss-strats/the-warden/index.html          page
-camo-tracker/index.html                    page
-dynamic-ops/index.html                     page
-gear/index.html                            page
-gunsmith/index.html                        page
 imgs-3.js                                  pictures used by the site
-imgs-4.js                                  pictures used by the site
-imgs-5.js                                  pictures used by the site
-index.html                                 page (home)
-items/index.html                           page
-loot-img/bunker-route.webp                 picture
-loot-img/vault-flow.webp                   picture
-loot-img/waterfront-run.webp               picture
-loot/bunker-route/index.html               page
-loot/deadtown-waterfront-run/index.html    page
-loot/hanex-bank-vault/index.html           page
-loot/index.html                            page
-loot/irradiated-items/index.html           page
-loot/river-heights/index.html              page
-map/index.html                             page
-og/boss-strats--bale.jpg                   file
-og/boss-strats--colossus.jpg               file
-og/boss-strats--deathstalker.jpg           file
-og/boss-strats--gorani.jpg                 file
-og/boss-strats--iskra.jpg                  file
-og/boss-strats--jang-ui.jpg                file
-og/boss-strats--jin-tae.jpg                file
-og/boss-strats--nk-battle-tank.jpg         file
-og/boss-strats--roze.jpg                   file
-og/boss-strats--the-chemist.jpg            file
-og/boss-strats--the-doctor.jpg             file
-og/boss-strats--the-scavenger.jpg          file
-og/boss-strats--the-warden.jpg             file
-og/boss-strats.jpg                         file
-og/camo-tracker.jpg                        file
-og/dynamic-ops.jpg                         file
-og/gear.jpg                                file
-og/gunsmith.jpg                            file
-og/items.jpg                               file
-og/loot--bunker-route.jpg                  file
-og/loot--deadtown-waterfront-run.jpg       file
-og/loot--hanex-bank-vault.jpg              file
-og/loot--irradiated-items.jpg              file
-og/loot--river-heights.jpg                 file
-og/loot.jpg                                file
-og/map.jpg                                 file
-og/patch-notes.jpg                         file
-og/traits.jpg                              file
-og/upgrades.jpg                            file
-patch-notes/index.html                     page
 privacy/index.html                         page
-robots.txt                                 file
-schema.sql                                 file
-sitemap.xml                                search engine page list
-traits/index.html                          page
-upgrades/index.html                        page
 worker/account.mjs                         patch notes system
-worker/auth.mjs                            patch notes system
-worker/db.mjs                              patch notes system
-worker/index.mjs                           patch notes system
-worker/youtube.mjs                         patch notes system
-wrangler.jsonc                             patch notes system
 
 Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.

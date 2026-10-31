@@ -834,3 +834,17 @@ a.tile-go{text-decoration:none}
 .acct-btn.login:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .acct-btn.login svg{width:30px;height:30px}
 .acct-btn.login span{max-width:none;overflow:visible;text-overflow:clip;white-space:nowrap}
+
+/* ===== my pins ===== */
+.mypin{position:absolute;pointer-events:auto;will-change:transform;left:-17px;top:-17px;width:34px;height:34px;padding:0;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.7),0 3px 10px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:7;transition:filter .15s}
+.mypin:hover,.mypin:focus-visible{filter:brightness(1.18);outline:2px solid #fff;outline-offset:2px}.mypin svg{width:19px;height:19px;pointer-events:none}.mypin[hidden]{display:none}
+.mypin-ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:2px solid #fff;flex:none}.mypin-ic svg{width:22px;height:22px}
+.pin-mode{cursor:crosshair}.pin-mode .mk,.pin-mode .mypin{cursor:crosshair}
+.pin-chip{left:50%;transform:translateX(-50%);bottom:56px;border-color:#4da3ff;color:#bfe0ff;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis}
+.pin-add{display:block;width:100%;margin:6px 0 4px;padding:9px 12px;border:1px solid #4da3ff;background:rgba(77,163,255,.12);color:#bfe0ff;font:700 .66rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.pin-add:hover{background:rgba(77,163,255,.25)}
+.pin-actions{display:flex;gap:8px;margin-top:12px}.pin-actions button{flex:1;padding:9px 8px;border:1px solid var(--line-2);background:#14150f;color:#e6e2d4;font:700 .62rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.pin-actions button:hover{border-color:var(--gold);color:var(--gold-hi)}.pin-actions .danger{color:#ff9d8e;border-color:#6d2f28}
+.pin-dlg textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;background:#0e0f0b;border:1px solid var(--line-2);color:#fff;font:500 .95rem/1.4 var(--f-body);resize:vertical}
+.pn-row{margin-top:12px}.pn-row>span{display:block;margin-bottom:6px;font:600 .62rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.pn-sw,.pn-ic{display:flex;flex-wrap:wrap;gap:8px}
+.pn-sw button{width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer}.pn-sw button[aria-checked=true]{border-color:#fff;box-shadow:0 0 0 2px #000,0 0 0 4px var(--gold)}
+.pn-ic button{width:42px;height:42px;padding:0;border:1px solid var(--line-2);background:#14150f;cursor:pointer;display:flex;align-items:center;justify-content:center}.pn-ic button svg{width:24px;height:24px}.pn-ic button[aria-checked=true]{border-color:var(--gold);background:rgba(232,168,72,.2)}

@@ -383,6 +383,7 @@ inits.map=function(){
     for(const m of els){m.el.style.transform=`translate(${m.x*s+st.x}px,${m.y*s+st.y}px)`}
     badgeEls.forEach((e,id)=>{const m=byId[id];e.style.transform=`translate(${m.x*s+st.x}px,${m.y*s+st.y}px)`});
     for(const r of routes)for(const p of r.pins)p.el.style.transform=`translate(${p.x*s+st.x}px,${p.y*s+st.y}px)`;
+    for(const q of myPins)q.el.style.transform=`translate(${q.x*s+st.x}px,${q.y*s+st.y}px)`;
     $('zoomReadout').textContent=Math.round(z*100)+'%';
   }
   window.mapLayout=function(){const r=vp.getBoundingClientRect();if(!r.width)return;const first=!vw;vw=r.width;vh=r.height;
@@ -419,17 +420,90 @@ inits.map=function(){
     cb.onchange=()=>{if(cb.checked){clearRoute();runSpots().forEach((s,i)=>drawRoute(s,ROUTE_COLS[i%ROUTE_COLS.length]));fitRoutes();cb.checked=true}else clearRoute()};
   }
   runsSwitch();
+  /* ---- my pins: private to the logged-in person, saved to their account ---- */
+  const PIN_COL={gold:'#e8a848',red:'#e0594a',green:'#4ade80',blue:'#4da3ff',purple:'#b57bff',white:'#f1ead5',orange:'#ff8a3d',cyan:'#22d3ee'};
+  const PIN_ICO={pin:'<path d="M12 21s6.500-5.700 6.500-11a6.500 6.500 0 0 0-13 0c0 5.300 6.500 11 6.500 11z"/><circle cx="12" cy="10" r="2.300"/>',star:'<path d="M12 3l2.800 5.800 6.200.9-4.500 4.400 1.100 6.200L12 17.400 6.400 20.300l1.100-6.200L3 9.700l6.200-.9z"/>',flag:'<path d="M6 3v18M6 4h11l-2.500 4L17 12H6"/>',skull:'<path d="M5 11a7 7 0 0 1 14 0c0 2.500-1.300 4.200-3 5.200V20H8v-3.800C6.300 15.200 5 13.500 5 11z"/><path d="M10.500 20v-2.500M13.500 20v-2.500"/><circle cx="9.500" cy="11" r="1.300"/><circle cx="14.500" cy="11" r="1.300"/>',loot:'<path d="M9 4h6l-1 3h-4zM8 7c-3 3-4 7-3 11 2 2.500 12 2.500 14 0 1-4 0-8-3-11"/><path d="M12 11v6M14.500 12.500c-1-1-5-1-5 .8s5 1.200 5 3-4 1.800-5 .8"/>',key:'<circle cx="8" cy="12" r="3.800"/><path d="M11.800 12H21M17 12v3.200M20 12v2.200"/>',door:'<path d="M7 21V4h10v17M4 21h16"/><circle cx="14.200" cy="12.500" r=".6"/>',target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.500"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>'};
+  const pinSvg=(ic,col)=>`<svg viewBox="0 0 24 24" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PIN_ICO[ic]||PIN_ICO.pin}</svg>`;
+  const pinInk=c=>c==='white'?'#14130c':'#fff';
+  let myPins=[],pinMode=null,pinsOn=true;
+  const pchip=document.createElement('button');pchip.type='button';pchip.className='map-chip pin-chip';pchip.hidden=true;vp.appendChild(pchip);
+  ['pointerdown','mousedown','touchstart','wheel','dblclick'].forEach(ev=>pchip.addEventListener(ev,e=>e.stopPropagation()));
+  function setPinMode(md){pinMode=md;vp.classList.toggle('pin-mode',!!md);pchip.hidden=!md;if(md)pchip.textContent=(md.type==='move'?'Click the new spot for your pin':'Click the map to place your pin')+'. Esc, or tap here, to cancel.'}
+  pchip.onclick=()=>setPinMode(null);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pinMode&&!document.querySelector('.pin-dlg'))setPinMode(null)});
+  const pinErr=r=>r.status===409?'You have reached the limit of '+Account.pins.max+' pins. Delete one first.':r.status===429?'Too many pins too quickly. Wait a moment and try again.':r.status===401?'You were logged out. Log in again to keep your pins.':'Could not save the pin. Please try again.';
+  function pinEl(p){const b=document.createElement('button');b.type='button';b.className='mypin';b.style.background=PIN_COL[p.color]||PIN_COL.gold;b.innerHTML=pinSvg(p.icon,pinInk(p.color));b.title=p.name;b.setAttribute('aria-label','My pin: '+p.name);b.onclick=e=>{e.stopPropagation();selectPin(p.id)};layer.appendChild(b);return b}
+  function renderPins(){
+    myPins.forEach(q=>q.el.remove());myPins=[];
+    if(Account.user)Account.pins.list.forEach(p=>{const el=pinEl(p);el.hidden=!pinsOn;myPins.push({p,el,x:p.x,y:p.y})});
+    paintPinGroup();place();
+  }
+  function paintPinGroup(){
+    let g=document.getElementById('lgPinsGroup');
+    if(!Account.configured){if(g)g.remove();return}
+    if(!g){g=document.createElement('div');g.className='lg-group';g.id='lgPinsGroup';const body=rail.querySelector('.lg-body');if(!body)return;body.insertBefore(g,body.firstChild)}
+    if(!Account.user){g.innerHTML='<div class="lg-h" style="--c:#4da3ff">My pins</div><p class="lg-note">Log in with Discord to add your own private pins to the map. Only you can see them.</p><button type="button" class="pin-add" id="pinLogin">Log in with Discord</button>';g.querySelector('#pinLogin').onclick=()=>Account.login();return}
+    g.innerHTML=`<div class="lg-h" style="--c:#4da3ff">My pins</div><label class="lg-row"><input type="checkbox" id="lgPins"${pinsOn?' checked':''}><span class="lg-sw" style="--c:#4da3ff"><img src="about:blank#img:mk-pin.webp" alt=""></span><span class="lg-l">My pins</span><em>${myPins.length}</em></label><button type="button" class="pin-add" id="pinAdd">+ Add a pin</button><p class="lg-note">Private to you. Up to ${Account.pins.max} pins.</p>`;
+    g.querySelector('#lgPins').onchange=e=>{pinsOn=e.target.checked;myPins.forEach(q=>q.el.hidden=!pinsOn)};
+    g.querySelector('#pinAdd').onclick=()=>startPin({type:'add'});
+  }
+  function startPin(md){
+    if(md.type==='add'&&Account.pins.list.length>=Account.pins.max){toast('You have reached the limit of '+Account.pins.max+' pins. Delete one first.');return}
+    document.body.classList.remove('rail-open');$('railToggle').setAttribute('aria-expanded','false');
+    clearRoute();card.hidden=true;pinsOn=true;myPins.forEach(q=>q.el.hidden=false);const cb=document.getElementById('lgPins');if(cb)cb.checked=true;
+    setPinMode(md);
+  }
+  async function placePin(e){
+    const r=vp.getBoundingClientRect(),x=Math.round(((e.clientX-r.left-st.x)/st.s)*10)/10,y=Math.round(((e.clientY-r.top-st.y)/st.s)*10)/10,md=pinMode;
+    if(x<0||y<0||x>SZ||y>SZ){toast('That spot is off the map.');return}
+    setPinMode(null);
+    if(md.type==='move'){const rr=await Account.updatePin(md.id,{x,y});if(!rr.ok)toast(pinErr(rr));renderPins();selectPin(md.id);return}
+    const v=await pinDialog(null);if(!v)return;
+    const rr=await Account.createPin({x,y,...v});if(!rr.ok){toast(pinErr(rr));return}
+    renderPins();if(rr.json&&rr.json.pin)selectPin(rr.json.pin.id);
+  }
+  function selectPin(id){
+    const p=Account.pins.list.find(x=>x.id===id);if(!p)return;card.hidden=false;
+    card.innerHTML=`<button type="button" class="card-x" aria-label="Close">✕</button><div class="ing-head"><span class="mypin-ic" style="background:${PIN_COL[p.color]||PIN_COL.gold}">${pinSvg(p.icon,pinInk(p.color))}</span><div><h3>${esc(p.name)}</h3><span>My pin // private</span></div></div>${p.note?`<div class="sub-h">Note</div><p>${esc(p.note)}</p>`:''}<div class="pin-actions"><button type="button" data-a="edit">Edit</button><button type="button" data-a="move">Move</button><button type="button" data-a="del" class="danger">Delete</button></div>`;
+    const act=card.querySelector('.pin-actions');act.style.pointerEvents='none';setTimeout(()=>{act.style.pointerEvents=''},450);
+    card.querySelector('.card-x').onclick=()=>{card.hidden=true};
+    card.querySelector('[data-a=edit]').onclick=async()=>{const v=await pinDialog(p);if(!v)return;const r=await Account.updatePin(p.id,v);if(!r.ok){toast(pinErr(r));return}renderPins();selectPin(p.id)};
+    card.querySelector('[data-a=move]').onclick=()=>{card.hidden=true;setPinMode({type:'move',id:p.id})};
+    card.querySelector('[data-a=del]').onclick=async()=>{if(!confirm('Delete the pin "'+p.name+'"?'))return;const r=await Account.deletePin(p.id);if(!r.ok){toast(pinErr(r));return}card.hidden=true;renderPins()};
+  }
+  function pinDialog(pin){
+    return new Promise(res=>{
+      const cur={name:pin?pin.name:'',note:pin?pin.note:'',color:pin?pin.color:'gold',icon:pin?pin.icon:'pin'};
+      const d=document.createElement('div');d.className='acct-dlg pin-dlg';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-labelledby','pnT');
+      d.innerHTML=`<div class="acct-card"><h3 id="pnT">${pin?'Edit pin':'Add a pin'}</h3>
+      <label class="acct-lab">Name<input id="pnName" maxlength="40" autocomplete="off" spellcheck="false" value="${esc(cur.name)}"></label>
+      <label class="acct-lab">Note (optional)<textarea id="pnNote" maxlength="200" rows="3">${esc(cur.note)}</textarea></label>
+      <div class="pn-row"><span>Colour</span><div class="pn-sw" role="radiogroup" aria-label="Colour">${Object.keys(PIN_COL).map(c=>`<button type="button" role="radio" aria-checked="${c===cur.color}" data-c="${c}" title="${c}" style="background:${PIN_COL[c]}"></button>`).join('')}</div></div>
+      <div class="pn-row"><span>Icon</span><div class="pn-ic" role="radiogroup" aria-label="Icon">${Object.keys(PIN_ICO).map(i=>`<button type="button" role="radio" aria-checked="${i===cur.icon}" data-i="${i}" title="${i}">${pinSvg(i,'#e6e2d4')}</button>`).join('')}</div></div>
+      <div class="acct-btns"><button type="button" class="acct-b" data-x="cancel">Cancel</button><button type="button" class="acct-b primary" data-x="save">Save</button></div></div>`;
+      d.style.pointerEvents='none';setTimeout(()=>{d.style.pointerEvents=''},450);   // the tap that opened this must not reach the buttons under the finger
+      document.body.appendChild(d);const done=v=>{d.remove();res(v)};
+      const pick=(sel,key)=>d.querySelectorAll(sel).forEach(b=>b.onclick=()=>{d.querySelectorAll(sel).forEach(x=>x.setAttribute('aria-checked',x===b));cur[key]=b.dataset[key==='color'?'c':'i']});
+      pick('[data-c]','color');pick('[data-i]','icon');
+      const save=()=>{const name=d.querySelector('#pnName').value.replace(/\s+/g,' ').trim();if(!name){toast('Give your pin a name.');d.querySelector('#pnName').focus();return}done({name,note:d.querySelector('#pnNote').value.trim(),color:cur.color,icon:cur.icon})};
+      d.querySelector('[data-x=save]').onclick=save;d.querySelector('[data-x=cancel]').onclick=()=>done(null);
+      d.addEventListener('keydown',e=>{if(e.key==='Escape')done(null);if(e.key==='Enter'&&e.target.id==='pnName')save()});
+      d.querySelector('#pnName').focus();d.querySelector('#pnName').select();
+    });
+  }
+  Account.onChange(()=>{Account.loadPins().then(renderPins)});
+  Account.loadPins().then(renderPins);
   function reset(){clearRoute();st.s=st.fit;st.x=st.y=0;place();card.hidden=true}
   $('zoomIn').onclick=()=>zoomAt(1.4,vw/2,vh/2);$('zoomOut').onclick=()=>zoomAt(1/1.4,vw/2,vh/2);$('zoomFit').onclick=reset;$('mapResetTop').onclick=reset;
   vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.18:1/1.18,e.clientX-r.left,e.clientY-r.top)},{passive:false});
   const ptrs=new Map();let last=null,moved=false,downT=null;
   const gest=()=>{const a=[...ptrs.values()];if(!a.length)return null;if(a.length===1)return{cx:a[0].x,cy:a[0].y,d:0};const[p,q]=a;return{cx:(p.x+q.x)/2,cy:(p.y+q.y)/2,d:Math.hypot(p.x-q.x,p.y-q.y)}};
   ['gesturestart','gesturechange','gestureend'].forEach(t=>vp.addEventListener(t,e=>e.preventDefault()));
-  vp.addEventListener('pointerdown',e=>{try{vp.setPointerCapture(e.pointerId)}catch(_){}ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});last=gest();if(ptrs.size===1){moved=false;downT=e.target.closest('.mk,.bdg')}else downT=null;vp.classList.add('dragging')});
+  vp.addEventListener('pointerdown',e=>{try{vp.setPointerCapture(e.pointerId)}catch(_){}ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});last=gest();if(ptrs.size===1){moved=false;downT=pinMode?null:e.target.closest('.mk,.bdg,.mypin')}else downT=null;vp.classList.add('dragging')});
   vp.addEventListener('pointermove',e=>{if(!ptrs.has(e.pointerId))return;ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});const g=gest();if(!g||!last)return;
     const dx=g.cx-last.cx,dy=g.cy-last.cy;if(!moved&&Math.abs(dx)+Math.abs(dy)<4&&(!g.d||Math.abs(g.d-last.d)<4))return;
     moved=true;st.x+=dx;st.y+=dy;if(g.d&&last.d&&g.d!==last.d){const r=vp.getBoundingClientRect();zoomAt(g.d/last.d,g.cx-r.left,g.cy-r.top)}else place();last=g});
-  const up=e=>{if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);last=gest();if(!ptrs.size){vp.classList.remove('dragging');if(!moved){if(downT)downT.click();else card.hidden=true}downT=null}};
+  const up=e=>{if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);last=gest();if(!ptrs.size){vp.classList.remove('dragging');if(!moved){if(pinMode&&!downT&&e.type==='pointerup'){placePin(e)}else if(downT)downT.click();else card.hidden=true}downT=null}};
   vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
   vp.addEventListener('keydown',e=>{const k={ArrowLeft:[60,0],ArrowRight:[-60,0],ArrowUp:[0,60],ArrowDown:[0,-60]}[e.key];if(k){e.preventDefault();st.x+=k[0];st.y+=k[1];place()}else if(e.key==='+'||e.key==='='){zoomAt(1.3,vw/2,vh/2)}else if(e.key==='-'){zoomAt(1/1.3,vw/2,vh/2)}});
   /* ---- legend behaviour ---- */
@@ -1074,6 +1148,8 @@ const Account=(function(){
   const isO=o=>o&&typeof o==='object'&&!Array.isArray(o);
   const meta=()=>{const m=Store.get('sync');m.rev=m.rev||{};m.dirty=m.dirty||{};return m};
   const snap={};   // what each section looked like the last time it matched the account
+  const Pins={list:[],loaded:false,max:200},listeners=[];
+  const emit=()=>listeners.forEach(f=>{try{f()}catch(e){}});
 
   /* ---------- tidy copies of the data, used to compare and to combine ---------- */
   function norm(ns,d){
@@ -1211,6 +1287,16 @@ const Account=(function(){
     S.lastPull=Date.now();paintNotes();
   }
 
+
+  /* ---------- private map pins ---------- */
+  async function loadPins(force){
+    if(!S.user)return [];if(Pins.loaded&&!force)return Pins.list;
+    const r=await api('/api/pins');if(r.ok&&r.json){Pins.list=r.json.pins||[];Pins.max=r.json.max||200;Pins.loaded=true}return Pins.list;
+  }
+  async function createPin(p){const r=await api('/api/pins',{method:'POST',body:JSON.stringify(p)});if(r.ok&&r.json&&r.json.pin)Pins.list.push(r.json.pin);return r}
+  async function updatePin(id,patch){const r=await api('/api/pins/'+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(patch)});if(r.ok&&r.json&&r.json.pin){const i=Pins.list.findIndex(x=>x.id===id);if(i>=0)Pins.list[i]=r.json.pin}return r}
+  async function deletePin(id){const r=await api('/api/pins/'+encodeURIComponent(id),{method:'DELETE'});if(r.ok)Pins.list=Pins.list.filter(x=>x.id!==id);return r}
+
   /* ---------- log in, log out, delete ---------- */
   function login(){location.href='/auth/login'}
   async function logoutDialog(){
@@ -1220,7 +1306,7 @@ const Account=(function(){
     await api('/auth/logout',{method:'POST',body:'{}'});
     if(c==='clear'){NS.forEach(ns=>{Store.data[ns]={}});}
     const m=meta();m.user=null;m.rev={};m.dirty={};Store.save(true);S.user=null;NS.forEach(ns=>delete snap[ns]);
-    paintChip();paintNotes();refreshViews();toast('Logged out.');
+    Pins.list=[];Pins.loaded=false;paintChip();paintNotes();refreshViews();emit();toast('Logged out.');
   }
   async function deleteDialog(){
     const c=await dialog({title:'Delete my account?',body:'<p>This removes your account, your saved progress and your logins from our database straight away. It cannot be undone.</p><p>Progress saved in this browser is not touched.</p><label class="acct-lab">Type <b>DELETE</b> to confirm<input id="acctDelIn" autocomplete="off" spellcheck="false"></label>',
@@ -1231,7 +1317,7 @@ const Account=(function(){
     const r=await api('/api/account',{method:'DELETE',body:JSON.stringify({confirm:'DELETE'})});
     if(!r.ok)return toast('Could not delete the account. Please try again.');
     const m=meta();m.user=null;m.rev={};m.dirty={};Store.save(true);S.user=null;NS.forEach(ns=>delete snap[ns]);
-    paintChip();paintNotes();toast('Your account and its data were deleted.');
+    Pins.list=[];Pins.loaded=false;paintChip();paintNotes();emit();toast('Your account and its data were deleted.');
   }
   document.addEventListener('click',e=>{const mn=document.getElementById('acctMenu'),bx=document.getElementById('acct');if(mn&&!mn.hidden&&bx&&!bx.contains(e.target)){mn.hidden=true;const b=document.getElementById('acctBtn');if(b)b.setAttribute('aria-expanded','false')}});
 
@@ -1242,11 +1328,12 @@ const Account=(function(){
     const r=await api('/api/me',{headers:{}});
     S.configured=!!(r.ok&&r.json&&r.json.configured);S.user=r.ok&&r.json&&r.json.loggedIn?r.json.user:null;
     paintChip();paintNotes();
+    emit();
     if(S.user)await pull();
     document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.user&&Date.now()-S.lastPull>60000)pull()});
     window.addEventListener('online',()=>{if(S.user)pushDirty()});
   }
-  return {init,changed,noteText,paintNotes,get user(){return S.user},get configured(){return S.configured}};
+  return {init,changed,noteText,paintNotes,login,loadPins,createPin,updatePin,deletePin,onChange:f=>{listeners.push(f)},get pins(){return Pins},get user(){return S.user},get configured(){return S.configured}};
 })();
 Account.init();
 

@@ -32,6 +32,6 @@ Open the home page. A **Log in with Discord** button now sits next to the Join t
 The tables are created automatically on the first login.
 
 ## What is stored
-Discord number, name and picture, when the account was made and last used, the saved Upgrades and Camo Tracker progress, and (later) private map pins.
+Discord number, name and picture, when the account was made and last used, the saved Upgrades and Camo Tracker progress, and the private map pins they add.
 The Discord access token is used once to read the name, then handed back to Discord. It is never stored.
 People can download or delete everything from the account menu.

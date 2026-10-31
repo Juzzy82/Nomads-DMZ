@@ -37,6 +37,53 @@ export function cleanCamos(d) {
 }
 export const clean = { upgrades: cleanUpgrades, camos: cleanCamos };
 
+
+/* ---------- private map pins ---------- */
+export const PIN_COLORS = ['gold', 'red', 'green', 'blue', 'purple', 'white', 'orange', 'cyan'];
+export const PIN_ICONS = ['pin', 'star', 'flag', 'skull', 'loot', 'key', 'door', 'target'];
+export const MAX_PINS = 200, MAP_SIZE = 4096;
+const tidy = (v, max) => String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, max);
+const pinRow = (r) => ({ id: r.id, x: r.x, y: r.y, name: r.name, note: r.note || '', color: r.color || 'gold', icon: r.icon || 'pin', created_at: r.created_at, updated_at: r.updated_at });
+export function cleanPin(b, partial) {
+  if (!isObj(b)) return { error: 'bad_request' };
+  const out = {};
+  for (const k of ['x', 'y']) if (!partial || k in b) { const n = b[k]; if (typeof n !== 'number' || !Number.isFinite(n) || n < 0 || n > MAP_SIZE) return { error: 'bad_position' }; out[k] = Math.round(n * 10) / 10; }
+  if (!partial || 'name' in b) { out.name = tidy(b.name, 40); if (!out.name) return { error: 'name_required' }; }
+  if (!partial || 'note' in b) out.note = tidy(b.note, 200);
+  if (!partial || 'color' in b) { const c = b.color === undefined ? 'gold' : b.color; if (!PIN_COLORS.includes(c)) return { error: 'bad_color' }; out.color = c; }
+  if (!partial || 'icon' in b) { const c = b.icon === undefined ? 'pin' : b.icon; if (!PIN_ICONS.includes(c)) return { error: 'bad_icon' }; out.icon = c; }
+  return { pin: out };
+}
+async function listPins(env, s) {
+  const { results } = await env.DB.prepare('SELECT id, x, y, name, note, color, icon, created_at, updated_at FROM pins WHERE user_id = ? ORDER BY created_at, id').bind(s.userId).all();
+  return json({ pins: (results || []).map(pinRow), max: MAX_PINS });
+}
+async function createPin(request, env, s) {
+  const c = cleanPin(await readJson(request), false); if (c.error) return json({ error: c.error }, 400);
+  const t = nowSec();
+  const n = await env.DB.prepare('SELECT COUNT(*) AS n, SUM(CASE WHEN created_at >= ? THEN 1 ELSE 0 END) AS recent FROM pins WHERE user_id = ?').bind(t - 60, s.userId).first();
+  if (n.n >= MAX_PINS) return json({ error: 'limit', max: MAX_PINS }, 409);
+  if ((n.recent || 0) >= 30) return json({ error: 'slow_down' }, 429, { 'retry-after': '30' });
+  const id = randomId(), p = c.pin;
+  await env.DB.prepare('INSERT INTO pins (id, user_id, x, y, name, note, color, icon, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)').bind(id, s.userId, p.x, p.y, p.name, p.note, p.color, p.icon, t, t).run();
+  return json({ pin: pinRow({ id, ...p, created_at: t, updated_at: t }) }, 201);
+}
+async function updatePin(request, env, s, id) {
+  const c = cleanPin(await readJson(request), true); if (c.error) return json({ error: c.error }, 400);
+  const keys = Object.keys(c.pin); if (!keys.length) return json({ error: 'bad_request' }, 400);
+  const t = nowSec();
+  const r = await env.DB.prepare(`UPDATE pins SET ${keys.map((k) => k + ' = ?').join(', ')}, updated_at = ? WHERE id = ? AND user_id = ?`).bind(...keys.map((k) => c.pin[k]), t, id, s.userId).run();
+  if (!r.meta || r.meta.changes !== 1) return json({ error: 'not_found' }, 404);
+  const row = await env.DB.prepare('SELECT id, x, y, name, note, color, icon, created_at, updated_at FROM pins WHERE id = ? AND user_id = ?').bind(id, s.userId).first();
+  return json({ pin: pinRow(row) });
+}
+async function deletePin(env, s, id) {
+  const r = await env.DB.prepare('DELETE FROM pins WHERE id = ? AND user_id = ?').bind(id, s.userId).run();
+  return (r.meta && r.meta.changes === 1) ? json({ ok: true }) : json({ error: 'not_found' }, 404);
+}
+const randomId = () => { const b = crypto.getRandomValues(new Uint8Array(9)); return btoa(String.fromCharCode(...b)).replace(/\+/g, '-').replace(/\//g, '_'); };
+const PIN_ID = /^\/api\/pins\/([A-Za-z0-9_-]{8,24})$/;
+
 export function csrfOk(request) {
   if (request.headers.get('x-ndh') !== '1') return false;
   const origin = request.headers.get('origin');
@@ -107,6 +154,11 @@ export async function handleAccount(request, env, ctx, deps = {}) {
     if (path === '/api/sync' && m === 'PUT') return putSync(request, env, s);
     if (path === '/api/account/export' && m === 'GET') return exportAll(env, s);
     if (path === '/api/account' && m === 'DELETE') return deleteAccount(request, env, s);
+    if (path === '/api/pins' && m === 'GET') return listPins(env, s);
+    if (path === '/api/pins' && m === 'POST') return createPin(request, env, s);
+    const pm = PIN_ID.exec(path);
+    if (pm && m === 'PUT') return updatePin(request, env, s, pm[1]);
+    if (pm && m === 'DELETE') return deletePin(env, s, pm[1]);
     return json({ error: 'not_found' }, 404);
   } catch (e) { return json({ error: 'server_error' }, 500); }
 }
