@@ -1,16 +1,16 @@
 (function(){const T='about:blank#img:';window.IMGS=window.IMGS||{};function fix(){document.querySelectorAll('img[src^="'+T+'"],image[href^="'+T+'"]').forEach(function(e){var a=e.tagName.toLowerCase()==='image'?'href':'src',k=e.getAttribute(a).slice(T.length),u=window.IMGS[k];if(u)e.setAttribute(a,u)})}window.__fixImgs=fix;new MutationObserver(fix).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['src','href']});document.querySelectorAll('script[data-imgs]').forEach(function(s){s.addEventListener('load',fix)});addEventListener('load',fix);fix()})();
-window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/upgrade-items/": {"t": "MW4 DMZ Full Upgrade Item List: Every FOB Upgrade Material | NOMADS DMZ HUB", "d": "Every item and the DMZ Cash you need to finish all FOB upgrades in Modern Warfare 4 DMZ, with a counter for what you have and where to find each item."}, "/schematic-tracker/": {"t": "MW4 DMZ Schematic Tracker: Every Recipe Found in Hajin | NOMADS DMZ HUB", "d": "Track every 3D Printer recipe that can only be found in Hajin in Modern Warfare 4 DMZ. Click each schematic when you find it. Free fan tool."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/loot/bunker-route/": {"t": "Hajin Bunker Loot Route in MW4 DMZ: All Six Bunkers in Order | NOMADS DMZ HUB", "d": "A six-stop loot route along the west side of Hajin in MW4 DMZ. See where each numbered bunker is and the best order to run them from north to south."}, "/loot/hanex-bank-vault/": {"t": "How to Open a Hanex Bank Vault in MW4 DMZ: Car Battery, Access Card and Code | NOMADS DMZ HUB", "d": "Step-by-step guide to the Hanex branch vaults in MW4 DMZ: restore power with a Car Battery, find the Bank Branch Vault Access card, read the code note and open the keypad."}, "/loot/deadtown-waterfront-run/": {"t": "Deadtown Waterfront Compound Loot Run in MW4 DMZ: 5-Stop Tech Loot Route | NOMADS DMZ HUB", "d": "A compact 5-stop loot loop through the waterfront compound in Deadtown, Hajin. Check the best tech containers for Comms Modules, Printed Circuit Boards and Electronics."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}, "/patch-notes/": {"t": "MW4 DMZ Known Issues and Fixes: Latest Updates | NOMADS DMZ HUB", "d": "Known Modern Warfare 4 DMZ issues and fixes from the official developer tracker, checked four times a day. Search every issue and see which ones have been resolved."}, "/items/": {"t": "MW4 DMZ Item Search: Where to Find Every Material, Key and Upgrade Item | NOMADS DMZ HUB", "d": "Search any Modern Warfare 4 DMZ material, gear item, locked door key or FOB upgrade. See where to find it, which upgrades need it and what gear it makes."}};
+window.PAGE_META={"/": {"t": "NOMADS DMZ HUB | MW4 DMZ Gunsmith, Recipes, Traits & Map", "d": "Free fan tools for Call of Duty: Modern Warfare 4 DMZ: Gunsmith weapon builder, 3D printer crafting recipes, interactive Hajin map, operator traits, Dynamic Ops and loot guides."}, "/upgrade-items/": {"t": "MW4 DMZ Full Upgrade Item List: Every FOB Upgrade Material | NOMADS DMZ HUB", "d": "Every item and the DMZ Cash you need to finish all FOB upgrades in Modern Warfare 4 DMZ, with a counter for what you have and where to find each item."}, "/schematic-tracker/": {"t": "MW4 DMZ Schematic Tracker: Every Recipe Found in Hajin | NOMADS DMZ HUB", "d": "Track every 3D Printer recipe that can only be found in Hajin in Modern Warfare 4 DMZ. Click each schematic when you find it. Free fan tool."}, "/weapon-manual-tracker/": {"t": "MW4 DMZ Weapon Manual Tracker: Every Weapon Manual | NOMADS DMZ HUB", "d": "Track which Modern Warfare 4 DMZ weapon manuals you have, one for every weapon except the knife. Tap each weapon when you get its manual. Free fan tool."}, "/gunsmith/": {"t": "MW4 DMZ Gunsmith: Weapon Builder, Attachments & Build Cost | NOMADS DMZ HUB", "d": "Build any Modern Warfare 4 DMZ weapon: all 33 weapons, attachments by slot with unlock levels, Apex parts and a build cost calculator for weapon, slot fees and parts."}, "/map/": {"t": "MW4 DMZ Hajin Map: Interactive Map with Ingredients, Keys, Exfils & SAM Sites | NOMADS DMZ HUB", "d": "Interactive Hajin map for MW4 DMZ: where to find crafting ingredients, locked doors and keys, exfil sites, SAM sites, Lieutenants, gas stations, UAV towers, clinics and caches."}, "/gear/": {"t": "MW4 DMZ 3D Printer Recipes: Crafting Guide & Ingredients | NOMADS DMZ HUB", "d": "Every Modern Warfare 4 DMZ 3D printer recipe with ingredients, rarity, descriptions and unlock info: consumables, plate carriers, backpacks, tacticals, lethals and more."}, "/traits/": {"t": "MW4 DMZ Operator Traits: Warfighter, Scout & Survivalist Trait Trees | NOMADS DMZ HUB", "d": "Plan your Modern Warfare 4 DMZ operator traits: Warfighter, Scout and Survivalist trait trees, major and minor trait effects, the 18-point cap and Prestige requirements."}, "/dynamic-ops/": {"t": "MW4 DMZ Dynamic Ops: All 12 Operations, Objectives & Rewards | NOMADS DMZ HUB", "d": "All 12 Modern Warfare 4 DMZ Dynamic Ops with how to start each one, objectives step by step, variants and the cash and XP rewards seen in play."}, "/loot/": {"t": "MW4 DMZ Loot Hot Spots: Loot Location Guides | NOMADS DMZ HUB", "d": "Loot location guides for Modern Warfare 4 DMZ: where to go for the best loot and how to get in, with step-by-step walkthroughs and photos."}, "/loot/irradiated-items/": {"t": "How to Open Irradiated Items in DMZ (Haneul Nuclear Reactor Guide) | NOMADS DMZ HUB", "d": "Found an irradiated item in MW4 DMZ? Here is how to get into the Haneul Nuclear Reactor, reach the processing machine and open it for a chance at gear."}, "/loot/river-heights/": {"t": "Hajin River Heights Compound Loot Guide (MW4 DMZ) | NOMADS DMZ HUB", "d": "Loot guide for the Hajin River Heights compound in MW4 DMZ: parking garage safe, roof safe, the Gangbyeon Apartment B Key and how to reach Building B."}, "/loot/bunker-route/": {"t": "Hajin Bunker Loot Route in MW4 DMZ: All Six Bunkers in Order | NOMADS DMZ HUB", "d": "A six-stop loot route along the west side of Hajin in MW4 DMZ. See where each numbered bunker is and the best order to run them from north to south."}, "/loot/hanex-bank-vault/": {"t": "How to Open a Hanex Bank Vault in MW4 DMZ: Car Battery, Access Card and Code | NOMADS DMZ HUB", "d": "Step-by-step guide to the Hanex branch vaults in MW4 DMZ: restore power with a Car Battery, find the Bank Branch Vault Access card, read the code note and open the keypad."}, "/loot/deadtown-waterfront-run/": {"t": "Deadtown Waterfront Compound Loot Run in MW4 DMZ: 5-Stop Tech Loot Route | NOMADS DMZ HUB", "d": "A compact 5-stop loot loop through the waterfront compound in Deadtown, Hajin. Check the best tech containers for Comms Modules, Printed Circuit Boards and Electronics."}, "/boss-strats/": {"t": "MW4 DMZ Boss Strats: How to Beat Every Lieutenant and Commander | NOMADS DMZ HUB", "d": "Boss strategies for Modern Warfare 4 DMZ: where to find and how to beat all 10 Lieutenants and 3 Commanders, with recommended kit, step-by-step tactics, tips and possible rewards."}, "/boss-strats/gorani/": {"t": "Gorani Boss Strategy in MW4 DMZ: The Forest Phantom | NOMADS DMZ HUB", "d": "How to beat Gorani in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-chemist/": {"t": "The Chemist Boss Strategy in MW4 DMZ: Reactor Radiation Boss | NOMADS DMZ HUB", "d": "How to beat The Chemist in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jin-tae/": {"t": "Jin-Tae Boss Strategy in MW4 DMZ: Casino Enforcer | NOMADS DMZ HUB", "d": "How to beat Jin-Tae in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-doctor/": {"t": "The Doctor Boss Strategy in MW4 DMZ: Hospital Heavy | NOMADS DMZ HUB", "d": "How to beat The Doctor in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/bale/": {"t": "Bale Boss Strategy in MW4 DMZ: The LMG Enforcer | NOMADS DMZ HUB", "d": "How to beat Bale in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/iskra/": {"t": "Iskra Boss Strategy in MW4 DMZ: Stairwell Fighter | NOMADS DMZ HUB", "d": "How to beat Iskra in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-scavenger/": {"t": "The Scavenger Boss Strategy in MW4 DMZ: The Roaming Hunter | NOMADS DMZ HUB", "d": "How to beat The Scavenger in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/roze/": {"t": "Roze Boss Strategy in MW4 DMZ: Rooftop Sniper | NOMADS DMZ HUB", "d": "How to beat Roze in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/jang-ui/": {"t": "Jang-ui Boss Strategy in MW4 DMZ: Server Room Defender | NOMADS DMZ HUB", "d": "How to beat Jang-ui in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/the-warden/": {"t": "The Warden (Kang) Boss Strategy in MW4 DMZ: Riot Shield Boss | NOMADS DMZ HUB", "d": "How to beat The Warden (Kang) in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/colossus/": {"t": "Colossus Boss Strategy in MW4 DMZ: Armoured Minigun Commander | NOMADS DMZ HUB", "d": "How to beat Colossus in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/deathstalker/": {"t": "Deathstalker Boss Strategy in MW4 DMZ: Autonomous Attack Aircraft | NOMADS DMZ HUB", "d": "How to beat Deathstalker in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/boss-strats/nk-battle-tank/": {"t": "Main NK Battle Tank Boss Strategy in MW4 DMZ: Armoured Vehicle Commander | NOMADS DMZ HUB", "d": "How to beat Main NK Battle Tank in MW4 DMZ: where to find them, recommended kit, step-by-step strategy, a top tip and possible rewards."}, "/upgrades/": {"t": "MW4 DMZ Upgrade Tracker: FOB Upgrade Costs, Materials & Progress | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ FOB upgrade: Bank, Stash, Gunsmith, MIA recovery, Dog Tag Case, Vendor and ingredient printing, with the cash and materials each tier needs."}, "/camo-tracker/": {"t": "MW4 DMZ Camo Tracker: Every Weapon Camo Challenge | NOMADS DMZ HUB", "d": "Track every Modern Warfare 4 DMZ weapon camo: Military camo weapon levels, Special camos, Completionist challenges, Prestige camos and the DMZ mastery camos for all 33 weapons."}, "/patch-notes/": {"t": "MW4 DMZ Known Issues and Fixes: Latest Updates | NOMADS DMZ HUB", "d": "Known Modern Warfare 4 DMZ issues and fixes from the official developer tracker, checked four times a day. Search every issue and see which ones have been resolved."}, "/items/": {"t": "MW4 DMZ Item Search: Where to Find Every Material, Key and Upgrade Item | NOMADS DMZ HUB", "d": "Search any Modern Warfare 4 DMZ material, gear item, locked door key or FOB upgrade. See where to find it, which upgrades need it and what gear it makes."}};
 /* ===== Core: navigation, toast ===== */
 const $=id=>document.getElementById(id);
-const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos','patches','items','upgradeitems','schematics'];
+const VIEWS=['map','gunsmith','gear','traits','dynops','loot','bosses','upgrades','camos','patches','items','upgradeitems','schematics','manuals'];
 const toastEl=$('toast');let toastT;
 function toast(msg){clearTimeout(toastT);toastEl.textContent=msg;toastEl.classList.add('show');toastT=setTimeout(()=>toastEl.classList.remove('show'),2400)}
 const inits={};const ready={};
-const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/',patches:'/patch-notes/',items:'/items/',upgradeitems:'/upgrade-items/',schematics:'/schematic-tracker/'};
+const PATHS={map:'/map/',gunsmith:'/gunsmith/',gear:'/gear/',traits:'/traits/',dynops:'/dynamic-ops/',loot:'/loot/',bosses:'/boss-strats/',upgrades:'/upgrades/',camos:'/camo-tracker/',patches:'/patch-notes/',items:'/items/',upgradeitems:'/upgrade-items/',schematics:'/schematic-tracker/',manuals:'/weapon-manual-tracker/'};
 function parseRoute(){
   let seg=location.pathname.split('/').filter(s=>s&&s!=='index.html');
   if(!seg.length&&location.hash.length>1)seg=location.hash.slice(1).split('/').filter(Boolean);
-  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';if(v==='patch-notes')v='patches';if(v==='upgrade-items')v='upgradeitems';if(v==='schematic-tracker')v='schematics';
+  let v=seg[0]||'';if(v==='dynamic-ops')v='dynops';if(v==='boss-strats')v='bosses';if(v==='camo-tracker')v='camos';if(v==='patch-notes')v='patches';if(v==='upgrade-items')v='upgradeitems';if(v==='schematic-tracker')v='schematics';if(v==='weapon-manual-tracker')v='manuals';
   const view=VIEWS.includes(v)?v:null;
   return {view,arg:view==='items'?new URLSearchParams(location.search).get('i'):seg[1]};
 }
@@ -34,7 +34,9 @@ function render(){
   if(view==='loot'&&window.lootShow)lootShow(arg);
   if(view==='bosses'&&window.bossShow)bossShow(arg);
   if(view==='upgrades'&&window.upShow)upShow();
+  if(view==='manuals'&&window.wmRender&&ready.manuals)wmRender();
   if(view==='camos'&&window.camoShow)camoShow();
+  if(view==='traits'&&window.trTabsReset)trTabsReset();
   if(view==='patches'&&window.patchShow)patchShow();
   if(view==='items'&&window.itemsShow)itemsShow(arg);
   if(!view){const last=document.querySelector('[data-open="'+lastView+'"]');if(last)last.focus({preventScroll:true})}
@@ -319,7 +321,10 @@ inits.gear=function(){
 let mapShowIngredient=()=>{};
 inits.map=function(){
   const INGS=MAP_ING.filter(g=>g.t!=='Resource');const SZ=4096,vp=$('mapViewport'),imgBox=$('mapImg'),layer=$('mapMarkers'),card=$('mapCard'),rail=$('mapRail');
-  const st={s:1,x:0,y:0,fit:1};const on=MAP_CATS.map(c=>!c.off);const ingOn=new Set();
+  const st={s:1,x:0,y:0,fit:1};const PHONE=window.matchMedia&&matchMedia('(max-width:700px)').matches;
+  /* phones start with just the places switched on, so the first view is readable; everything else is one tap away in the legend */
+  const on=MAP_CATS.map(c=>PHONE?(c.g==='Places'&&c.k!=='Minor POI'):!c.off);
+  const phoneStart=()=>{st.s=st.fit*2.2;st.x=vw/2-2150*st.s;st.y=vh/2-2250*st.s};   // phones: start zoomed in on Hajin rather than the whole picture with its empty edgesconst ingOn=new Set();
   const cnt=MAP_CATS.map((c,i)=>MAP_MK.filter(m=>m[2]===i).length);const radI=MAP_CATS.findIndex(c=>c.k==='radiation-zones');if(radI>=0)cnt[radI]+=MAP_ZONES.length;
   const KEY_SVG="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='#14110a' stroke='#e8a848' stroke-width='2'/><g fill='none' stroke='#ffd27a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='13' r='4'/><path d='M15 16l9 9M20 21l3-3M23 24l3-3'/></g></svg>";
   const KEY_IMG='data:image/svg+xml,'+encodeURIComponent(KEY_SVG);
@@ -389,7 +394,7 @@ inits.map=function(){
   }
   window.mapLayout=function(){const r=vp.getBoundingClientRect();if(!r.width)return;const first=!vw;vw=r.width;vh=r.height;
     const fit=Math.min(vw,vh)/SZ;if(first||Math.abs(st.fit-fit)<1e-9===false&&st.s<=st.fit*1.001){st.fit=fit;st.s=fit}else st.fit=fit;
-    if(first)st.x=st.y=0;draw()};
+    if(first){st.x=st.y=0;if(PHONE)phoneStart()}draw()};
   function zoomAt(f,cx,cy){const s0=st.s,s1=Math.min(2.6,Math.max(st.fit,s0*f));const k=s1/s0;st.x=cx-(cx-st.x)*k;st.y=cy-(cy-st.y)*k;st.s=s1;place()}
   window.mapFocus=function(name){clearRoute();const hit=MAP_MK.find(k=>k[1].toLowerCase()===String(name).toLowerCase());if(!hit)return;const mm=byId[hit[0]];if(!mm)return;const s=Math.min(2.6,st.fit*2.6);st.s=s;st.x=vw/2-mm.x*s;st.y=vh/2-mm.y*s;place();selectMk(hit[0])};
   window.mapShowLayer=function(k){clearRoute();const ci=MAP_CATS.findIndex(c=>c.k===k);if(ci<0)return;on[ci]=true;vis();const ms=els.filter(x=>x.ci===ci);if(!ms.length)return;const xs=ms.map(x=>x.x),ys=ms.map(x=>x.y);const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;const span=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),500);st.s=Math.min(2.0,Math.max(st.fit,Math.min(vw,vh)/(span*1.15)));st.x=vw/2-cx*st.s;st.y=vh/2-cy*st.s;place();card.hidden=true};
@@ -494,7 +499,7 @@ inits.map=function(){
   }
   Account.onChange(()=>{Account.loadPins().then(renderPins)});
   Account.loadPins().then(renderPins);
-  function reset(){clearRoute();st.s=st.fit;st.x=st.y=0;place();card.hidden=true}
+  function reset(){clearRoute();st.s=st.fit;st.x=st.y=0;if(PHONE)phoneStart();place();card.hidden=true}
   $('zoomIn').onclick=()=>zoomAt(1.4,vw/2,vh/2);$('zoomOut').onclick=()=>zoomAt(1/1.4,vw/2,vh/2);$('zoomFit').onclick=reset;$('mapResetTop').onclick=reset;
   vp.addEventListener('wheel',e=>{e.preventDefault();const r=vp.getBoundingClientRect();zoomAt(e.deltaY<0?1.18:1/1.18,e.clientX-r.left,e.clientY-r.top)},{passive:false});
   const ptrs=new Map();let last=null,moved=false,downT=null;
@@ -643,6 +648,16 @@ inits.traits=function(){
   stage.addEventListener('scroll',hideTip);
   paint();
 };
+/* phones: the tree picture is shown large and these tabs jump between the four trees */
+(function(){
+  const tabs=document.getElementById('trTabs');if(!tabs)return;
+  const body=()=>document.querySelector('#screen-traits .tr-body'),stage=()=>document.getElementById('trStage');
+  const btns=[...tabs.querySelectorAll('button')];
+  function go(b,smooth){const bd=body(),st=stage();if(!bd||!st)return;const x=st.offsetWidth*(+b.dataset.x)/100-bd.clientWidth/2;bd.scrollTo({left:Math.max(0,x),behavior:smooth?'smooth':'auto'});btns.forEach(o=>{o.classList.toggle('on',o===b);o.setAttribute('aria-selected',o===b)})}
+  btns.forEach(b=>{b.setAttribute('role','tab');b.onclick=()=>go(b,true)});
+  let t=0;document.addEventListener('scroll',e=>{if(e.target!==body())return;clearTimeout(t);t=setTimeout(()=>{const bd=body(),st=stage();const mid=(bd.scrollLeft+bd.clientWidth/2)/st.offsetWidth*100;let best=btns[0];btns.forEach(b=>{if(Math.abs(+b.dataset.x-mid)<Math.abs(+best.dataset.x-mid))best=b});btns.forEach(o=>{o.classList.toggle('on',o===best);o.setAttribute('aria-selected',o===best)})},80)},true);
+  window.trTabsReset=()=>{if(getComputedStyle(tabs).display!=='none'){const on=btns.find(b=>b.classList.contains('on'))||btns[0];requestAnimationFrame(()=>go(on,false))}};
+})();
 
 /* ===== DYNAMIC OPS ===== */
 inits.dynops=function(){
@@ -700,11 +715,20 @@ inits.loot=function(){};
   UPG.forEach(t=>{const key=t.n.replace(romans,'');let L=LINES.find(l=>l.key===key);if(!L){L={key,tiers:[]};LINES.push(L)}L.tiers.push(t)});
   const st=()=>Store.get('upgrades');
   const done=L=>Math.min((st().done||{})[L.key]||0,L.tiers.length);
-  const haveOf=(t,m)=>((st().have||{})[t.n]||{})[m]||0;
-  const setHave=(t,m,v)=>{const s=st();s.have=s.have||{};(s.have[t.n]=s.have[t.n]||{})[m]=Math.max(0,Math.round(+v||0));Store.save()};
+  /* one count per item, shared with the Full Upgrade Item List (s.stock). Older saves kept a count per tier (s.have): fold those in once */
+  function migrate(){const s=st();if(!s.have||!Object.keys(s.have).length){delete s.have;return}s.stock=s.stock||{};
+    LINES.forEach(L=>{const t=L.tiers[done(L)];const h=t&&s.have[t.n];if(h)Object.entries(h).forEach(([m,v])=>{if(+v>(s.stock[m]||0))s.stock[m]=+v})});delete s.have;Store.save()}
+  window.upMigrate=migrate;
+  const haveOf=(t,m)=>Math.max(0,Math.round(+((st().stock||{})[m]||0)));
+  const setHave=(t,m,v)=>{const s=st();s.stock=s.stock||{};const n=Math.max(0,Math.min(1e9,Math.round(+v||0)));if(n)s.stock[m]=n;else delete s.stock[m];Store.save()};
+  /* finishing a tier uses its items up; what was taken is kept so Undo can put it back */
+  function spend(t){const s=st();s.stock=s.stock||{};s.spent=s.spent||{};const used={};reqs(t).forEach(r=>{const have=s.stock[r.m]||0,take=Math.min(have,r.need);if(take){used[r.m]=take;const left=have-take;if(left)s.stock[r.m]=left;else delete s.stock[r.m]}});if(Object.keys(used).length)s.spent[t.n]=used;else delete s.spent[t.n]}
+  function refund(t){const s=st();const used=(s.spent||{})[t.n];if(!used)return;s.stock=s.stock||{};Object.entries(used).forEach(([m,v])=>{s.stock[m]=(s.stock[m]||0)+v});delete s.spent[t.n]}
+  /* other upgrades you are on right now that need the same item (the count is shared, so it can only be spent once) */
+  function sharedWith(L,m){return LINES.filter(o=>o!==L&&o.tiers[done(o)]&&reqs(o.tiers[done(o)]).some(r=>r.m===m)).map(lineName)}
   const reqs=t=>{const r=[];if(t.cash)r.push({m:'DMZ Cash',need:t.cash,cash:true});t.c.forEach(([n,q])=>r.push({m:n,need:q}));return r};
   const lineName=L=>L.key.replace(/ Upgrade$/,'');
-  function totals(){const out={cash:0,items:{}};LINES.forEach(L=>{const d=done(L);if(d>=L.tiers.length)return;const t=L.tiers[d];reqs(t).forEach(r=>{const left=Math.max(0,r.need-haveOf(t,r.m));if(r.cash)out.cash+=left;else out.items[r.m]=(out.items[r.m]||0)+left})});return out}
+  function totals(){const need={};LINES.forEach(L=>{const d=done(L);if(d>=L.tiers.length)return;reqs(L.tiers[d]).forEach(r=>{need[r.m]=(need[r.m]||0)+r.need})});const out={cash:0,items:{}};Object.entries(need).forEach(([m,q])=>{const left=Math.max(0,q-haveOf(null,m));if(m==='DMZ Cash')out.cash=left;else if(left)out.items[m]=left});return out}
   /* hover (or tap) an item in "Still to collect" to see where to get it */
   const CASH_TIP='<b>DMZ Cash</b>There is no single place to find it. Dynamic Ops, Side Ops and Story Mission replays all pay cash.';
   function chipTip(n){
@@ -746,13 +770,13 @@ inits.loot=function(){};
     const t=L.tiers[d],rs=reqs(t);
     return `<article class="up-card" data-l="${i}"><div class="up-head"><span class="up-ic">${t.p?`<img src="${t.p}" alt="">`:''}</span><div><h3>${esc(lineName(L))}</h3><span class="up-tier">${n>1?'Tier '+(d+1)+' of '+n+' // ':''}${esc(t.n)}</span></div></div>
       ${t.d?`<p class="up-eff">${esc(t.d)}</p>`:''}${chips}
-      <div class="up-reqs">${rs.map((r,k)=>{const step=r.cash?(r.need>=100000?10000:1000):1;return `<div class="up-req" data-r="${k}"><div class="up-rn">${r.cash?'<span class="up-cash-ic">$</span>':`<img src="${ingIcon(r.m)}" alt="">`}<span>${esc(r.m)}</span><em>need ${nfmt(r.need)}</em></div><div class="up-ctl"><button type="button" class="up-step" data-d="-${step}" aria-label="Less ${esc(r.m)}">−</button><input type="text" inputmode="numeric" value="${nfmt(haveOf(t,r.m))}" aria-label="${esc(r.m)} you have" data-m="${esc(r.m)}"><button type="button" class="up-step" data-d="${step}" aria-label="More ${esc(r.m)}">+</button></div><div class="up-bar"><i></i></div></div>`}).join('')}${t.cu?'<p class="up-unk">Cash cost not known yet.</p>':''}${rs.length?'':'<p class="up-unk">No materials listed.</p>'}</div>
+      <div class="up-reqs">${rs.map((r,k)=>{const step=r.cash?(r.need>=100000?10000:1000):1;return `<div class="up-req" data-r="${k}"><div class="up-rn">${r.cash?'<span class="up-cash-ic">$</span>':`<img src="${ingIcon(r.m)}" alt="">`}<span>${esc(r.m)}</span><em>need ${nfmt(r.need)}</em></div>${(()=>{const o=r.cash?[]:sharedWith(L,r.m);return o.length?`<p class="up-share">Same count as ${esc(o.join(', '))}</p>`:''})()}<div class="up-ctl"><button type="button" class="up-step" data-d="-${step}" aria-label="Less ${esc(r.m)}">−</button><input type="text" inputmode="numeric" value="${nfmt(haveOf(t,r.m))}" aria-label="${esc(r.m)} you have" data-m="${esc(r.m)}"><button type="button" class="up-step" data-d="${step}" aria-label="More ${esc(r.m)}">+</button></div><div class="up-bar"><i></i></div></div>`}).join('')}${t.cu?'<p class="up-unk">Cash cost not known yet.</p>':''}${rs.length?'':'<p class="up-unk">No materials listed.</p>'}</div>
       <div class="up-foot"><span class="up-ready"></span><button type="button" class="up-go">Mark complete</button></div></article>`}
   function render(){
     const g=$('upGrid');g.innerHTML=LINES.map(cardHTML.bind(null)).join('');
     g.querySelectorAll('.up-card').forEach(card=>{const L=LINES[+card.dataset.l];
-      card.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{const s=st();s.done=s.done||{};s.done[L.key]=+b.dataset.back;Store.save();render();toast('Back to '+L.tiers[+b.dataset.back].n)});
-      const go=card.querySelector('.up-go');if(go)go.onclick=()=>{const d=done(L),s=st();s.done=s.done||{};s.done[L.key]=d+1;Store.save();const nx=L.tiers[d+1];render();toast(nx?L.tiers[d].n+' complete. Next: '+nx.n:L.tiers[d].n+' complete. All tiers done.')};
+      card.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{const to=+b.dataset.back,s=st();for(let k=done(L)-1;k>=to;k--)refund(L.tiers[k]);s.done=s.done||{};s.done[L.key]=to;Store.save();render();toast('Back to '+L.tiers[to].n+'. Its items are back in your counts.')});
+      const go=card.querySelector('.up-go');if(go)go.onclick=()=>{const d=done(L),s=st();spend(L.tiers[d]);s.done=s.done||{};s.done[L.key]=d+1;Store.save();const nx=L.tiers[d+1];render();toast(nx?L.tiers[d].n+' complete. Next: '+nx.n:L.tiers[d].n+' complete. All tiers done.')};
       const d=done(L),t=L.tiers[d];if(!t)return;const rs=reqs(t);
       card.querySelectorAll('.up-req').forEach(row=>{const r=rs[+row.dataset.r],inp=row.querySelector('input');
         const apply=v=>{setHave(t,r.m,v);inp.value=nfmt(haveOf(t,r.m));paintCard(L,card);paintTotals()};
@@ -765,11 +789,11 @@ inits.loot=function(){};
   }
   window.upRender=()=>render();
   inits.upgrades=function(){
-    Account.paintNotes();
+    migrate();Account.paintNotes();
     $('upReset').onclick=()=>{if(confirm(Account.user?'Clear all of your upgrade progress? It will also be cleared from your account.':'Clear all of your upgrade progress in this browser?')){const keep=Store.get('upgrades').stock;Store.data.upgrades={};if(keep)Store.data.upgrades.stock=keep;Store.save();render()}};
     render();
   };
-  window.upShow=function(){if($('upGrid').children.length)paintTotals()};
+  window.upShow=function(){if($('upGrid').children.length){migrate();render()}};
 })();
 
 /* ===== CAMO TRACKER ===== */
@@ -1177,7 +1201,7 @@ inits.loot=function(){};
     return [...cash,...rest];
   }
   function render(){
-    const list=document.getElementById('ulList');if(!list)return;
+    const list=document.getElementById('ulList');if(!list)return;if(window.upMigrate)upMigrate();
     const rows=visible();
     list.innerHTML=rows.length?rows.map(rowHTML).join(''):'<p class="ul-empty">Nothing matches. Clear the filter or untick Hide collected.</p>';
     const byName=new Map(build().map(r=>[r.name,r]));
@@ -1220,7 +1244,7 @@ inits.loot=function(){};
   }
   function render(){
     const grid=document.getElementById('scGrid');if(!grid)return;const f=found();
-    grid.innerHTML=list().map(x=>`<button type="button" class="sc-card${f[x.id]?' on':''}" data-id="${esc(x.id)}" aria-pressed="${!!f[x.id]}" aria-label="${esc(x.name)}"><img src="${x.pic}" alt=""><span class="sc-tick">${TICK}</span></button>`).join('');
+    grid.innerHTML=list().map(x=>`<button type="button" class="sc-card${f[x.id]?' on':''}" data-id="${esc(x.id)}" aria-pressed="${!!f[x.id]}" aria-label="${esc(x.name)}"><span class="sc-pic"><img src="${x.pic}" alt=""></span><span class="sc-name">${esc(x.name)}</span><span class="sc-tick">${TICK}</span></button>`).join('');
     const by=new Map(list().map(x=>[x.id,x])),canHover=!!(window.matchMedia&&matchMedia('(hover:hover)').matches);
     grid.querySelectorAll('.sc-card').forEach(el=>{
       const x=by.get(el.dataset.id),tip=()=>showTip(el,`<b>${esc(x.name)}</b><i>${esc(x.cat)}${x.rar?' · '+esc(x.rar):''}</i>`,f[x.id]?'#35e0a0':undefined);
@@ -1236,6 +1260,36 @@ inits.loot=function(){};
   window.scRender=render;
   inits.schematics=function(){
     document.getElementById('scReset').onclick=()=>{if(confirm(Account.user?'Clear every schematic you have ticked? It will also be cleared from your account.':'Clear every schematic you have ticked in this browser?')){Store.get('schematics').found={};Store.save();render()}};
+    render();
+  };
+})();
+
+/* ===== WEAPON MANUAL TRACKER: one card per weapon (not the knife); tap one when you have its manual ===== */
+(function(){
+  let LIST=null;
+  function list(){
+    if(LIST)return LIST;
+    return LIST=CATALOG.weapons.filter(w=>w.category!=='Melee').map(w=>({id:w.id,name:w.name,cat:w.category,pic:(GUNS[w.id]||{}).img||''}));
+  }
+  const got=()=>{const s=Store.get('manuals');if(!s.got)s.got={};return s.got};
+  window.manualCounts=()=>{const L=list(),g=got();return [L.filter(x=>g[x.id]).length,L.length]};
+  const TICK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.500 8.500l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function paintTop(){
+    const [d,t]=manualCounts();$('wmDone').textContent=d+' / '+t;$('wmBar').style.width=(100*d/t)+'%';
+    if(window.tileProgress)tileProgress();
+  }
+  function render(){
+    const grid=$('wmGrid');if(!grid)return;const g=got();
+    grid.innerHTML=list().map(x=>`<button type="button" class="sc-card wm-card${g[x.id]?' on':''}" data-id="${esc(x.id)}" aria-pressed="${!!g[x.id]}"><span class="sc-pic">${x.pic?`<img src="${x.pic}" alt="">`:''}</span><span class="sc-name">${esc(x.name)}</span><span class="sc-tick">${TICK}</span></button>`).join('');
+    const by=new Map(list().map(x=>[x.id,x]));
+    grid.querySelectorAll('.wm-card').forEach(el=>{const x=by.get(el.dataset.id);
+      el.onclick=()=>{const s=got();if(s[x.id])delete s[x.id];else s[x.id]=1;Store.save();const on=!!s[x.id];el.classList.toggle('on',on);el.setAttribute('aria-pressed',on);paintTop()};
+    });
+    paintTop();if(window.Account)Account.paintNotes();
+  }
+  window.wmRender=render;
+  inits.manuals=function(){
+    $('wmReset').onclick=()=>{if(confirm(Account.user?'Clear every weapon manual you have ticked? It will also be cleared from your account.':'Clear every weapon manual you have ticked in this browser?')){Store.get('manuals').got={};Store.save();render()}};
     render();
   };
 })();
@@ -1287,7 +1341,7 @@ inits.loot=function(){};
   }
   window.tileProgress=function(){
     const c=counts(),set=(k,[d,t],word,suffix)=>{const el=document.querySelector(`[data-prog="${k}"]`);if(!el||!t)return;el.querySelector('i').style.width=(100*d/t)+'%';el.querySelector('.tp-txt').textContent=d+' of '+t+' '+word+' '+(suffix||'done');el.classList.toggle('started',d>0)};
-    set('upgrades',c.up,'upgrades');set('camos',c.cm,'camos');if(window.schematicCounts)set('schematics',schematicCounts(),'schematics','found');
+    set('upgrades',c.up,'upgrades');set('camos',c.cm,'camos');if(window.schematicCounts)set('schematics',schematicCounts(),'schematics','found');if(window.manualCounts)set('manuals',manualCounts(),'manuals','found');
   };
   tileProgress();
 
@@ -1328,7 +1382,7 @@ inits.loot=function(){};
 
 /* ===== ACCOUNT: Log in with Discord, and keep Upgrades and Camo progress on every device ===== */
 const Account=(function(){
-  const NS=['upgrades','camos','schematics'],LABEL={upgrades:'Upgrades',camos:'Camo Tracker',schematics:'Schematic Tracker'};
+  const NS=['upgrades','camos','schematics','manuals'],LABEL={upgrades:'Upgrades',camos:'Camo Tracker',schematics:'Schematic Tracker',manuals:'Weapon Manual Tracker'};
   const S={configured:false,user:null,status:'',timer:0,busy:false,lastPull:0,retry:0};
   const isO=o=>o&&typeof o==='object'&&!Array.isArray(o);
   const meta=()=>{const m=Store.get('sync');m.rev=m.rev||{};m.dirty=m.dirty||{};return m};
@@ -1341,8 +1395,10 @@ const Account=(function(){
     d=isO(d)?d:{};const out={};const pos=v=>Math.max(0,Math.round(+v||0));
     if(ns==='upgrades'){out.done={};Object.entries(isO(d.done)?d.done:{}).forEach(([k,v])=>{const n=Math.min(10,pos(v));if(n)out.done[k]=n});
       out.have={};Object.entries(isO(d.have)?d.have:{}).forEach(([t,mats])=>{if(!isO(mats))return;const o={};Object.entries(mats).forEach(([m,v])=>{const n=pos(v);if(n)o[m]=n});if(Object.keys(o).length)out.have[t]=o})
-      out.stock={};Object.entries(isO(d.stock)?d.stock:{}).forEach(([k,v])=>{const n=pos(v);if(n)out.stock[k]=n})}
+      out.stock={};Object.entries(isO(d.stock)?d.stock:{}).forEach(([k,v])=>{const n=pos(v);if(n)out.stock[k]=n});
+      out.spent={};Object.entries(isO(d.spent)?d.spent:{}).forEach(([t,mats])=>{if(!isO(mats))return;const o={};Object.entries(mats).forEach(([m,v])=>{const n=pos(v);if(n)o[m]=n});if(Object.keys(o).length)out.spent[t]=o})}
     else if(ns==='schematics'){out.found={};Object.entries(isO(d.found)?d.found:{}).forEach(([k,v])=>{if(v)out.found[k]=1})}
+    else if(ns==='manuals'){out.got={};Object.entries(isO(d.got)?d.got:{}).forEach(([k,v])=>{if(v)out.got[k]=1})}
     else{out.w={};Object.entries(isO(d.w)?d.w:{}).forEach(([id,marks])=>{if(!isO(marks))return;const o={};Object.entries(marks).forEach(([i,v])=>{if(v)o[i]=1});if(Object.keys(o).length)out.w[id]=o});
       out.g={};Object.entries(isO(d.g)?d.g:{}).forEach(([i,v])=>{if(v)out.g[i]=1});
       out.lvl={};Object.entries(isO(d.lvl)?d.lvl:{}).forEach(([id,v])=>{const n=pos(v);if(n)out.lvl[id]=n})}
@@ -1354,8 +1410,10 @@ const Account=(function(){
     a=norm(ns,a);b=norm(ns,b);const out=JSON.parse(JSON.stringify(a));
     if(ns==='upgrades'){Object.entries(b.done).forEach(([k,v])=>{out.done[k]=Math.max(out.done[k]||0,v)});
       Object.entries(b.have).forEach(([t,mats])=>{out.have[t]=out.have[t]||{};Object.entries(mats).forEach(([m,v])=>{out.have[t][m]=Math.max(out.have[t][m]||0,v)})})
-      Object.entries(b.stock).forEach(([k,v])=>{out.stock[k]=Math.max(out.stock[k]||0,v)})}
+      Object.entries(b.stock).forEach(([k,v])=>{out.stock[k]=Math.max(out.stock[k]||0,v)});
+      Object.entries(b.spent).forEach(([t,mats])=>{if(!out.spent[t])out.spent[t]=mats})}
     else if(ns==='schematics'){Object.assign(out.found,b.found)}
+    else if(ns==='manuals'){Object.assign(out.got,b.got)}
     else{Object.entries(b.w).forEach(([id,marks])=>{out.w[id]=Object.assign(out.w[id]||{},marks)});Object.assign(out.g,b.g);Object.entries(b.lvl).forEach(([id,v])=>{out.lvl[id]=Math.max(out.lvl[id]||0,v)})}
     return out;
   }
@@ -1377,7 +1435,7 @@ const Account=(function(){
     return 'Saved in this browser only. Clearing your browser data removes it.';
   }
   function paintNotes(){
-    ['upNote','cmNote','ulNote','scNote'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.textContent=noteText();if(!S.user&&S.configured){const b=document.createElement('button');b.type='button';b.className='acct-link';b.textContent='Log in with Discord';b.onclick=login;el.append(' ',b,' to keep it on every device.')}});
+    ['upNote','cmNote','ulNote','scNote','wmNote'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.textContent=noteText();if(!S.user&&S.configured){const b=document.createElement('button');b.type='button';b.className='acct-link';b.textContent='Log in with Discord';b.onclick=login;el.append(' ',b,' to keep it on every device.')}});
     document.querySelectorAll('[data-savenote]').forEach(el=>{el.textContent=S.user?'Saved to your Discord account.':(S.configured?'Saved in this browser. Log in with Discord to keep it everywhere.':'Saved in this browser only. Clearing your browser data removes it.')});
   }
   const setStatus=t=>{S.status=t;paintNotes();const s=document.getElementById('acctState');if(s)s.textContent=t||'All changes saved.'};
@@ -1437,6 +1495,7 @@ const Account=(function(){
     try{if(document.getElementById('screen-upgrades').classList.contains('active')&&window.upRender)upRender()}catch(e){}
     try{if(document.getElementById('screen-camos').classList.contains('active')&&window.cmRender)cmRender()}catch(e){}
     try{if(document.getElementById('screen-schematics').classList.contains('active')&&window.scRender)scRender()}catch(e){}
+    try{if(document.getElementById('screen-manuals').classList.contains('active')&&window.wmRender)wmRender()}catch(e){}
     try{if(document.getElementById('screen-upgradeitems').classList.contains('active')&&window.upItemsRender)upItemsRender()}catch(e){}
   }
 

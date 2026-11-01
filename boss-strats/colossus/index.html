@@ -80,6 +80,10 @@
       <div class="tile-art"><img class="tall" src="about:blank#img:tile-schematic.svg" alt=""></div>
       <div class="tile-meta"><div><span class="tile-fact">46 schematics to find</span><span class="tile-title">Schematic Tracker <span class="ko" lang="ko">설계도 추적기</span></span><span class="tile-prog" data-prog="schematics"><span class="tp-bar"><i></i></span><span class="tp-txt"></span></span><span class="tile-note" data-savenote>Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
     </button></li>
+    <li><button class="tile" type="button" data-open="manuals" aria-label="Open the Weapon Manual Tracker"><span class="tile-bg k3" data-ko="무기 교본" aria-hidden="true"></span>
+      <div class="tile-art"><img class="tall" src="about:blank#img:tile-manual.svg" alt=""></div>
+      <div class="tile-meta"><div><span class="tile-fact">32 weapon manuals</span><span class="tile-title">Weapon Manual Tracker <span class="ko" lang="ko">무기 교본 추적기</span></span><span class="tile-prog" data-prog="manuals"><span class="tp-bar"><i></i></span><span class="tp-txt"></span></span><span class="tile-note" data-savenote>Saved in this browser only. Clearing your browser data removes it.</span></div><span class="tile-go">Open</span></div>
+    </button></li>
     <li><button class="tile" type="button" data-open="gunsmith" aria-label="Open the Gunsmith weapon builder"><span class="tile-bg k3" data-ko="총기 개조" aria-hidden="true"></span>
       <div class="tile-art"><img src="about:blank#img:tile-gun.webp" alt=""></div>
       <div class="tile-meta"><div><span class="tile-fact">33 weapons // 5 slots</span><span class="tile-title">Gunsmith <span class="ko" lang="ko">총기 개조</span></span></div><span class="tile-go">Open</span></div>
@@ -186,7 +190,7 @@
     <div class="modstat"><strong>Level 2</strong><span>unlock</span></div>
   </header>
   <main class="gear-body">
-    <section class="gear-hero"><div class="eyebrow">Recipes</div><h1>Gear Fabricator</h1><p>Build deployable gear from recipes, automatically salvaged resources and printer ingredients. Pick a category on the left or search for an item or ingredient. Select any ingredient to see where to look for it.</p></section>
+    <section class="gear-hero"><div class="eyebrow">Recipes</div><h1>Gear Fabricator</h1><p>Build deployable gear from recipes, automatically salvaged resources and printer ingredients. Pick a category or search for an item or ingredient. Select any ingredient to see where to look for it.</p></section>
     <div class="gear-main" id="gearMain"></div>
   </main>
 </section>
@@ -232,7 +236,7 @@
   <button type="button" data-open="items" data-nav="items"><svg viewBox="0 0 32 32"><circle cx="14" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 20l8 8" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span>Items</span></button>
   <button type="button" class="hm" data-home data-nav="home" aria-label="Home"><svg viewBox="0 0 32 32"><path d="M4 15L16 4l12 11M7 13v14h6v-8h6v8h6V13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Home</span></button>
   <button type="button" data-open="upgrades" data-nav="upgrades"><svg viewBox="0 0 32 32"><path d="M16 3l11 6.5v13L16 29 5 22.5v-13z M10 17l6-5 6 5M10 22l6-5 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Upgrades</span></button>
-  <button type="button" data-open="loot" data-nav="loot"><svg viewBox="0 0 32 32"><path d="M11 6c2-3 8-3 10 0l-2 5h-6zM12 11C6 15 4 22 6 26c3 3 17 3 20 0 2-4 0-11-6-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 15v10M19 17c0-3-6-3-6 0s6 2 6 5-6 3-6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Loot</span></button>
+  <button type="button" data-open="manuals" data-nav="manuals"><svg viewBox="0 0 32 32"><path d="M7 5h17v20H9a2 2 0 0 0-2 2zM7 27a2 2 0 0 0 2 2h15v-4M11 14h7l1-2h3v2l-1 1h-3l-1 2h-2l-1 3h-2l1-3h-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Manuals</span></button>
 </nav>
 <!-- UPGRADES -->
 <section class="screen" id="screen-upgrades" aria-label="Upgrades tracker">
@@ -242,7 +246,7 @@
     <div class="modstat"><strong id="upStat">0</strong><span>tiers done</span></div>
   </header>
   <main class="gear-body">
-    <section class="gear-hero"><div class="eyebrow">Forward Operating Base</div><h1>Upgrade Tracker</h1><p>Only the tier you are working on shows for each upgrade. Enter how many of each item you have. When you have bought the upgrade, mark it complete and the next tier appears.</p></section>
+    <section class="gear-hero"><div class="eyebrow">Forward Operating Base</div><h1>Upgrade Tracker</h1><p>Only the tier you are working on shows for each upgrade. Your item counts are shared with the Full Upgrade Item List. Mark an upgrade complete and its items come off your counts.</p></section>
     <div class="box up-top">
       <div class="up-sum"><div><span class="eyebrow">Progress</span><strong id="upDone">0 / 28</strong></div><div class="up-bar big"><i id="upBar"></i></div><button type="button" class="up-undo" id="upReset">Reset all</button></div>
       <p class="up-note" id="upNote"></p>
@@ -309,7 +313,7 @@
     <div class="modtitle"><strong>Full Upgrade Item List</strong><span>Everything for every FOB upgrade</span></div>
   </header>
   <main class="gear-body">
-    <section class="gear-hero"><div class="eyebrow">Forward Operating Base</div><h1>Full Upgrade Item List</h1><p>Everything you need to finish every upgrade in your FOB. Use the + and - buttons to set how many you have, and the list shows how many you still need and where to find each item.</p></section>
+    <section class="gear-hero"><div class="eyebrow">Forward Operating Base</div><h1>Full Upgrade Item List</h1><p>Everything you need to finish every upgrade in your FOB. Set how many of each item you have; the counts are shared with the Upgrade Tracker.</p></section>
     <div class="box ul-top"><div id="ulSum"></div><p class="up-note" id="ulNote"></p></div>
     <div class="ul-tools">
       <input id="ulFilter" type="search" autocomplete="off" spellcheck="false" placeholder="Filter this list" aria-label="Filter this list">
@@ -328,9 +332,20 @@
     <div class="modtitle"><strong>Schematic Tracker</strong><span>Click each one when you find it</span></div>
   </header>
   <main class="gear-body">
-    <section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Schematic Tracker</h1><p>Every recipe that can only be found in Hajin. Click a schematic when you have found it and extracted with it. Hover over one to see its name.</p></section>
+    <section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Schematic Tracker</h1><p>Every recipe that can only be found in Hajin. Tap a schematic when you have found it and extracted with it.</p></section>
     <div class="box sc-top"><div class="up-sum"><div><span class="eyebrow">Found</span><strong id="scDone">0 / 46</strong></div><div class="up-bar big"><i id="scBar"></i></div><button type="button" class="up-undo" id="scReset">Reset all</button></div><p class="up-note" id="scNote"></p></div>
     <div class="sc-grid" id="scGrid" role="group" aria-label="Schematics"></div>
+  </main>
+</section>
+<section class="screen" id="screen-manuals" aria-label="Weapon manual tracker">
+  <header class="modbar">
+    <button class="home-btn" type="button" data-home><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l6-5.5L14 8M4 7v7h8V7"/></svg><span>Home</span></button>
+    <div class="modtitle"><strong>Weapon Manual Tracker</strong><span>Tap each one when you have it</span></div>
+  </header>
+  <main class="gear-body">
+    <section class="gear-hero"><div class="eyebrow">Weapons</div><h1>Weapon Manual Tracker</h1><p>One manual for every weapon except the knife. Tap a weapon when you have its manual.</p></section>
+    <div class="box sc-top"><div class="up-sum"><div><span class="eyebrow">Found</span><strong id="wmDone">0 / 32</strong></div><div class="up-bar big"><i id="wmBar"></i></div><button type="button" class="up-undo" id="wmReset">Reset all</button></div><p class="up-note" id="wmNote"></p></div>
+    <div class="sc-grid wm-grid" id="wmGrid" role="group" aria-label="Weapon manuals"></div>
   </main>
 </section>
 
@@ -343,7 +358,7 @@
     <div class="modstat"><strong id="trTotal">0 / 18</strong><span id="trPrestige">Prestige locked</span></div>
     <button class="modbtn" type="button" id="trReset">Reset</button>
   </header>
-  <div class="tr-body"><div class="tr-stage" id="trStage"><img src="about:blank#img:traits.webp" alt="Operator Traits tree: Warfighter, Scout, Survivalist and Prestige"></div></div>
+  <div class="tr-tabs" id="trTabs" role="tablist" aria-label="Trait trees"><button type="button" data-x="15" style="--c:var(--war)" class="on">Warfighter</button><button type="button" data-x="44.5" style="--c:var(--scout)">Scout</button><button type="button" data-x="73.9" style="--c:var(--surv)">Survivalist</button><button type="button" data-x="94" style="--c:var(--gold)">Prestige</button></div><div class="tr-body"><div class="tr-stage" id="trStage"><img src="about:blank#img:traits.webp" alt="Operator Traits tree: Warfighter, Scout, Survivalist and Prestige"></div></div>
 </section>
 
 <div class="lightbox" id="lightbox" hidden><button type="button" aria-label="Close">Close ✕</button><img alt=""></div>

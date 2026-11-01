@@ -4,7 +4,7 @@ import { login, callback, logout, getSession, configured, setCookie, COOKIE_SESS
 
 const JSON_H = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff', 'cache-control': 'no-store' };
 const json = (obj, status = 200, extra = {}) => new Response(JSON.stringify(obj), { status, headers: { ...JSON_H, ...extra } });
-export const NAMESPACES = ['upgrades', 'camos', 'schematics'];
+export const NAMESPACES = ['upgrades', 'camos', 'schematics', 'manuals'];
 const MAX_BODY = 100 * 1024, MAX_STORED = 64 * 1024;
 
 /* ---------- checks and cleaning: only the exact shapes the trackers use are ever stored ---------- */
@@ -15,7 +15,7 @@ const int = (v, lo, hi) => { const n = Math.round(Number(v)); return Number.isFi
 const idx = (s, hi) => (/^\d{1,3}$/.test(String(s)) && +s <= hi ? +s : null);
 const isObj = (o) => o && typeof o === 'object' && !Array.isArray(o);
 export function cleanUpgrades(d) {
-  const out = { done: {}, have: {}, stock: {} }; if (!isObj(d)) return out;
+  const out = { done: {}, have: {}, stock: {}, spent: {} }; if (!isObj(d)) return out;
   if (isObj(d.done)) for (const [k, v] of Object.entries(d.done).slice(0, 40)) { const n = int(v, 0, 10); if (textKey(k) && n !== null) out.done[k] = n; }
   if (isObj(d.have)) for (const [tier, mats] of Object.entries(d.have).slice(0, 200)) {
     if (!textKey(tier) || !isObj(mats)) continue; const o = {};
@@ -23,6 +23,11 @@ export function cleanUpgrades(d) {
     if (Object.keys(o).length) out.have[tier] = o;
   }
   if (isObj(d.stock)) for (const [k, v] of Object.entries(d.stock).slice(0, 80)) { const n = int(v, 0, 1e9); if (textKey(k) && n) out.stock[k] = n; }
+  if (isObj(d.spent)) for (const [tier, mats] of Object.entries(d.spent).slice(0, 60)) {
+    if (!textKey(tier) || !isObj(mats)) continue; const o = {};
+    for (const [m, v] of Object.entries(mats).slice(0, 16)) { const n = int(v, 0, 1e9); if (textKey(m) && n) o[m] = n; }
+    if (Object.keys(o).length) out.spent[tier] = o;
+  }
   return out;
 }
 export function cleanCamos(d) {
@@ -41,7 +46,12 @@ export function cleanSchematics(d) {
   for (const [k, v] of Object.entries(d.found).slice(0, 120)) if (v && idKey(k)) out.found[k] = 1;
   return out;
 }
-export const clean = { upgrades: cleanUpgrades, camos: cleanCamos, schematics: cleanSchematics };
+export function cleanManuals(d) {
+  const out = { got: {} }; if (!isObj(d) || !isObj(d.got)) return out;
+  for (const [k, v] of Object.entries(d.got).slice(0, 80)) if (v && idKey(k)) out.got[k] = 1;
+  return out;
+}
+export const clean = { upgrades: cleanUpgrades, camos: cleanCamos, schematics: cleanSchematics, manuals: cleanManuals };
 
 
 /* ---------- private map pins ---------- */
@@ -105,7 +115,7 @@ async function readJson(request) {
 
 async function getSync(env, session) {
   const { results } = await env.DB.prepare('SELECT ns, data, rev, updated_at FROM progress WHERE user_id = ?').bind(session.userId).all();
-  const out = { upgrades: null, camos: null, schematics: null };
+  const out = { upgrades: null, camos: null, schematics: null, manuals: null };
   for (const r of results || []) if (NAMESPACES.includes(r.ns)) { try { out[r.ns] = { data: JSON.parse(r.data), rev: r.rev, updated_at: r.updated_at }; } catch (e) { /* skip a damaged row */ } }
   return out;
 }
@@ -131,7 +141,7 @@ async function exportAll(env, session) {
   const sync = await getSync(env, session);
   const { results: pins } = await env.DB.prepare('SELECT id, x, y, name, note, color, icon, created_at, updated_at FROM pins WHERE user_id = ?').bind(session.userId).all();
   const body = { exported_at: new Date().toISOString(), site: 'nomaddmzhub.com', user: u ? { id: u.id, name: u.name, avatar: u.avatar, created_at: u.created_at } : null,
-    progress: { upgrades: sync.upgrades ? sync.upgrades.data : null, camos: sync.camos ? sync.camos.data : null, schematics: sync.schematics ? sync.schematics.data : null }, pins: pins || [] };
+    progress: { upgrades: sync.upgrades ? sync.upgrades.data : null, camos: sync.camos ? sync.camos.data : null, schematics: sync.schematics ? sync.schematics.data : null, manuals: sync.manuals ? sync.manuals.data : null }, pins: pins || [] };
   return new Response(JSON.stringify(body, null, 2), { status: 200, headers: { ...JSON_H, 'content-disposition': 'attachment; filename="nomads-dmz-hub-my-data.json"' } });
 }
 
