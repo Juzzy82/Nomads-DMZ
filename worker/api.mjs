@@ -1,6 +1,6 @@
 // Read-only data for the website, built from what the checker saved in KV.
 import { visibleBadge, sortEntries } from './lib.mjs';
-import { SOURCES, NOT_MONITORED } from './check.mjs';
+import { SOURCES, NOT_MONITORED, patchPagesOn } from './check.mjs';
 
 export const SCHEDULE = 'Every 6 hours (00:00, 06:00, 12:00 and 18:00 UTC)';
 
@@ -40,7 +40,7 @@ export async function status(env) {
     configured: true, schedule: SCHEDULE, baseline_done: !!(meta && meta.baseline_done),
     last_attempt: meta ? meta.last_attempt || null : null, last_success: meta ? meta.last_success || null : null,
     entries: index.filter((e) => !e.removed).length,
-    sources: SOURCES.map((s) => ({ id: s.id, name: s.name, ok: meta && meta.sources && meta.sources[s.id] ? meta.sources[s.id].ok : null, last_ok: meta && meta.sources && meta.sources[s.id] ? meta.sources[s.id].last_ok || null : null })),
-    not_monitored: NOT_MONITORED
+    sources: SOURCES.filter((s) => s.kind !== 'patchnotes' || patchPagesOn(env)).map((s) => ({ id: s.id, name: s.name, ok: meta && meta.sources && meta.sources[s.id] ? meta.sources[s.id].ok : null, last_ok: meta && meta.sources && meta.sources[s.id] ? meta.sources[s.id].last_ok || null : null })),
+    not_monitored: NOT_MONITORED.concat(patchPagesOn(env) ? [] : [{ name: 'Official patch notes page', reason: 'Switched off: the site does not answer requests from Cloudflare.' }])
   };
 }

@@ -6,6 +6,7 @@ export const SOURCES = [
   { id: 'mw4-trello', name: 'Official Modern Warfare 4 Trello', page: 'https://trello.com/b/tocA5kKG', json: 'https://trello.com/b/tocA5kKG.json', kind: 'trello' }
 ];
 // Not monitored: X (@CODUpdates) has no free official read access and scraping it is against its rules.
+export const patchPagesOn = (env, deps = {}) => !!(deps.patchPages || (env && env.ENABLE_PATCH_PAGES === '1'));
 export const NOT_MONITORED = [{ name: 'X (@CODUpdates)', reason: 'No free official way to read posts, so it is not monitored.' }];
 
 const UA = 'NomadsDMZHub-PatchTracker/1.0 (+https://nomaddmzhub.com)';
@@ -31,6 +32,21 @@ async function fetchText(f, url, { minLen = 200, timeoutMs = 25000 } = {}) {
 async function fetchRetry(f, url, opts) {
   try { return await fetchText(f, url, opts); }
   catch (e) { if (/Timed out|HTTP 5/.test(String(e.message))) return await fetchText(f, url, opts); throw e; }
+}
+
+// When the official page does not answer, test a few other addresses so we can tell what is being blocked
+export async function diagnose(f, timeoutMs = 8000) {
+  const tests = [['cod home', 'https://www.callofduty.com/'], ['cod blog', 'https://www.callofduty.com/blog/modernwarfare4'], ['activision support', 'https://support.activision.com/'], ['control site', 'https://example.com/']];
+  const out = await Promise.all(tests.map(async ([name, url]) => {
+    const ctl = new AbortController(); const t0 = Date.now(); const timer = setTimeout(() => ctl.abort(), timeoutMs);
+    try {
+      const r = await f(url, { signal: ctl.signal, redirect: 'follow', headers: { 'user-agent': UA } });
+      await r.text();
+      return `${name}: HTTP ${r.status} in ${((Date.now() - t0) / 1000).toFixed(1)}s`;
+    } catch (e) { return `${name}: ${e && (e.name === 'AbortError' || /aborted/i.test(String(e.message))) ? 'no answer in ' + Math.round(timeoutMs / 1000) + 's' : 'error'}`; }
+    finally { clearTimeout(timer); }
+  }));
+  return out.join(' | ');
 }
 
 const safeMsg = (e) => String((e && e.message) || e).replace(/https?:\/\/\S+/g, '[url]').slice(0, 200);
@@ -63,9 +79,9 @@ export async function runCheck(env, trigger, deps = {}) {
       for (const e of Object.values(entries)) byId.set(e.id, e);
     };
 
-    // ---- source 1: official patch notes pages ----
+    // ---- source 1: official patch notes pages (switched off: callofduty.com does not answer requests from Cloudflare) ----
     const s1 = SOURCES[0];
-    try {
+    if (patchPagesOn(env, deps)) try {
       const t0 = Date.now();
       const indexHtml = await fetchRetry(f, s1.page, { timeoutMs });
       const paths = discoverDocs(indexHtml);
@@ -104,8 +120,12 @@ export async function runCheck(env, trigger, deps = {}) {
     } catch (e) {
       logError(s1.id, e);
       meta.sources[s1.id] = { ...(meta.sources[s1.id] || { name: s1.name }), name: s1.name, ok: false, last_error: safeMsg(e), last_error_at: now };
-      report.sources[s1.id] = { ok: false, error: safeMsg(e) };
+      let extra = '';
+      if (/Timed out/.test(String(e.message))) { try { extra = ' Connection test: ' + await diagnose(f, deps.diagTimeoutMs || 8000); } catch (x) { /* ignore */ } }
+      meta.sources[s1.id].last_error = (safeMsg(e) + extra).slice(0, 500);
+      report.sources[s1.id] = { ok: false, error: safeMsg(e) + extra };
     }
+    else { delete meta.sources[s1.id]; }
 
     // ---- source 2: official Modern Warfare 4 Trello board ----
     const s2 = SOURCES[1];

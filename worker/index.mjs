@@ -5,7 +5,7 @@ import { refreshYoutube, latestVideo } from './youtube.mjs';
 import { refreshCodLatest, codLatest } from './codlatest.mjs';
 import { handleAccount } from './account.mjs';
 import { relayPlan, cleanPages, relayFetch } from './relay.mjs';
-import { patchPagesOn } from './check.mjs';
+const patchPagesOn = (env) => !!(env && env.ENABLE_PATCH_PAGES === '1');   // local copy so this file does not depend on check.mjs exporting it
 
 const JSON_HEADERS = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff' };
 const json = (obj, status = 200, cache = 'no-store') => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, 'cache-control': cache } });
