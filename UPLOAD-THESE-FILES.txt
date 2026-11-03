@@ -1,8 +1,7 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Shared upgrade counts, schematic names, Weapon Manual Tracker, phone improvements, Manuals on the bottom bar
+Update: Small containers removed from the map, confirmed patch-note updates (Dynamic Ops cash, Colossus, gas masks, parachutes, UAV towers)
 
-app.css                                    the site styling
 app.js                                     the site code and data
 boss-strats/bale/index.html                page
 boss-strats/colossus/index.html            page
@@ -22,7 +21,7 @@ camo-tracker/index.html                    page
 dynamic-ops/index.html                     page
 gear/index.html                            page
 gunsmith/index.html                        page
-imgs-4.js                                  pictures used by the site
+imgs-3.js                                  pictures used by the site
 index.html                                 page (home)
 items/index.html                           page
 loot/bunker-route/index.html               page
@@ -32,16 +31,11 @@ loot/index.html                            page
 loot/irradiated-items/index.html           page
 loot/river-heights/index.html              page
 map/index.html                             page
-og/loot.jpg                                file
-og/traits.jpg                              file
-og/weapon-manual-tracker.jpg               file
 patch-notes/index.html                     page
 schematic-tracker/index.html               page
-sitemap.xml                                search engine page list
 traits/index.html                          page
 upgrade-items/index.html                   page
 upgrades/index.html                        page
 weapon-manual-tracker/index.html           page
-worker/account.mjs                         patch notes system
 
 Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.
