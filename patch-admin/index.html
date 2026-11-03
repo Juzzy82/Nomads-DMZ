@@ -21,7 +21,7 @@ const tm=i=>i?new Date(i).toLocaleString('en-AU',{timeZone:'Australia/Melbourne'
 async function call(path,method){
   if(pw.value.length<12){out.textContent='Type the admin password first.';return null}
   document.querySelectorAll('button').forEach(b=>b.disabled=true);out.textContent='Working...';
-  try{const r=await fetch('/api/dmz-patches/admin/'+path,{method,headers:{authorization:'Bearer '+pw.value}});const d=await r.json().catch(()=>({}));
+  try{const r=await fetch('/api/dmz-patches/admin/'+path,{method,headers:{authorization:'Bearer '+pw.value.trim()}});const d=await r.json().catch(()=>({}));
     if(r.status===403){out.textContent='Wrong password, or the ADMIN_TOKEN secret has not been set in Cloudflare yet.';return null}
     if(r.status===503){out.textContent='The patch notes store (KV) has not been connected yet. Follow step 2 of PATCH-NOTES-SETUP.md.';return null}
     if(r.status===429){out.textContent=d.error||'Please wait a few minutes.';return null}

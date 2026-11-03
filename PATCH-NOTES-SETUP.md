@@ -38,3 +38,11 @@ If a way to reach it is found later, switch it on by adding a Cloudflare variabl
 ## YouTube banner on the home page
 The banner at the bottom of the home page opens your newest YouTube video. The Worker reads your channel's public video list a few times a day (the same schedule as the patch notes check) and saves the newest video.
 After you upload this update, open `/patch-admin/`, type your password and press **Check now** once. That fetches the first video straight away. Until then, or if YouTube does not answer, the banner opens your channel's Shorts page.
+
+## GitHub relay for callofduty.com (added Nov 2026)
+callofduty.com refuses requests from Cloudflare, so the COD patch notes card and the DMZ patch notes check never received anything. A scheduled GitHub job now downloads the pages instead and sends them to the Worker.
+- Files: `.github/workflows/cod-relay.yml` (schedule: 15 minutes after each Cloudflare check, plus a "Run workflow" button) and `.github/scripts/cod-relay.mjs`.
+- One-off setup: in GitHub open the repo > Settings > Secrets and variables > Actions > New repository secret. Name `ADMIN_TOKEN`, value: exactly the same password as the `ADMIN_TOKEN` secret in Cloudflare.
+- Test: repo > Actions > "COD patch notes relay" > Run workflow. The log says whether the card updated and how many patch note pages were read.
+- Worker side: `worker/relay.mjs` and the admin routes `/api/dmz-patches/admin/relay-plan` and `/api/dmz-patches/admin/relay` (admin password needed; only callofduty.com patch note pages are accepted).
+- GitHub pauses scheduled jobs in a repo with no commits for 60 days. If the card stops updating after a quiet spell, open Actions and enable the workflow again.

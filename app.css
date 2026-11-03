@@ -1482,3 +1482,25 @@ body:not(.in-module) .sb-logo{visibility:hidden}
   .tbox{grid-template-columns:1fr;justify-items:center;text-align:center;gap:4px;min-height:96px;padding:8px 4px;position:relative}.tbox.on{padding:7px 3px}.tb-n{font-size:.78rem}.tb-st{position:absolute;right:4px;top:4px}.tb-chk{width:18px;height:18px}.tb-st .tlock{width:15px;height:15px}.tr-tree{padding:14px}}
 #screen-traits .tree-counts,#screen-traits .phead .modtitle span{display:none!important}
 @media (max-width:700px){.phead .modtitle strong{white-space:normal;font-size:1.3rem;line-height:1.05}}
+/* Update 6: save notes removed from tiles and tracker pages (owner request) */
+.up-note,[data-savenote]{display:none!important}
+/* Update 6: on phones and tablets, Latest DMZ Update sits straight under the search banner (was at the very bottom) */
+@media (max-width:980px){
+  .hm-grid{display:flex;flex-direction:column;gap:14px}
+  .hm-main,.hm-side{display:contents}
+  .hm-main>.hero{order:1}.hm-side>.latest{order:2}.hm-main>.hm-feature{order:3}.hm-main>.hm-track{order:4}.hm-main>.hm-small{order:5}.hm-main>.yt-banner{order:6}.hm-side>.cod-card{order:7}
+}
+@media (max-width:980px){.hm-grid>*,.hm-main>*,.hm-side>*{min-width:0;width:100%;max-width:100%}}
+/* Update 6: narrower Full Upgrade Item List button, wider search box */
+.hero-search{gap:12px}
+.hs-full{padding:0 14px;gap:8px;font-size:.95rem;letter-spacing:.03em}
+.hs-full .ic{width:20px;height:20px}
+.hs-go{padding:0 clamp(16px,2vw,32px)}
+@media (max-width:700px){.hs-full{font-size:1rem}}
+/* Update 6: new filled rifle icon (wide) */
+.ic.wide{width:auto!important;aspect-ratio:24/10.8}
+.stile .ic.wide{height:30px}.pico .ic.wide{height:38px}.tt-head .ic.wide{height:30px}
+.is-sv .ic.wide,.dpc-ic .ic.wide{height:20px}
+@media (max-width:760px){.pico .ic.wide{height:28px}}
+.stile .ic.wide{height:22px;flex:none}.stile .st-title{min-width:0}.stile{gap:10px}
+@media (max-width:700px){.stile .ic.wide{height:17px}}
