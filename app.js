@@ -54,7 +54,7 @@ function goHome(){
   history.pushState({hub:true},'','/');render();window.scrollTo(0,0);
 }
 document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',e=>{if(b.tagName==='A')e.preventDefault();openView(b.dataset.open)}));
-document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',goHome));
+document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',e=>{if(b.tagName==='A')e.preventDefault();goHome()}));
 window.addEventListener('popstate',render);
 window.addEventListener('hashchange',render);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const cd=$('camoDlg');if(cd&&!cd.hidden){cd.hidden=true;if(window.camoClose)camoClose();return}const pd=$('prestDlg');if(pd&&!pd.hidden){pd.hidden=true;return}const md=$('minorDlg');if(md&&!md.hidden){md.hidden=true;return}const dg=$('ingDlg');if(dg&&!dg.hidden){dg.hidden=true;return}const lb=$('lightbox');if(!lb)return;if(!lb.hidden){lb.hidden=true;return}if(location.hash&&!document.body.classList.contains('rail-open'))goHome()}});
@@ -74,6 +74,9 @@ function hideTip(){tipEl.classList.remove('show')}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 
+/* line icons used by scripts (made by tools_ui_round1.py) */
+window.UI_ICONS={"map":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z\"/><path d=\"M9 4v14M15 6v14\"/></svg>","loot":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 7c-1-2 0-3 1-3h6c1 0 2 1 1 3\"/><path d=\"M7 7h10l2 4v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7z\"/><path d=\"M12 11v6M10 12.5c0-1 4-1 4 0s-4 1-4 2.2 4 1.2 4 0\"/></svg>","upgrades":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 13l7-6 7 6\"/><path d=\"M5 18l7-6 7 6\"/><path d=\"M5 8l7-6 7 6\"/></svg>","schematics":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"1\"/><path d=\"M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4\"/><rect x=\"9.5\" y=\"9.5\" width=\"5\" height=\"5\"/></svg>","manuals":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1z\"/><path d=\"M21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z\"/></svg>","gunsmith":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 10h14l2-2h4v3h-3l-1 2H11l-1 3H7l1-3H4l-2-1z\"/><path d=\"M13 13l-1 4h-2\"/></svg>","gear":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"3.2\"/><path d=\"M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1\"/></svg>","camos":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\"/><path d=\"M3 9h6V3M15 3v6h6M9 21v-6H3M21 15h-6v6M9 9h6v6H9z\"/></svg>","traits":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3a8 8 0 0 1 8 8v2\"/><path d=\"M4 13v-2a8 8 0 0 1 4.5-7.2\"/><path d=\"M8 20c1-2 1.5-4.5 1.5-8a2.5 2.5 0 0 1 5 0c0 3-.3 5.7-1 8\"/><path d=\"M12 11.5c0 3.5-.5 6.5-2 9.5M16.8 18c.4-1.8.7-4.2.7-7a5.5 5.5 0 0 0-11 0c0 2-.2 3.8-.8 5.5\"/></svg>","dynops":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><rect x=\"9\" y=\"5\" width=\"6\" height=\"5\"/><path d=\"M9.5 13h1M13.5 13h1M9.5 16h1M13.5 16h1M9.5 19h5\"/></svg>","bosses":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3c-4.4 0-7 3-7 7 0 2.2 1 3.7 2 4.6V18h2v2h6v-2h2v-3.4c1-.9 2-2.4 2-4.6 0-4-2.6-7-7-7z\"/><circle cx=\"9.3\" cy=\"11\" r=\"1.6\"/><circle cx=\"14.7\" cy=\"11\" r=\"1.6\"/><path d=\"M11.3 15h1.4\"/></svg>","patches":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"1\"/><path d=\"M9 2h6v4H9z\"/><path d=\"M8.5 11h7M8.5 14.5h7M8.5 18h4\"/></svg>","items":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2l9 5v10l-9 5-9-5V7z\"/><path d=\"M3 7l9 5 9-5M12 12v10\"/></svg>","upgradeitems":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6h12M9 12h12M9 18h12\"/><path d=\"M3.5 6h1M3.5 12h1M3.5 18h1\"/></svg>","search":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"M15.5 15.5L21 21\"/></svg>","pin":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z\"/><circle cx=\"12\" cy=\"9.5\" r=\"2.5\"/></svg>","home":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 11l9-8 9 8\"/><path d=\"M5 9.5V21h14V9.5\"/></svg>","chev":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\"/></svg>"};
+
 /* ===== BROWSER-SAVED PROGRESS (Upgrades and Camo Tracker) ===== */
 const Store={
   key:'nomads-dmz-hub.progress.v1',data:null,ok:true,
@@ -88,7 +91,7 @@ const GEAR_DATA=[{"c":"Upgrades","r":[{"n":"Bank Upgrade I","c":[],"d":"Raises t
 const ING_ICON={"Gold Bar":"about:blank#img:ing-gold-bar.webp","Sanctioned Assassination List":"about:blank#img:ing-sanctioned-assassination-list.webp","Alloyed Plating":"about:blank#img:ing-alloyed-plating.webp","Ballistic Fabric":"about:blank#img:ing-ballistic-fabric.webp","Ballistic Flight Logs":"about:blank#img:ing-ballistic-flight-logs.webp","Binding Catalyst":"about:blank#img:ing-binding-catalyst.webp","Biomaterials":"about:blank#img:ing-biomaterials.webp","CPU":"about:blank#img:ing-cpu.webp","Chemicals":"about:blank#img:ing-chemicals.webp","Comms Module":"about:blank#img:ing-comms-module.webp","Control Unit":"about:blank#img:ing-control-unit.webp","Degraded Execution Footage":"about:blank#img:ing-degraded-execution-footage.webp","Detonators":"about:blank#img:ing-detonators.webp","Electronic Sensors":"about:blank#img:ing-electronic-sensors.webp","Electronics":"about:blank#img:ing-electronics.webp","Experimental Compounds":"about:blank#img:ing-experimental-compounds.webp","Foreign Intelligence Targets":"about:blank#img:ing-foreign-intelligence-targets.webp","Gold Skull":"about:blank#img:ing-gold-skull.webp","High-Tenacity Fibers":"about:blank#img:ing-high-tenacity-fibers.webp","Infantry Invasion Plans":"about:blank#img:ing-infantry-invasion-plans.webp","Metals":"about:blank#img:ing-metals.webp","Military Composites":"about:blank#img:ing-military-composites.webp","Nano-Structured Alloy":"about:blank#img:ing-nano-structured-alloy.webp","Nitro Compounds":"about:blank#img:ing-nitro-compounds.webp","Nuclear Program Files":"about:blank#img:ing-nuclear-program-files.webp","Nylon Cloth":"about:blank#img:ing-nylon-cloth.webp","Nylon Laminate":"about:blank#img:ing-nylon-laminate.webp","Power Regulator":"about:blank#img:ing-power-regulator.webp","Printed Circuit Board":"about:blank#img:ing-printed-circuit-board.webp","Prototype RF Module":"about:blank#img:ing-prototype-rf-module.webp","Reactive Metals":"about:blank#img:ing-reactive-metals.webp","Regional Combat Notes":"about:blank#img:ing-regional-combat-notes.webp","Rigid Synthetics":"about:blank#img:ing-rigid-synthetics.webp","Stabilized Reagents":"about:blank#img:ing-stabilized-reagents.webp","Stock Rod":"about:blank#img:ing-stock-rod.webp","Structural Alloy":"about:blank#img:ing-structural-alloy.webp","Synthetics":"about:blank#img:ing-synthetics.webp","Turned Components":"about:blank#img:ing-turned-components.webp","Volatile Explosives":"about:blank#img:ing-volatile-explosives.webp","W.M.D Manifest":"about:blank#img:ing-w-m-d-manifest.webp"};
 const ING_ALIAS={"alloyedplating":"Alloyed Plating","ballisticfabric":"Ballistic Fabric","ballisticflightlog":"Ballistic Flight Logs","bindingcatalyst":"Binding Catalyst","biomaterial":"Biomaterials","cpu":"CPU","chemical":"Chemicals","commsmodule":"Comms Module","controlunit":"Control Unit","degradedexecutionfootage":"Degraded Execution Footage","detonator":"Detonators","electronicsensor":"Electronic Sensors","electronic":"Electronics","experimentalcompound":"Experimental Compounds","foreignintelligencetarget":"Foreign Intelligence Targets","goldskull":"Gold Skull","hightenacityfiber":"High-Tenacity Fibers","infantryinvasionplan":"Infantry Invasion Plans","metal":"Metals","militarycomposite":"Military Composites","nanostructuredalloy":"Nano-Structured Alloy","nitrocompound":"Nitro Compounds","nuclearprogramfile":"Nuclear Program Files","nyloncloth":"Nylon Cloth","nylonlaminate":"Nylon Laminate","powerregulator":"Power Regulator","printedcircuitboard":"Printed Circuit Board","prototyperfmodule":"Prototype RF Module","reactivemetal":"Reactive Metals","regionalcombatnote":"Regional Combat Notes","rigidsynthetic":"Rigid Synthetics","stabilizedreagent":"Stabilized Reagents","stockrod":"Stock Rod","structuralalloy":"Structural Alloy","synthetic":"Synthetics","turnedcomponent":"Turned Components","volatileexplosive":"Volatile Explosives","wmdmanifest":"W.M.D Manifest"};
 
-const MAP_CATS=[{"k":"POI","l":"Major locations","g":"Places","ic":"about:blank#img:mk-poi.webp","lo":10,"col":"#e8a848"},{"k":"Minor POI","l":"Minor locations","g":"Places","ic":"about:blank#img:mk-minor-poi.webp","lo":11,"col":"#e8a848"},{"k":"The Citadel","l":"The Citadel","g":"Places","ic":"about:blank#img:mk-the-citadel.webp","lo":12,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Heavenly Luck Casino","l":"Heavenly Luck Casino","g":"Places","ic":"about:blank#img:mk-heavenly-luck-casino.webp","lo":13,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Mirae General Hospital","l":"Mirae General Hospital","g":"Places","ic":"about:blank#img:mk-mirae-general-hospital.webp","lo":14,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Admin Complex No. 2","l":"Admin Complex No. 2","g":"Places","ic":"about:blank#img:mk-admin-complex-no-2.webp","lo":15,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Re-Education Center","l":"Re-Education Center","g":"Places","ic":"about:blank#img:mk-re-education-center.webp","lo":16,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Rice Mill","l":"Rice Mill","g":"Places","ic":"about:blank#img:mk-rice-mill.webp","lo":17,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Nurigo Mall","l":"NuriGO Mall","g":"Places","ic":"about:blank#img:mk-nurigo-mall.webp","lo":18,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"Compound","l":"Compounds","g":"Services","ic":"about:blank#img:mk-compound.webp","lo":25,"col":"#4da3ff","tip":"Military loot and possible valuables. Expect heavy resistance; contents can vary."},{"k":"Gas Station","l":"Gas stations","g":"Services","ic":"about:blank#img:mk-gas-station.webp","lo":20,"col":"#4da3ff","tip":"Repair and refuel ground vehicles and aircraft. Specific loot is not confirmed."},{"k":"Marine Gas Station","l":"Marine gas stations","g":"Services","ic":"about:blank#img:mk-marine-gas-station.webp","lo":21,"col":"#4da3ff","tip":"Refuel patrol boats and RHIBs. Specific loot is not confirmed."},{"k":"Fire Station","l":"Fire stations","g":"Services","ic":"about:blank#img:mk-fire-station.webp","lo":22,"col":"#4da3ff","tip":"Look for Radiation Gear and Parachutes. Contents can vary."},{"k":"Police Station","l":"Police stations","g":"Services","ic":"about:blank#img:mk-police-station.webp","lo":23,"col":"#4da3ff","tip":"Military gear and weapon containers. A locked armory may be present."},{"k":"Clinic","l":"Clinics","g":"Services","ic":"about:blank#img:mk-clinic.webp","lo":24,"col":"#4da3ff","tip":"Medical supplies such as Bandages, Medkits and Radiation Blockers. Contents can vary."},{"k":"Ammo Armor Cache","l":"Ammo & armor caches","g":"Loot","ic":"about:blank#img:mk-ammo-armor-cache.webp","lo":40,"col":"#4ade80","tip":"Restock Armor Plates and ammo. This cache may be on cooldown."},{"k":"UAV Tower","l":"UAV towers","g":"Extraction and defence","ic":"about:blank#img:mk-uav-tower.webp","lo":32,"col":"#22d3ee","tip":"If another squad takes a tower, you can capture it back."},{"k":"Lieutenant Hunt","l":"Lieutenant towers","g":"Extraction and defence","ic":"about:blank#img:mk-lieutenant-hunt.webp","lo":33,"col":"#22d3ee"},{"k":"exfils","l":"Exfil sites (possible)","g":"Extraction and defence","ic":"about:blank#img:mk2-exfils.webp","off":true,"x":1,"lo":30,"col":"#22d3ee"},{"k":"sam-sites","l":"SAM sites","g":"Extraction and defence","ic":"about:blank#img:mk2-sam-sites.webp","off":true,"x":1,"lo":31,"col":"#22d3ee"},{"k":"radiation-zones","l":"Radiation zones","g":"Objectives and hazards","ic":"about:blank#img:mk2-radiation-zones.svg","off":true,"x":1,"lo":60,"col":"#fb923c"},{"k":"silos","l":"Silos","g":"Objectives and hazards","ic":"about:blank#img:mk2-silos.svg","off":true,"x":1,"lo":61,"col":"#fb923c"},{"k":"decontamination-stations","l":"Decontamination station","g":"Objectives and hazards","ic":"about:blank#img:mk2-decontamination-stations.svg","off":true,"x":1,"lo":62,"col":"#fb923c"},{"k":"bounty-stations","l":"Bounty stations","g":"Objectives and hazards","ic":"about:blank#img:mk2-bounty-stations.webp","off":true,"x":1,"lo":63,"col":"#fb923c"},{"k":"dead-drops","l":"Dead drops","g":"Objectives and hazards","ic":"about:blank#img:mk2-dead-drops.svg","off":true,"x":1,"lo":64,"col":"#fb923c"},{"k":"safes","l":"Safes","g":"Loot","ic":"about:blank#img:mk2-safes.webp","off":true,"x":1,"lo":41,"col":"#4ade80","tip":"Open for cash and valuables. Contents and value vary."},{"k":"hidden-caches","l":"Hidden caches","g":"Loot","ic":"about:blank#img:mk2-hidden-caches.svg","off":true,"x":1,"lo":42,"col":"#4ade80","tip":"Hidden cache contents are not confirmed. Check it for randomized loot."},{"k":"player-spawns","l":"Player spawn areas","g":"Objectives and hazards","ic":"about:blank#img:mk2-player-spawns.svg","off":true,"x":1,"lo":65,"col":"#fb923c"},{"k":"loot-rockets","l":"Loot rockets","g":"Loot","ic":"about:blank#img:mk2-loot-rockets.svg","off":true,"x":1,"lo":43,"col":"#4ade80","tip":"Loot details are not confirmed for this icon type."},{"k":"dead-corpses","l":"Lootable corpses","g":"Loot","ic":"about:blank#img:mk2-dead-corpses.svg","off":true,"x":1,"lo":44,"col":"#4ade80","tip":"Search for randomized items. Specific contents are not confirmed."},{"k":"Lieutenants","l":"Lieutenants","g":"Hunt targets","ic":"about:blank#img:mk3-lieutenant.svg","off":true,"x3":1,"lo":70,"col":"#ef4444"},{"k":"lost-supply-drops","l":"Lost supply drops","g":"Loot","ic":"about:blank#img:mk4-lost-drop.svg","off":true,"x":1,"x4":1,"lo":45,"col":"#4ade80","tip":"Claim the dropped crate for the Side Op. Specific contents are not confirmed."},{"k":"keypad-doors","l":"Keypad locked doors","g":"Objectives and hazards","ic":"about:blank#img:mk4-keypad.svg","off":true,"x":1,"x4":1,"lo":66,"col":"#fb923c"},{"k":"Bank","l":"Banks","g":"Services","ic":"about:blank#img:mk-bank.webp","lo":26,"col":"#4da3ff","tip":"Bank location. Vault contents are not confirmed as fixed drops."},{"k":"Infil","l":"Infil points","g":"Extraction and defence","ic":"about:blank#img:mk-infil.webp","lo":34,"col":"#22d3ee"},{"k":"Cheonwang Peak Array","l":"Cheonwang Peak Array","g":"Places","ic":"about:blank#img:mk-cheonwang-peak-array.webp","lo":19,"lg":"fort","lgl":"Fortresses and landmarks","col":"#e8a848"},{"k":"yellow-lockers","l":"Yellow medical lockers","g":"Loot","ic":"about:blank#img:mk2-yellow-lockers.svg","lo":46,"col":"#4ade80","tip":"Yellow medical lockers, labelled Chemical Storage in game. They can hold medical supplies and sometimes an Irradiated Container, but the contents vary. These are known spots, not every yellow locker in Hajin."}];
+const MAP_CATS=[{"k":"POI","l":"Major locations","g":"Places","ic":"about:blank#img:mk-poi.webp","lo":10,"col":"#f2f2f2"},{"k":"Minor POI","l":"Minor locations","g":"Places","ic":"about:blank#img:mk-minor-poi.webp","lo":11,"col":"#f2f2f2"},{"k":"The Citadel","l":"The Citadel","g":"Places","ic":"about:blank#img:mk-the-citadel.webp","lo":12,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Heavenly Luck Casino","l":"Heavenly Luck Casino","g":"Places","ic":"about:blank#img:mk-heavenly-luck-casino.webp","lo":13,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Mirae General Hospital","l":"Mirae General Hospital","g":"Places","ic":"about:blank#img:mk-mirae-general-hospital.webp","lo":14,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Admin Complex No. 2","l":"Admin Complex No. 2","g":"Places","ic":"about:blank#img:mk-admin-complex-no-2.webp","lo":15,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Re-Education Center","l":"Re-Education Center","g":"Places","ic":"about:blank#img:mk-re-education-center.webp","lo":16,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Rice Mill","l":"Rice Mill","g":"Places","ic":"about:blank#img:mk-rice-mill.webp","lo":17,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Nurigo Mall","l":"NuriGO Mall","g":"Places","ic":"about:blank#img:mk-nurigo-mall.webp","lo":18,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"Compound","l":"Compounds","g":"Services","ic":"about:blank#img:mk-compound.webp","lo":25,"col":"#4da3ff","tip":"Military loot and possible valuables. Expect heavy resistance; contents can vary."},{"k":"Gas Station","l":"Gas stations","g":"Services","ic":"about:blank#img:mk-gas-station.webp","lo":20,"col":"#4da3ff","tip":"Repair and refuel ground vehicles and aircraft. Specific loot is not confirmed."},{"k":"Marine Gas Station","l":"Marine gas stations","g":"Services","ic":"about:blank#img:mk-marine-gas-station.webp","lo":21,"col":"#4da3ff","tip":"Refuel patrol boats and RHIBs. Specific loot is not confirmed."},{"k":"Fire Station","l":"Fire stations","g":"Services","ic":"about:blank#img:mk-fire-station.webp","lo":22,"col":"#4da3ff","tip":"Look for Radiation Gear and Parachutes. Contents can vary."},{"k":"Police Station","l":"Police stations","g":"Services","ic":"about:blank#img:mk-police-station.webp","lo":23,"col":"#4da3ff","tip":"Military gear and weapon containers. A locked armory may be present."},{"k":"Clinic","l":"Clinics","g":"Services","ic":"about:blank#img:mk-clinic.webp","lo":24,"col":"#4da3ff","tip":"Medical supplies such as Bandages, Medkits and Radiation Blockers. Contents can vary."},{"k":"Ammo Armor Cache","l":"Ammo & armor caches","g":"Loot","ic":"about:blank#img:mk-ammo-armor-cache.webp","lo":40,"col":"#4ade80","tip":"Restock Armor Plates and ammo. This cache may be on cooldown."},{"k":"UAV Tower","l":"UAV towers","g":"Extraction and defence","ic":"about:blank#img:mk-uav-tower.webp","lo":32,"col":"#22d3ee","tip":"If another squad takes a tower, you can capture it back."},{"k":"Lieutenant Hunt","l":"Lieutenant towers","g":"Extraction and defence","ic":"about:blank#img:mk-lieutenant-hunt.webp","lo":33,"col":"#22d3ee"},{"k":"exfils","l":"Exfil sites (possible)","g":"Extraction and defence","ic":"about:blank#img:mk2-exfils.webp","off":true,"x":1,"lo":30,"col":"#22d3ee"},{"k":"sam-sites","l":"SAM sites","g":"Extraction and defence","ic":"about:blank#img:mk2-sam-sites.webp","off":true,"x":1,"lo":31,"col":"#22d3ee"},{"k":"radiation-zones","l":"Radiation zones","g":"Objectives and hazards","ic":"about:blank#img:mk2-radiation-zones.svg","off":true,"x":1,"lo":60,"col":"#fb923c"},{"k":"silos","l":"Silos","g":"Objectives and hazards","ic":"about:blank#img:mk2-silos.svg","off":true,"x":1,"lo":61,"col":"#fb923c"},{"k":"decontamination-stations","l":"Decontamination station","g":"Objectives and hazards","ic":"about:blank#img:mk2-decontamination-stations.svg","off":true,"x":1,"lo":62,"col":"#fb923c"},{"k":"bounty-stations","l":"Bounty stations","g":"Objectives and hazards","ic":"about:blank#img:mk2-bounty-stations.webp","off":true,"x":1,"lo":63,"col":"#fb923c"},{"k":"dead-drops","l":"Dead drops","g":"Objectives and hazards","ic":"about:blank#img:mk2-dead-drops.svg","off":true,"x":1,"lo":64,"col":"#fb923c"},{"k":"safes","l":"Safes","g":"Loot","ic":"about:blank#img:mk2-safes.webp","off":true,"x":1,"lo":41,"col":"#4ade80","tip":"Open for cash and valuables. Contents and value vary."},{"k":"hidden-caches","l":"Hidden caches","g":"Loot","ic":"about:blank#img:mk2-hidden-caches.svg","off":true,"x":1,"lo":42,"col":"#4ade80","tip":"Hidden cache contents are not confirmed. Check it for randomized loot."},{"k":"player-spawns","l":"Player spawn areas","g":"Objectives and hazards","ic":"about:blank#img:mk2-player-spawns.svg","off":true,"x":1,"lo":65,"col":"#fb923c"},{"k":"loot-rockets","l":"Loot rockets","g":"Loot","ic":"about:blank#img:mk2-loot-rockets.svg","off":true,"x":1,"lo":43,"col":"#4ade80","tip":"Loot details are not confirmed for this icon type."},{"k":"dead-corpses","l":"Lootable corpses","g":"Loot","ic":"about:blank#img:mk2-dead-corpses.svg","off":true,"x":1,"lo":44,"col":"#4ade80","tip":"Search for randomized items. Specific contents are not confirmed."},{"k":"Lieutenants","l":"Lieutenants","g":"Hunt targets","ic":"about:blank#img:mk3-lieutenant.svg","off":true,"x3":1,"lo":70,"col":"#ef4444"},{"k":"lost-supply-drops","l":"Lost supply drops","g":"Loot","ic":"about:blank#img:mk4-lost-drop.svg","off":true,"x":1,"x4":1,"lo":45,"col":"#4ade80","tip":"Claim the dropped crate for the Side Op. Specific contents are not confirmed."},{"k":"keypad-doors","l":"Keypad locked doors","g":"Objectives and hazards","ic":"about:blank#img:mk4-keypad.svg","off":true,"x":1,"x4":1,"lo":66,"col":"#fb923c"},{"k":"Bank","l":"Banks","g":"Services","ic":"about:blank#img:mk-bank.webp","lo":26,"col":"#4da3ff","tip":"Bank location. Vault contents are not confirmed as fixed drops."},{"k":"Infil","l":"Infil points","g":"Extraction and defence","ic":"about:blank#img:mk-infil.webp","lo":34,"col":"#22d3ee"},{"k":"Cheonwang Peak Array","l":"Cheonwang Peak Array","g":"Places","ic":"about:blank#img:mk-cheonwang-peak-array.webp","lo":19,"lg":"fort","lgl":"Fortresses and landmarks","col":"#f2f2f2"},{"k":"yellow-lockers","l":"Yellow medical lockers","g":"Loot","ic":"about:blank#img:mk2-yellow-lockers.svg","lo":46,"col":"#4ade80","tip":"Yellow medical lockers, labelled Chemical Storage in game. They can hold medical supplies and sometimes an Irradiated Container, but the contents vary. These are known spots, not every yellow locker in Hajin."}];
 const MAP_MK=[[99502,"Yellow lockers · Cheongun Village",36,2115,2017],[99503,"Yellow lockers · Cheongun fire station",36,2057,2013],[99504,"Yellow lockers · Compound Charlie",36,1794,2150],[99505,"Yellow lockers · Pyonghwa Village",36,1508,1973],[99506,"Yellow lockers · Tong-il Village",36,1678,1736],[99507,"Yellow lockers · Deadtown",36,1147,2701],[99508,"Yellow lockers · Imjin Farmland",36,1889,2659],[99509,"Yellow lockers · Wolves Stadium",36,2286,2770],[6007,"14th Political Prison",0,1248,1622],[6008,"Chang-san Air Base",0,1024,2316],[6009,"Deadtown",0,1240,2727],[6010,"Imjin Farmland",0,1595,2799],[6011,"Cheongun Village",0,2106,2015],[6012,"Haneul Nuclear Reactor",0,2878,1921],[6013,"Mirae General Hospital",0,2280,2184],[6014,"NuriGo Mall",0,2636,2380],[6015,"Cheonwang Peak Array",0,2039,2554],[99501,"Cheonwang Peak Array",35,2022,2600],[6016,"The Grid",0,2473,2555],[6017,"Songdo Wharf",0,2868,2691],[6018,"Wolves Stadium",0,2352,2779],[6019,"Hajin River Heights",0,2539,2932],[6020,"Jayon Warehouses",1,1048,1171],[6021,"Russian Border Crossing (West)",1,1321,1242],[6022,"Russian Border Crossing",1,1945,1806],[6023,"Russian Border Crossing (East)",1,2584,1909],[6024,"Hanrim Village",1,1424,1386],[6025,"Revolution Dam",1,1667,1468],[6026,"Tong-il Village",1,1696,1779],[6027,"Pyonghwa Village",1,1515,2063],[6028,"Namjin Riverside",1,1805,3199],[6029,"South Island",1,2684,3075],[6030,"Cheongun Outskirts",1,1926,1909],[6031,"Imjin Suburb",1,1728,2383],[6032,"Mujin Pass",1,2024,2348],[6033,"Daesong Ridge",1,2019,2722],[6034,"Oamsik Turtle Islands",1,3004,2302],[6035,"NuriGO West",1,2476,2373],[6036,"Shoreline Station",1,2888,2390],[6037,"NuriGO East",1,2752,2441],[6038,"DBN Headquarters",1,2546,2489],[6040,"Construction Zone",1,2731,2654],[6041,"Songdo Pier",1,3093,2753],[6042,"Compound Foxtrot",9,1107,1999],[6043,"Compound Alpha",9,1911,2865],[6044,"Compound Bravo",9,2120,3022],[6045,"Compound Charlie",9,1679,2106],[6046,"Compound Delta",9,2786,2174],[6047,"Compound Echo",9,2544,2855],[6048,"The Citadel",2,1200,1671],[6049,"Heavenly Luck Casino",3,2221,1924],[6050,"Mirae General Hospital",4,2285,2253],[6051,"Admin Complex No. 2",5,1044,2321],[6052,"Re-Education Center",6,1159,2699],[6053,"Rice Mill",7,1680,2943],[6054,"NuriGO Mall",8,2654,2412],[6055,"Gas Station",10,1568,1479],[6056,"Gas Station",10,1577,1953],[6057,"Gas Station",10,1415,2135],[6058,"Gas Station",10,1226,2539],[6059,"Gas Station",10,1061,2786],[6060,"Gas Station",10,1645,3099],[6061,"Gas Station",10,1937,3246],[6062,"Gas Station",10,1960,2028],[6063,"Gas Station",10,2413,1988],[6064,"Gas Station",10,2628,2094],[6065,"Gas Station",10,1730,2403],[6066,"Gas Station",10,2182,2442],[6067,"Gas Station",10,2451,2366],[6068,"Gas Station",10,2721,2319],[6069,"Gas Station",10,2076,2827],[6070,"Gas Station",10,2309,2874],[6071,"Gas Station",10,2715,2710],[6072,"Gas Station",10,2968,2568],[6073,"Marine Gas Station",11,1348,1304],[6074,"Marine Gas Station",11,2229,1779],[6075,"Marine Gas Station",11,3079,1994],[6076,"Marine Gas Station",11,3104,2701],[6077,"Marine Gas Station",11,2423,3060],[6078,"Marine Gas Station",11,2489,3306],[6079,"Fire Station",12,1303,1350],[6080,"Fire Station",12,1399,2097],[6081,"Fire Station",12,1295,2466],[6082,"Fire Station",12,2029,2035],[6083,"Fire Station",12,2741,2449],[6084,"Fire Station",12,1602,3090],[6085,"Police Station",13,1643,1523],[6086,"Police Station",13,1426,2058],[6087,"Police Station",13,2086,1916],[6088,"Police Station",13,2677,2322],[6089,"Police Station",13,2444,2806],[6090,"Clinic",14,1650,1758],[6091,"Clinic",14,1480,1995],[6092,"Clinic",14,1075,2258],[6094,"Clinic",14,2087,2039],[6095,"Clinic",14,1766,2172],[6096,"Clinic",14,1861,2681],[6097,"Clinic",14,2258,2792],[6098,"Ammo Armor Cache",15,1208,1708],[6099,"Ammo Armor Cache",15,1095,2000],[6100,"Ammo Armor Cache",15,1111,2220],[6101,"Ammo Armor Cache",15,970,2404],[6102,"Ammo Armor Cache",15,1181,2701],[6103,"Ammo Armor Cache",15,1696,2092],[6104,"Ammo Armor Cache",15,1747,2266],[6105,"Ammo Armor Cache",15,2094,1974],[6106,"Ammo Armor Cache",15,2160,1936],[6107,"Ammo Armor Cache",15,2201,1923],[6108,"Ammo Armor Cache",15,2214,2046],[6109,"Ammo Armor Cache",15,2237,2228],[6110,"Ammo Armor Cache",15,2948,1849],[6111,"Ammo Armor Cache",15,2851,1887],[6112,"Ammo Armor Cache",15,2799,2162],[6113,"Ammo Armor Cache",15,2652,2365],[6114,"Ammo Armor Cache",15,2665,2546],[6115,"Ammo Armor Cache",15,2540,2608],[6116,"Ammo Armor Cache",15,2454,2667],[6117,"Ammo Armor Cache",15,2707,2757],[6118,"Ammo Armor Cache",15,2952,2720],[6119,"Ammo Armor Cache",15,2364,2824],[6120,"Ammo Armor Cache",15,2567,2990],[6121,"Ammo Armor Cache",15,1619,2651],[6122,"Ammo Armor Cache",15,1931,2841],[6123,"Ammo Armor Cache",15,2133,3006],[6124,"Ammo Armor Cache",15,1527,2914],[6125,"Ammo Armor Cache",15,1707,2923],[6126,"UAV Tower",16,1151,1672],[6127,"UAV Tower",16,968,2194],[6128,"UAV Tower",16,1217,2609],[6129,"UAV Tower",16,1647,2623],[6130,"UAV Tower",16,1673,3039],[6131,"UAV Tower",16,2038,1943],[6132,"UAV Tower",16,2372,1940],[6133,"UAV Tower",16,2701,1931],[6134,"UAV Tower",16,2337,2274],[6135,"UAV Tower",16,2686,2310],[6136,"UAV Tower",16,2030,2547],[6137,"UAV Tower",16,2307,2884],[6138,"UAV Tower",16,2644,2928],[6139,"UAV Tower",16,2919,2726],[6140,"Lieutenant Tower",17,1705,1685],[6141,"Lieutenant Tower",17,1117,2834],[6142,"Lieutenant Tower",17,2548,2029],[6143,"Lieutenant Tower",17,2258,2677],[6144,"Lieutenant Tower",17,2782,2921],[90001,"Exfil",18,1397,2404],[90002,"Exfil",18,1763,2653],[90003,"SAM Site — Deadtown",19,1033,2756],[90004,"SAM Site — Imjin Farmland west",19,1446,2875],[90006,"Exfil",18,1710,1812],[90007,"Exfil",18,2272,3102],[90008,"Exfil",18,3070,2739],[90009,"SAM Site",19,2979,2682],[90010,"SAM Site",19,2343,2706],[90011,"SAM Site",19,2461,2600],[90012,"SAM Site",19,2450,2486],[90013,"SAM Site",19,2563,2864],[90014,"SAM Site",19,2220,2875],[90015,"Exfil",18,2373,2833],[90016,"Exfil",18,1311,2297],[90017,"Exfil",18,1934,2040],[90018,"Exfil",18,1185,2323],[90022,"Exfil",18,2025,2827],[90023,"Exfil",18,1480,2022],[90024,"Exfil",18,2698,2552],[90026,"Exfil",18,1341,1592],[90027,"Exfil",18,1324,2198],[90028,"Exfil",18,2644,2317],[90030,"Silo · C3",21,1439,1820],[90031,"Final Exfil",18,1012,1155],[90032,"Wolves Stadium Northern Exfil",18,2412,2700],[90033,"Hajin River Heights Southern Spawn area",27,2616,3292],[90034,"Haneul Nuclear Reactor Radiation Area",20,2900,1960],[90035,"Wolves Stadium Southern Exfil",18,2248,2988],[90036,"Deadtown Western Exfil",18,1040,2676],[90037,"Hajin River Heights Dead Drop",24,2580,2988],[90038,"Cheongun Village Southern Spawn area",27,2056,2148],[90039,"Tong-il Village Island Spawn area",27,1748,1728],[90040,"Mujin Pass Exfil",18,1996,2320],[90041,"Haneul Nuclear Reactor Southern Spawn area",27,2964,2196],[90042,"Mirae General Hospital Southern Exfil",18,2416,2316],[90043,"NuriGo Mall Dead Drop",24,2764,2396],[90044,"Deadtown Northern Exfil",18,1272,2460],[90045,"Hanrim Village Dead Drop",24,1288,1344],[90046,"Deadtown South Western Spawn area",27,912,3032],[90047,"14th Political Prison Western Spawn area",27,952,1600],[90048,"Jayon Warehouses Spawn area",27,1012,1124],[90049,"Songdo Wharf Northern Island Final Exfil",18,3020,2392],[90050,"Hajin River Heights South Eastern Spawn area",27,2988,3216],[90051,"Cheongun Village Western Bridge Spawn area",27,1944,1820],[90052,"Player spawn area",27,1946,3282],[90053,"Player spawn area",27,1226,3211],[90054,"Player spawn area",27,3042,2843],[90055,"Dam Spawn Location area",27,1645,1480],[90056,"NuriGO East rooftop Bounty Station",23,2722,2494],[90057,"The Grid SAM Site",19,2618,2590],[90077,"Loot rocket · E8",28,1897,3149],[90078,"Loot rocket · I5",28,3009,2326],[90079,"Loot rocket · I5",28,3015,2315],[90080,"Loot rocket · I5",28,3031,2308],[90081,"Hidden cache · I5",26,3033,2335],[90082,"Hidden cache · F3",26,2215,1795],[90084,"Player starting area · D8",27,1533,3282],[90085,"Player starting area · G3",27,2357,1827],[90086,"Silo · A6",21,911,2658],[90087,"Silo · B2",21,1218,1428],[90088,"Silo · D2",21,1554,1607],[90089,"Silo · A5",21,823,2216],[90090,"Silo · A7",21,862,2868],[90091,"Hidden cache · C2",26,1465,1522],[90092,"Hidden cache · B2",26,1057,1546],[90093,"Player starting area · C1",27,1424,1281],[90094,"SAM site · H8",19,2794,3075],[90095,"SAM site · G5",19,2528,2318],[90097,"Inside a Rusty Old Shack",26,1135,1379],[90098,"Highway Service Tunnel",26,1365,2159],[90099,"Reactor decontamination station · I3",22,2883,1857],[90100,"Hidden cache · G5",26,2461,2191],[90101,"Player starting area · C1",27,1299,1188],[90102,"Lootable corpse · C2",29,1241,1399],[90103,"Lootable corpse · B2",29,1100,1491],[90104,"Lootable corpse · B2",29,1188,1496],[90105,"SAM site · H4",19,2800,1949],[90107,"Safe · E7",25,1934,2835],[90108,"Safe · G7",25,2557,2855],[90109,"Safe · F8",25,2119,3015],[90110,"Bounty Station · F4",23,2081,1961],[90111,"SAM site · F4",19,2122,2121],[90112,"Bounty Station · D8",23,1738,3018],[90113,"Lootable corpse · I4",29,2997,2128],[90114,"Lootable corpse · I4",29,2997,2105],[90115,"Final exfil · E4",18,2049,2050],[90116,"Hidden cache · G9",26,2399,3357],[90117,"Deadtown Dead Drop",24,1204,2556],[90118,"Hidden cache · C4",26,1352,1999],[90119,"Bungalow loot rocket · C4",28,1349,2005],[90120,"Safe east · B5",25,1100,2224],[90122,"Safe · F6",25,2059,2579],[90123,"Player starting area · A6",27,886,2577],[90124,"Player starting area · B8",27,1055,3143],[90125,"Safe west · H4",25,2796,2168],[90126,"Loot rocket · E5",28,1812,2290],[90127,"Story Mission spawn area · H5",27,2623,2400],[90128,"Story Mission spawn area · F4",27,2061,2130],[90129,"Story Mission spawn area · G4",27,2533,2161],[90130,"Safe east · H4",25,2805,2174],[90131,"Safe south · E6",25,2038,2575],[90132,"Safe west · B5",25,1070,2236],[90133,"Safe north · E6",25,2009,2523],[90134,"Safe · G7",25,2553,2875],[90135,"Hidden cache · E8",26,1792,3222],[90136,"Cheongun Village Northern SAM Site",19,2024,1820],[95001,"The Warden (Kang)",30,1234,1705],[95002,"The Warden (Kang)",30,1282,1656],[95003,"Bale",30,1193,2733],[95004,"Bale",30,1058,2350],[95005,"Jin-Tae",30,2255,1958],[95006,"The Doctor",30,2319,2287],[95007,"The Chemist",30,2912,1955],[95008,"Iskra",30,2073,2588],[95009,"Roze",30,2580,2523],[95010,"The Scavenger",30,2573,2966],[95011,"The Scavenger",30,2386,2813],[95012,"The Scavenger",30,1274,2761],[95101,"Gorani",30,2189,2872],[95102,"Jang-ui",30,2464,2596],[96001,"Player spawn · I9",27,2967,3316],[96002,"Player spawn · B7",27,1035,2623],[96003,"Player spawn · A4",27,800,2003],[96004,"Exfil · I8",18,3054,2997],[96005,"Exfil · B5",18,1052,2092],[96006,"Exfil · D3",18,1639,1571],[96007,"UAV tower · B5",16,1123,2277],[96008,"UAV tower · I7",16,2985,2619],[96009,"UAV tower · H7",16,2571,2840],[96010,"UAV tower · I4",16,3021,1923],[96011,"Hidden cache · B7",26,1179,2684],[96012,"Hidden cache · F6",26,2162,2598],[96013,"Hidden cache · D4",26,1663,2036],[96014,"Hidden cache · D8",26,1660,3138],[96015,"Hidden cache · I7",26,2933,2881],[96016,"Hidden cache · F5",26,2104,2265],[96017,"Safe · B4",25,1117,2001],[96018,"Clinic · B7",14,1119,2723],[96019,"Loot rocket · E8",28,1860,3055],[96020,"Loot rocket · I5",28,3047,2292],[96021,"Lootable corpse · I7",29,3033,2834],[96022,"Lootable corpse · B3",29,1129,1752],[96023,"Lootable corpse · I4",29,2882,1918],[96024,"Lost supply drop · H6",31,2599,2514],[96025,"Lost supply drop · E4",31,1779,1965],[96026,"Lost supply drop · C6",31,1378,2359],[96027,"Lost supply drop · C7",31,1445,2686],[96028,"Lost supply drop · B6",31,1087,2483],[96029,"Lost supply drop · E7",31,1936,2744],[96030,"Lost supply drop · F5",31,2256,2188],[96031,"Lost supply drop · I5",31,3008,2334],[96032,"Eundeok Restaurant keypad door",32,1135,2753],[6039,"Hanex Bank",33,2476,2426],[99101,"Hanex Bank branch · Cheongun Village",33,2154,2030],[99102,"Hanex Bank branch · Songdo Wharf",33,2923,2615],[99103,"Hanex Bank branch · Wolves Stadium (north-east)",33,2484,2700],[99104,"Hanex Bank branch · South Hajin",33,2320,2896],[99200,"Safe · A5",25,968,2185],[99201,"Safe · B4",25,1091,1991],[99202,"Safe · B7",25,1145,2676],[99203,"Safe · D4",25,1702,2078],[99204,"Safe west · F4",25,2080,2033],[99205,"Safe east · F4",25,2149,2032],[99206,"Safe · G7",25,2332,2898],[99207,"Safe · G6",25,2482,2430],[99208,"Safe · H6",25,2753,2595],[99209,"Safe · I6",25,2922,2621],[99210,"Loot rocket · D6",28,1558,2587],[99211,"Loot rocket · F8",28,2083,3104],[99212,"Loot rocket · I5",28,2903,2227],[99213,"Hidden cache · B8",26,1248,2958],[99214,"Lootable corpse · A5",29,906,2119],[99215,"Lootable corpse · C7",29,1283,2762],[99216,"Keypad door · Haneul Nuclear Reactor",32,2930,1841],[99217,"Keypad door · Cheongun Outskirts",32,1954,1873],[99218,"Keypad door · Hanex Bank (Cheongun Village)",32,2154,2030],[99219,"Keypad door · Hanex Bank (The Grid)",32,2476,2426],[99220,"Keypad door · Hanex Bank (Songdo Wharf)",32,2923,2615],[99221,"Keypad door · E7",32,1863,2671],[99222,"Keypad door · Hanex Bank (South Hajin)",32,2320,2896],[99500,"X01",34,1170,810]];
 const MAP_ING=[{"n":"Chemicals","ic":"about:blank#img:ing-chemicals.webp","t":"Resource","w":"Found while looting. No fixed location.","m":[]},{"n":"Electronics","ic":"about:blank#img:ing-electronics.webp","t":"Resource","w":"Found while looting. No fixed location.","m":[]},{"n":"Metals","ic":"about:blank#img:ing-metals.webp","t":"Resource","w":"Found while looting. No fixed location.","m":[]},{"n":"Synthetics","ic":"about:blank#img:ing-synthetics.webp","t":"Resource","w":"Found while looting. No fixed location.","m":[]},{"n":"Alloyed Plating","ic":"about:blank#img:ing-alloyed-plating.webp","t":"Crafting ingredient","w":"Chang-san Air Base hangar and repair bay; Bubun Yard.","m":[6008]},{"n":"Ballistic Fabric","ic":"about:blank#img:ing-ballistic-fabric.webp","t":"Crafting ingredient","w":"Chang-san Air Base armory and barracks; Songdo Wharf La Grande Vie rooftop.","m":[6008,6017]},{"n":"Ballistic Flight Logs","ic":"about:blank#img:ing-ballistic-flight-logs.webp","t":"Upgrade valuable","w":"Compound safes; Heavenly Luck Casino; Cheongun Village","m":[6011,6042,6043,6044,6045,6046,6047,6049]},{"n":"Binding Catalyst","ic":"about:blank#img:ing-binding-catalyst.webp","t":"Crafting ingredient","w":"Mirae General Hospital; medical tents.","m":[6008,6026,6028,6050,6090,6091,6092,6094,6095,6096,6097]},{"n":"Biomaterials","ic":"about:blank#img:ing-biomaterials.webp","t":"Crafting ingredient","w":"Hospitals; chemical lockers.","m":[6050,6090,6091,6092,6094,6095,6096,6097]},{"n":"CPU","ic":"about:blank#img:ing-cpu.webp","t":"Crafting ingredient","w":"Netshin Tech Complex server rooms; Cheonwang Peak Array; Deadtown hillside.","m":[6009,99501,6045,6050]},{"n":"Comms Module","ic":"about:blank#img:ing-comms-module.webp","t":"Crafting ingredient","w":"Netshin Tech Complex server rooms; Cheonwang Peak Array; Deadtown hillside.","m":[6009,99501]},{"n":"Control Unit","ic":"about:blank#img:ing-control-unit.webp","t":"Crafting ingredient","w":"Computers and tech bags.","m":[]},{"n":"Degraded Execution Footage","ic":"about:blank#img:ing-degraded-execution-footage.webp","t":"Upgrade valuable","w":"Compound safes; DBN Headquarters; Deadtown Haksan School Armory","m":[6009,6038,6042,6043,6044,6045,6046,6047]},{"n":"Detonators","ic":"about:blank#img:ing-detonators.webp","t":"Crafting ingredient","w":"Military and industrial areas.","m":[6008]},{"n":"Electronic Sensors","ic":"about:blank#img:ing-electronic-sensors.webp","t":"Crafting ingredient","w":"Tech bags and commercial areas.","m":[6008,6018,6049]},{"n":"Experimental Compounds","ic":"about:blank#img:ing-experimental-compounds.webp","t":"Crafting ingredient","w":"Occasionally dropped by Commanders. No fixed location.","m":[]},{"n":"Foreign Intelligence Targets","ic":"about:blank#img:ing-foreign-intelligence-targets.webp","t":"Upgrade valuable","w":"Imjin Farmland rice mill - Comms Station Six","m":[6010,6053]},{"n":"Gold Skull","ic":"about:blank#img:ing-gold-skull.webp","t":"Upgrade valuable","w":"Heavenly Luck Casino - Counting Room Vault","m":[6049]},{"n":"High-Tenacity Fibers","ic":"about:blank#img:ing-high-tenacity-fibers.webp","t":"Crafting ingredient","w":"Chang-san Air Base armory/barracks; Songdo Wharf La Grande Vie rooftop.","m":[6008,6017]},{"n":"Infantry Invasion Plans","ic":"about:blank#img:ing-infantry-invasion-plans.webp","t":"Upgrade valuable","w":"Compound Charlie; Heavenly Luck Casino","m":[6045,6046,6049]},{"n":"Military Composites","ic":"about:blank#img:ing-military-composites.webp","t":"Crafting ingredient","w":"Dropped by the Colossus Commander. No fixed location.","m":[]},{"n":"Nano-Structured Alloy","ic":"about:blank#img:ing-nano-structured-alloy.webp","t":"Crafting ingredient","w":"Dropped by the Tank Commander. No fixed location.","m":[]},{"n":"Nitro Compounds","ic":"about:blank#img:ing-nitro-compounds.webp","t":"Crafting ingredient","w":"NuriGO Mall DRC lab; Citadel prison chemical buildings; Imjin Farmland tents.","m":[6010,6048,6054]},{"n":"Nuclear Program Files","ic":"about:blank#img:ing-nuclear-program-files.webp","t":"Upgrade valuable","w":"Compound safes; Heavenly Luck Casino vault","m":[6042,6043,6044,6045,6046,6047,6049]},{"n":"Nylon Cloth","ic":"about:blank#img:ing-nylon-cloth.webp","t":"Crafting ingredient","w":"Citadel main wings; Deadtown underground holding area; Heavenly Luck Casino Mujin Nightclub.","m":[6009,6048,6049]},{"n":"Nylon Laminate","ic":"about:blank#img:ing-nylon-laminate.webp","t":"Crafting ingredient","w":"Citadel main wings; Deadtown underground holding area; Heavenly Luck Casino Mujin Nightclub.","m":[6009,6048,6049]},{"n":"Power Regulator","ic":"about:blank#img:ing-power-regulator.webp","t":"Crafting ingredient","w":"Haneul Nuclear Reactor; electrical substations.","m":[6012]},{"n":"Printed Circuit Board","ic":"about:blank#img:ing-printed-circuit-board.webp","t":"Crafting ingredient","w":"Haneul Nuclear Reactor; electrical substations.","m":[6008,6012]},{"n":"Prototype RF Module","ic":"about:blank#img:ing-prototype-rf-module.webp","t":"Crafting ingredient","w":"Dropped by the Deathstalker Commander. No fixed location.","m":[]},{"n":"Reactive Metals","ic":"about:blank#img:ing-reactive-metals.webp","t":"Crafting ingredient","w":"Industrial areas and toolboxes.","m":[6008,6040]},{"n":"Regional Combat Notes","ic":"about:blank#img:ing-regional-combat-notes.webp","t":"Upgrade valuable","w":"South Korean Border Zone: cash register; care packages; Compound Bravo: safe; Special Delivery: operation crate; Deadtown: Signal Breaker Dynamic Op","m":[6009,6044]},{"n":"Rigid Synthetics","ic":"about:blank#img:ing-rigid-synthetics.webp","t":"Crafting ingredient","w":"Residential areas and civilian duffel bags.","m":[6009,6019]},{"n":"Stabilized Reagents","ic":"about:blank#img:ing-stabilized-reagents.webp","t":"Crafting ingredient","w":"Mirae General Hospital and medical tents.","m":[6050,6090,6091,6092,6094,6095,6096,6097]},{"n":"Stock Rod","ic":"about:blank#img:ing-stock-rod.webp","t":"Crafting ingredient","w":"Imjin Farmland rice mill; Hajin City construction zone; Namjjog Station.","m":[6010,6040,6043,6053]},{"n":"Structural Alloy","ic":"about:blank#img:ing-structural-alloy.webp","t":"Crafting ingredient","w":"Chang-san Air Base hangar and repair bay; Bubun Yard.","m":[6008]},{"n":"Turned Components","ic":"about:blank#img:ing-turned-components.webp","t":"Crafting ingredient","w":"Imjin Farmland rice mill; Hajin City construction zone; Namjjog Station.","m":[6010,6040,6053]},{"n":"Volatile Explosives","ic":"about:blank#img:ing-volatile-explosives.webp","t":"Crafting ingredient","w":"NuriGO Mall DRC lab; Citadel prison chemical buildings; Imjin Farmland tents.","m":[6010,6048,6054]},{"n":"W.M.D Manifest","ic":"about:blank#img:ing-w-m-d-manifest.webp","t":"Upgrade valuable","w":"Haneul Nuclear Reactor; Signal Breaker Dynamic Op safe","m":[6012]}];
 const MAP_THREAT={"14th Political Prison":{"t":"High","s":"Prison yard: High; The Citadel: Critical"},"Chang-san Air Base":{"t":"Critical","s":"Underground bunker: Extreme"},"Deadtown":{"t":"Low","s":"Re-Education Center: Medium"},"Imjin Farmland":{"t":"Low","s":"Rice Mill: Medium; Jeong Loading Dock: Low"},"Cheongun Village":{"t":"Low","s":"Heavenly Luck Casino: High; Russian Border and outskirts: Low"},"Mirae General Hospital":{"t":"Low","s":""},"Cheonwang Peak Array":{"t":"Medium","s":""},"Haneul Nuclear Reactor":{"t":"High","s":"Radiation; South Korean Border Zone: Medium"},"NuriGO Mall":{"t":"Mixed","s":"East: Medium; West: High"},"The Grid":{"t":"Critical","s":"Nenshin/Netshin Tech Complex: Extreme; bank, DBN, art school and construction: Critical"},"Songdo Wharf":{"t":"Low","s":"Oamsik Turtle Island and Shoreline Station: Low"},"Wolves Stadium":{"t":"Medium","s":"Theatre: Medium"},"Hajin River Heights":{"t":"Medium","s":"South Island and Jinseo Park Towers: Medium"},"Hanex Bank":{"t":"Critical","s":"Part of The Grid"}};
@@ -173,9 +176,21 @@ inits.gunsmith=function(){
   const groups={};CATALOG.weapons.forEach(w=>(groups[w.category]=groups[w.category]||[]).push(w));
   Object.entries(groups).forEach(([cat,list])=>{const og=document.createElement('optgroup');og.label=cat;list.forEach(w=>{const o=document.createElement('option');o.value=w.id;o.textContent=w.name+(GUNS[w.id]?'':' (picture needed)');og.appendChild(o)});sel.appendChild(og)});
   sel.addEventListener('change',()=>load(sel.value));
+  /* weapon category list and weapon list (the hidden select stays the source of truth) */
+  let gsCat=CATALOG.weapons[0].category;
+  const catPl=c=>c==='Melee'?'Melee':c+'s';
+  function gsLists(){
+    const cb=$('gsCats'),wb=$('gsWeps');if(!cb||!wb)return;
+    const cur=CATALOG.weapons.find(w=>w.id===sel.value);
+    cb.innerHTML=Object.keys(groups).map(c=>`<button type="button" class="gsx-cat${c===gsCat?' on':''}" data-c="${esc(c)}" aria-pressed="${c===gsCat}"><span>${esc(catPl(c))}</span><b>${groups[c].length}</b></button>`).join('');
+    wb.innerHTML=groups[gsCat].map(w=>`<button type="button" class="gsx-wep${cur&&cur.id===w.id?' on':''}" data-w="${w.id}" aria-pressed="${!!(cur&&cur.id===w.id)}"><span>${esc(w.name)}</span>${cur&&cur.id===w.id?'<i aria-hidden="true">✓</i>':''}</button>`).join('');
+    cb.querySelectorAll('.gsx-cat').forEach(b=>b.onclick=()=>{gsCat=b.dataset.c;gsLists()});
+    wb.querySelectorAll('.gsx-wep').forEach(b=>b.onclick=()=>{if(sel.value!==b.dataset.w){sel.value=b.dataset.w;load(sel.value)}});
+  }
+  sel.addEventListener('change',()=>{const w=CATALOG.weapons.find(x=>x.id===sel.value);if(w)gsCat=w.category});
   $('gsClear').onclick=()=>{picks={};renderSlots();draw()};
   function geo(){return GUNS[weapon.id]||null}
-  function load(id){
+  function load(id){setTimeout(()=>{const w=CATALOG.weapons.find(x=>x.id===id);if(w)gsCat=w.category;gsLists()},0);
     weapon=CATALOG.weapons.find(w=>w.id===id)||CATALOG.weapons[0];picks={};sel.value=weapon.id;
     $('gsName').textContent=weapon.name;$('gsCat').textContent=weapon.category;$('gsDesc').textContent=weapon.description||'No description available yet.';
     $('gsUnlock').textContent=weapon.manual?'Weapon Manual':'—';$('gsLevels').textContent=weapon.levels||'—';$('gsLevels').title='';$('gsAtt').textContent=weapon.attachment_count||0;
@@ -221,7 +236,7 @@ inits.gunsmith=function(){
     const place=(arr,y)=>{let edge=-1e9;arr.forEach(i=>{i.w=i.name.length*fs*.6+fs*1.6;i.ly=y;const cx=Math.max(i.x,edge+i.w/2+fs*.6);i.lx=cx;edge=cx+i.w/2})};
     const top=items.filter(i=>i.y<H/2).sort((a,b)=>a.x-b.x),bot=items.filter(i=>i.y>=250).sort((a,b)=>a.x-b.x);
     place(top,-fs*1.5);place(bot,H+fs*1.5);items.forEach(i=>{vx0=Math.min(vx0,i.lx-i.w/2-8);vx1=Math.max(vx1,i.lx+i.w/2+8)});
-    const lab=items.map(i=>{const up=i.ly<0,ey=up?i.ly+h/2:i.ly-h/2;return `<g class="gpart" data-slot="${esc(i.slot)}"><path d="M${i.lx} ${ey}L${i.x} ${i.y}" stroke="#e8a848" stroke-width="${fs*.09}" fill="none"/><circle cx="${i.x}" cy="${i.y}" r="${fs*.3}" fill="#e8a848" stroke="#000" stroke-width="${fs*.06}"/><rect x="${i.lx-i.w/2}" y="${i.ly-h/2}" width="${i.w}" height="${h}" fill="#0b0d0b" stroke="#e8a848" stroke-width="${fs*.07}"/><text x="${i.lx}" y="${i.ly+fs*.35}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="${fs}" fill="#ffd27a">${esc(i.name)}</text></g>`}).join('');
+    const lab=items.map(i=>{const up=i.ly<0,ey=up?i.ly+h/2:i.ly-h/2;return `<g class="gpart" data-slot="${esc(i.slot)}"><path d="M${i.lx} ${ey}L${i.x} ${i.y}" stroke="#e3262d" stroke-width="${fs*.09}" fill="none"/><circle cx="${i.x}" cy="${i.y}" r="${fs*.3}" fill="#e3262d" stroke="#000" stroke-width="${fs*.06}"/><rect x="${i.lx-i.w/2}" y="${i.ly-h/2}" width="${i.w}" height="${h}" fill="#0b0b0b" stroke="#e3262d" stroke-width="${fs*.07}"/><text x="${i.lx}" y="${i.ly+fs*.35}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="${fs}" fill="#ff5a5f">${esc(i.name)}</text></g>`}).join('');
     stage.innerHTML=`<svg viewBox="${vx0} ${-fs*2.7} ${vx1-vx0} ${H+fs*5.4}" role="img" aria-label="Side profile of ${esc(weapon.name)}${count()?' with '+count()+' attachments':''}"><image href="${g.img}" x="0" y="0" width="1600" height="${H}"/><g class="part-glow">${lab}</g></svg>`;
     renderLoadout();
   }
@@ -260,7 +275,7 @@ const ingKey=n=>ING_ALIAS[String(n).toLowerCase().replace(/[^a-z0-9]/g,'').repla
 const ING_GENERIC='about:blank#img:ing-generic.svg';
 const ingIcon=n=>ING_ICON[ingKey(n)]||ING_GENERIC;
 const RES=['Synthetics','Electronics','Chemicals','Metals'];
-const RAR={Common:'#8d9086',Uncommon:'#5fa84d',Rare:'#4a8fd6',Epic:'#8a6ee0',Legendary:'#e08a2c',Ultra:'#d6453a'};
+const RAR={Common:'#8e8e8e',Uncommon:'#5fa84d',Rare:'#4a8fd6',Epic:'#8a6ee0',Legendary:'#e08a2c',Ultra:'#d6453a'};
 const GLYPH={'Upgrades':'<path d="M12 27V9M5 16l7-7 7 7M5 30h14"/>','Lethals':'<circle cx="12" cy="18" r="8"/><path d="M9 9h6M12 9V5l4-2"/>','Field Upgrades':'<path d="M3 9l9-5 9 5v11l-9 5-9-5zM3 9l9 5 9-5M12 14v11"/>','Fire Support':'<path d="M12 3c4 4 4 10 3 15H9c-1-5-1-11 3-15zM9 18l-3 4v-4l3-3M15 18l3 4v-4l-3-3M12 20v4"/>','Gear':'<path d="M5 8h14v7a7 7 0 0 1-14 0zM10 20h4"/><path d="M9 14h.01M15 14h.01"/>','Tacticals':'<circle cx="12" cy="18" r="8"/><path d="M9 9h6M12 9V5l4-2"/>','Backpacks':'<path d="M7 8a5 5 0 0 1 10 0v13H7zM9 14h6"/>','Plate Carriers':'<path d="M6 4l6 3 6-3 2 6-2 12H6L4 10z"/>','Consumables':'<path d="M12 5v14M5 12h14"/>','Ingredients':'<path d="M3 9l9-5 9 5v11l-9 5-9-5z"/>'};
 const glyph=cat=>`<svg viewBox="0 0 24 32" aria-hidden="true">${GLYPH[cat]||GLYPH['Field Upgrades']}</svg>`;
 const REG=[];
@@ -278,7 +293,7 @@ function openIng(name,back){
   if(mapped)$('ingMap').onclick=()=>{close();openView('map');mapShowIngredient(d.n)};
 }
 function openItem(it,cat){
-  const rc=RAR[it.r]||'#6b6f66';
+  const rc=RAR[it.r]||'#6c6c6c';
   const pic=it.p?`<img class="item-pic" style="--rc:${rc}" src="${it.p}" alt="">`:it.ic?`<img class="item-pic" style="--rc:${rc}" src="${ING_ICON[it.ic]}" alt="">`:`<span class="item-pic glyph" style="--rc:${rc}">${glyph(cat)}</span>`;
   const cost=[];if(it.cash)cost.push(`<span class="ichip cash"><b>${money(it.cash)}</b><span>DMZ Cash</span></span>`);else if(it.cu)cost.push('<span class="ichip cash"><span>Cash cost not known yet</span></span>');
   it.c.forEach(([n,q])=>cost.push(`<button type="button" class="ichip" data-ing="${esc(n)}"><img src="${ingIcon(n)}" alt=""><b>×${q}</b><span>${esc(n)}</span></button>`));
@@ -287,32 +302,45 @@ function openItem(it,cat){
   $('ingCard').querySelectorAll('.ing-x,.ing-x2').forEach(b=>b.onclick=close);dlg.onclick=e=>{if(e.target===dlg)close()};
   $('ingCard').querySelectorAll('.ichip[data-ing]').forEach(b=>b.onclick=()=>openIng(b.dataset.ing,()=>openItem(it,cat)));
 }
+/* recipe detail panel (right side of the Gear page) */
+function gearDetail(it,cat){
+  const rc=RAR[it.r]||'#6c6c6c',box=$('gDetail');if(!box)return openItem(it,cat);
+  const pic=it.p?`<img src="${it.p}" alt="">`:it.ic?`<img src="${ING_ICON[it.ic]}" alt="">`:`<span class="glyph">${glyph(cat)}</span>`;
+  const rows=it.c.map(([n,q])=>{const d=MAP_ING.find(x=>x.n===ingKey(n)),w=d&&d.w?d.w:'',m=d&&d.m.length;
+    return `<tr><td><button type="button" class="gd-ing" data-ing="${esc(n)}"><img src="${ingIcon(n)}" alt=""><span>${esc(n)}</span></button></td><td class="gd-q">${q}</td><td class="gd-w">${w?esc(w):'<span class="muted">No fixed location</span>'}${m?` <button type="button" class="gd-map" data-map="${esc(d.n)}">Show on map</button>`:''}</td></tr>`}).join('');
+  box.innerHTML=`<div class="gd-h"><span class="gd-pic" style="--rc:${rc}">${pic}</span><div class="gd-t"><h2>${esc(it.n)}</h2><div class="gd-tags"><span class="gd-cat">${esc(cat)}</span>${it.r?`<span class="gd-r" style="--rc:${rc}">${esc(it.r)}</span>`:''}</div>${it.d?`<p>${esc(it.d)}</p>`:''}</div>
+    <div class="gd-cost"><span>Crafting cost</span><b>${it.cash?money(it.cash):it.cu?'Not known yet':'None'}</b></div></div>
+    ${it.u?`<div class="gd-sec"><h3>How to unlock</h3><p>${esc(it.u.replace(/ to unlock$/,''))}</p></div>`:''}
+    <div class="gd-sec"><h3>Required ingredients</h3>${it.c.length?`<div class="gd-tw"><table class="gd-tab"><thead><tr><th>Ingredient</th><th>Quantity</th><th>Where to look</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="muted">Not revealed yet.</p>'}</div>`;
+  box.querySelectorAll('.gd-ing').forEach(b=>b.onclick=()=>openIng(b.dataset.ing));
+  box.querySelectorAll('.gd-map').forEach(b=>b.onclick=()=>{openView('map');mapShowIngredient(b.dataset.map)});
+}
 inits.gear=function(){
-  const box=$('gearMain');let cur=1,q='';
-  box.innerHTML=`<div class="res-strip">${RES.map(r=>`<span><img src="${ING_ICON[r]}" alt="">${r}</span>`).join('')}<em>Resources break down automatically as you loot and don't use Stash slots. Printer ingredients stay intact in your Backpack and must be extracted.</em></div>
-  <div class="gmenu"><nav class="gnav" aria-label="Crafting categories"></nav><section class="gpanel"><div class="g-search"><input id="gSearch" type="search" autocomplete="off" placeholder="Search recipes or ingredients" aria-label="Search recipes or ingredients"></div><div id="gList"></div></section></div>`;
+  const box=$('gearMain');let cur=0,q='',selK=null;
+  box.innerHTML=`<div class="gmenu"><nav class="gnav box" aria-label="Crafting categories"><h2 class="box-h">Recipe category</h2></nav><section class="gpanel box"><div class="g-search trk-search"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><input id="gSearch" type="search" autocomplete="off" placeholder="Search recipes or ingredients..." aria-label="Search recipes or ingredients"></div><div id="gList"></div></section><section class="gdetail box" id="gDetail" aria-live="polite"></section></div>
+  <div class="res-strip">${RES.map(r=>`<span><img src="${ING_ICON[r]}" alt="">${r}</span>`).join('')}<em>Resources break down automatically as you loot and don't use Stash slots. Printer ingredients stay intact in your Backpack and must be extracted.</em></div>`;
   const nav=box.querySelector('.gnav'),list=$('gList');
   const tile=(it,cat)=>{
-    const k=REG.push([it,cat])-1,rc=RAR[it.r]||'#6b6f66';
-    const pic=it.p?`<img src="${it.p}" alt="">`:it.ic?`<img src="${ING_ICON[it.ic]}" alt="">`:glyph(cat);
-    const needs=[];if(it.cash)needs.push(`<li><b>${money(it.cash)}</b> DMZ Cash</li>`);
-    it.c.forEach(([n,q])=>needs.push(`<li><img src="${ingIcon(n)}" alt=""><b>×${q}</b> ${esc(n)}</li>`));
-    if(it.cu)needs.push('<li class="none">Cash cost not known yet</li>');
-    return `<button type="button" class="tile3" style="--rc:${rc}" data-k="${k}"><span class="t3-pic">${pic}</span><span class="t3-body"><span class="t3-name">${esc(it.n)}</span>${it.r?`<span class="t3-tag">${esc(it.r)}</span>`:''}<ul class="t3-needs">${needs.length?needs.join(''):'<li class="none">Not revealed yet</li>'}</ul></span></button>`};
+    const k=REG.push([it,cat])-1,rc=RAR[it.r]||'#6c6c6c';
+    const pic=it.p?`<img src="${it.p}" alt="" loading="lazy">`:it.ic?`<img src="${ING_ICON[it.ic]}" alt="">`:glyph(cat);
+    return `<button type="button" class="tile3" style="--rc:${rc}" data-k="${k}" data-n="${esc(it.n)}"><span class="t3-pic">${pic}</span><span class="t3-name">${esc(it.n)}</span><span class="t3-tag">${esc(it.r||cat)}</span></button>`};
+  function pick(k,scroll){const [it,cat]=REG[k];selK=it.n;list.querySelectorAll('.tile3').forEach(b=>b.classList.toggle('sel',b.dataset.n===selK));gearDetail(it,cat);if(scroll&&matchMedia('(max-width:1100px)').matches)$('gDetail').scrollIntoView({behavior:'smooth',block:'start'})}
   function show(){
     REG.length=0;
-    nav.querySelectorAll('button').forEach((b,j)=>{b.classList.toggle('on',!q&&j===cur);b.setAttribute('aria-current',!q&&j===cur)});
+    nav.querySelectorAll('.gcat').forEach((b,j)=>{b.classList.toggle('on',!q&&j===cur);b.setAttribute('aria-current',!q&&j===cur)});
+    let head,tiles=[];
     if(q){
-      const t=q.toLowerCase(),out=[];
-      GEAR_REC.forEach(g=>g.r.forEach(it=>{if(it.n.toLowerCase().includes(t)||it.c.some(c=>c[0].toLowerCase().includes(t)))out.push(tile(it,g.c))}));
-      list.innerHTML=`<div class="box-head eyebrow">Search // ${out.length} result${out.length===1?'':'s'}</div>`+(out.length?`<div class="tiles">${out.join('')}</div>`:'<div class="box-note">Nothing matches that search.</div>');
-    }else{
-      const g=GEAR_REC[cur];
-      list.innerHTML=`<div class="box-head eyebrow">${esc(g.c)} // ${g.r.length} listed</div><div class="tiles">${g.r.map(it=>tile(it,g.c)).join('')}</div>`;
-    }
-    list.querySelectorAll('.tile3').forEach(b=>b.onclick=()=>{const [it,cat]=REG[+b.dataset.k];openItem(it,cat)});
+      const t=q.toLowerCase();
+      GEAR_REC.forEach(g=>g.r.forEach(it=>{if(it.n.toLowerCase().includes(t)||it.c.some(c=>c[0].toLowerCase().includes(t)))tiles.push(tile(it,g.c))}));
+      head=`Search (${tiles.length})`;
+    }else{const g=GEAR_REC[cur];tiles=g.r.map(it=>tile(it,g.c));head=`${esc(g.c)} (${g.r.length})`}
+    list.innerHTML=`<h2 class="box-h">${head}</h2>`+(tiles.length?`<div class="tiles">${tiles.join('')}</div>`:'<div class="box-note">Nothing matches that search.</div>');
+    list.querySelectorAll('.tile3').forEach(b=>b.onclick=()=>pick(+b.dataset.k,true));
+    const keep=[...list.querySelectorAll('.tile3')].find(b=>b.dataset.n===selK);
+    pick(keep?+keep.dataset.k:0,false);
+    if(!tiles.length)$('gDetail').innerHTML='';
   }
-  GEAR_REC.forEach((g,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=`<span>${esc(g.c)}</span><em>${g.r.length}</em>`;b.onclick=()=>{q='';$('gSearch').value='';cur=i;show()};nav.appendChild(b)});
+  GEAR_REC.forEach((g,i)=>{const b=document.createElement('button');b.type='button';b.className='gcat';b.innerHTML=`<span>${esc(g.c)}</span><em>${g.r.length}</em>`;b.onclick=()=>{q='';$('gSearch').value='';cur=i;selK=null;show()};nav.appendChild(b)});
   $('gSearch').addEventListener('input',e=>{q=e.target.value.trim();show()});
   show();
 };
@@ -326,7 +354,7 @@ inits.map=function(){
   const on=MAP_CATS.map(c=>PHONE?(c.g==='Places'&&c.k!=='Minor POI'):!c.off);
   const phoneStart=()=>{st.s=st.fit*2.2;st.x=vw/2-2150*st.s;st.y=vh/2-2250*st.s};   // phones: start zoomed in on Hajin rather than the whole picture with its empty edgesconst ingOn=new Set();
   const cnt=MAP_CATS.map((c,i)=>MAP_MK.filter(m=>m[2]===i).length);const radI=MAP_CATS.findIndex(c=>c.k==='radiation-zones');if(radI>=0)cnt[radI]+=MAP_ZONES.length;
-  const KEY_SVG="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='#14110a' stroke='#e8a848' stroke-width='2'/><g fill='none' stroke='#ffd27a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='13' r='4'/><path d='M15 16l9 9M20 21l3-3M23 24l3-3'/></g></svg>";
+  const KEY_SVG="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='#121212' stroke='#e3262d' stroke-width='2'/><g fill='none' stroke='#ff5a5f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='13' r='4'/><path d='M15 16l9 9M20 21l3-3M23 24l3-3'/></g></svg>";
   const KEY_IMG='data:image/svg+xml,'+encodeURIComponent(KEY_SVG);
   const KA=MAP_KEYS.areas,KE=MAP_KEYS.entries,keyOn=KA.map(()=>false);
   const kcnt=KA.map(a=>{const e=KE.filter(x=>x.a2===a);return a==='Police Stations'?5:e.length});
@@ -399,7 +427,7 @@ inits.map=function(){
   window.mapFocus=function(name){clearRoute();const hit=MAP_MK.find(k=>k[1].toLowerCase()===String(name).toLowerCase());if(!hit)return;const mm=byId[hit[0]];if(!mm)return;const s=Math.min(2.6,st.fit*2.6);st.s=s;st.x=vw/2-mm.x*s;st.y=vh/2-mm.y*s;place();selectMk(hit[0])};
   window.mapShowLayer=function(k){clearRoute();const ci=MAP_CATS.findIndex(c=>c.k===k);if(ci<0)return;on[ci]=true;vis();const ms=els.filter(x=>x.ci===ci);if(!ms.length)return;const xs=ms.map(x=>x.x),ys=ms.map(x=>x.y);const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;const span=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),500);st.s=Math.min(2.0,Math.max(st.fit,Math.min(vw,vh)/(span*1.15)));st.x=vw/2-cx*st.s;st.y=vh/2-cy*st.s;place();card.hidden=true};
   window.mapShowKey=function(name){clearRoute();const e=KE.find(x=>x.n===name);if(!e)return;const ai=KA.indexOf(e.a2);if(ai>=0){keyOn[ai]=true;vis()}const pin=els.find(x=>x.ci<0&&x.name===name);if(pin){st.s=Math.min(2.6,st.fit*2.6);st.x=vw/2-pin.x*st.s;st.y=vh/2-pin.y*st.s;place()}selectKey(e)};
-  let routes=[];const ROUTE_COLS=['#e8a848','#4cc9c0'];
+  let routes=[];const ROUTE_COLS=['#e3262d','#4cc9c0'];
   const chip=document.createElement('button');chip.type='button';chip.className='map-chip';chip.textContent='Clear route';chip.hidden=true;vp.appendChild(chip);
   function clearRoute(){routes.forEach(r=>{r.svg.remove();r.pins.forEach(p=>p.el.remove())});routes=[];const rc=document.getElementById('lgRuns');if(rc)rc.checked=false;chip.hidden=true}
   ['pointerdown','mousedown','touchstart','wheel','dblclick'].forEach(ev=>chip.addEventListener(ev,e=>e.stopPropagation()));
@@ -421,16 +449,16 @@ inits.map=function(){
   const runSpots=()=>LOOT_SPOTS.filter(s=>s.route);
   function runsSwitch(){
     const grp=[...rail.querySelectorAll('.lg-group')].find(g=>/^Loot/.test((g.querySelector('.lg-h')||{}).textContent||''));if(!grp)return;
-    const lab=document.createElement('label');lab.className='lg-row';lab.innerHTML=`<input type="checkbox" id="lgRuns"><span class="lg-sw" style="--c:#e8a848"><img src="about:blank#img:mk-route.webp" alt=""></span><span class="lg-l">Loot runs</span><em>${runSpots().length}</em>`;grp.appendChild(lab);
+    const lab=document.createElement('label');lab.className='lg-row';lab.innerHTML=`<input type="checkbox" id="lgRuns"><span class="lg-sw" style="--c:#e3262d"><img src="about:blank#img:mk-route.webp" alt=""></span><span class="lg-l">Loot runs</span><em>${runSpots().length}</em>`;grp.appendChild(lab);
     const cb=lab.querySelector('input');
     cb.onchange=()=>{if(cb.checked){clearRoute();runSpots().forEach((s,i)=>drawRoute(s,ROUTE_COLS[i%ROUTE_COLS.length]));fitRoutes();cb.checked=true}else clearRoute()};
   }
   runsSwitch();
   /* ---- my pins: private to the logged-in person, saved to their account ---- */
-  const PIN_COL={gold:'#e8a848',red:'#e0594a',green:'#4ade80',blue:'#4da3ff',purple:'#b57bff',white:'#f1ead5',orange:'#ff8a3d',cyan:'#22d3ee'};
+  const PIN_COL={gold:'#e3262d',red:'#e0594a',green:'#4ade80',blue:'#4da3ff',purple:'#b57bff',white:'#eaeaea',orange:'#ff8a3d',cyan:'#22d3ee'};
   const PIN_ICO={pin:'<path d="M12 21s6.500-5.700 6.500-11a6.500 6.500 0 0 0-13 0c0 5.300 6.500 11 6.500 11z"/><circle cx="12" cy="10" r="2.300"/>',star:'<path d="M12 3l2.800 5.800 6.200.9-4.500 4.400 1.100 6.200L12 17.400 6.400 20.300l1.100-6.200L3 9.700l6.200-.9z"/>',flag:'<path d="M6 3v18M6 4h11l-2.500 4L17 12H6"/>',skull:'<path d="M5 11a7 7 0 0 1 14 0c0 2.500-1.300 4.200-3 5.200V20H8v-3.800C6.300 15.200 5 13.500 5 11z"/><path d="M10.500 20v-2.500M13.500 20v-2.500"/><circle cx="9.500" cy="11" r="1.300"/><circle cx="14.500" cy="11" r="1.300"/>',loot:'<path d="M9 4h6l-1 3h-4zM8 7c-3 3-4 7-3 11 2 2.500 12 2.500 14 0 1-4 0-8-3-11"/><path d="M12 11v6M14.500 12.500c-1-1-5-1-5 .8s5 1.200 5 3-4 1.800-5 .8"/>',key:'<circle cx="8" cy="12" r="3.800"/><path d="M11.800 12H21M17 12v3.200M20 12v2.200"/>',door:'<path d="M7 21V4h10v17M4 21h16"/><circle cx="14.200" cy="12.500" r=".6"/>',target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.500"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>'};
   const pinSvg=(ic,col)=>`<svg viewBox="0 0 24 24" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PIN_ICO[ic]||PIN_ICO.pin}</svg>`;
-  const pinInk=c=>c==='white'?'#14130c':'#fff';
+  const pinInk=c=>c==='white'?'#131313':'#fff';
   let myPins=[],pinMode=null,pinsOn=true;
   const pchip=document.createElement('button');pchip.type='button';pchip.className='map-chip pin-chip';pchip.hidden=true;vp.appendChild(pchip);
   ['pointerdown','mousedown','touchstart','wheel','dblclick'].forEach(ev=>pchip.addEventListener(ev,e=>e.stopPropagation()));
@@ -485,7 +513,7 @@ inits.map=function(){
       <label class="acct-lab">Name<input id="pnName" maxlength="40" autocomplete="off" spellcheck="false" value="${esc(cur.name)}"></label>
       <label class="acct-lab">Note (optional)<textarea id="pnNote" maxlength="200" rows="3">${esc(cur.note)}</textarea></label>
       <div class="pn-row"><span>Colour</span><div class="pn-sw" role="radiogroup" aria-label="Colour">${Object.keys(PIN_COL).map(c=>`<button type="button" role="radio" aria-checked="${c===cur.color}" data-c="${c}" title="${c}" style="background:${PIN_COL[c]}"></button>`).join('')}</div></div>
-      <div class="pn-row"><span>Icon</span><div class="pn-ic" role="radiogroup" aria-label="Icon">${Object.keys(PIN_ICO).map(i=>`<button type="button" role="radio" aria-checked="${i===cur.icon}" data-i="${i}" title="${i}">${pinSvg(i,'#e6e2d4')}</button>`).join('')}</div></div>
+      <div class="pn-row"><span>Icon</span><div class="pn-ic" role="radiogroup" aria-label="Icon">${Object.keys(PIN_ICO).map(i=>`<button type="button" role="radio" aria-checked="${i===cur.icon}" data-i="${i}" title="${i}">${pinSvg(i,'#e3e3e3')}</button>`).join('')}</div></div>
       <div class="acct-btns"><button type="button" class="acct-b" data-x="cancel">Cancel</button><button type="button" class="acct-b primary" data-x="save">Save</button></div></div>`;
       d.style.pointerEvents='none';setTimeout(()=>{d.style.pointerEvents=''},450);   // the tap that opened this must not reach the buttons under the finger
       document.body.appendChild(d);const done=v=>{d.remove();res(v)};
@@ -561,111 +589,133 @@ const MAJOR={
 const art=r=>/^[AEIOUaeiou]/.test(r)?'an':'a';const tmoney=n=>'$'+n.toLocaleString('en-AU');
 const PRESTIGE=[PRESTIGE_DATA[0],PRESTIGE_DATA[1],PRESTIGE_DATA[2]].map((p,i)=>{const nx=i===2?PRESTIGE_DATA[3]:null;
   return {name:i===2?'Prestige III to X':'Prestige '+['I','II'][i],d:`Spend all 18 trait points. Hand in ${p.weapons} weapons with at least ${p.slots} attachment slots each, ${art(p.gear)} ${p.gear} Plate Carrier and Backpack, ${p.n_ing} ${p.ing} printer ingredients and ${tmoney(p.cash)} DMZ Cash. Reward: ${p.reward.charAt(0).toLowerCase()+p.reward.slice(1)}.${nx?' Prestige IV to X repeat these requirements. Reward: '+nx.reward.charAt(0).toLowerCase()+nx.reward.slice(1)+'.':''}`}});
-/* Measured hotspot centres on the 1372x1146 artwork, in percent. Rows run top (tier 8) to bottom (tier 1); root sits at the base. */
-const TREE_GEO={
- warfighter:{c:'#e65a55',x3:[9.48,15.0,20.5],x2:[9.48,20.5],root:15.0,label:'Warfighter'},
- scout:{c:'#e0ca32',x3:[39.0,44.5,50.0],x2:[39.0,50.0],root:44.5,label:'Scout'},
- survivalist:{c:'#55d4db',x3:[68.4,73.9,79.3],x2:[68.4,79.3],root:73.9,label:'Survivalist'}
-};
-const ROW_Y=[10.2,20.5,27.5,37.8,48.2,55.2,65.9,76.8],ROW_N=[2,3,3,2,3,3,2,3],ROOT_Y=87.3;
+/* ===== Trait tree builder (Nov 2026 layout): tabs, tier rows, detail panel, selected loadout =====
+   Rules: each tree has an opening trait and 8 tiers; one pick per tier; a tier needs the tier below it
+   in the same tree; 18 trait points across all trees. Minor and opening traits are chosen from the shared
+   minor list. Prestige traits unlock at 18 points and use no points. */
+const TREES=[['warfighter','Warfighter','Focused combat traits for high-intensity fights.'],['scout','Scout','Recon, looting and awareness traits.'],['survivalist','Survivalist','Healing, revive and staying-alive traits.']];
+const TIER_N={1:3,2:2,3:3,4:3,5:2,6:3,7:3,8:2};   // 2-option tiers hold the major traits
+const MAJ_ROW={2:'lower',5:'middle',8:'top'};
+const TR_IC={
+ warfighter:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h14l2-2h4v3h-3l-1 2H11l-1 3H7l1-3H4l-2-1z"/></svg>',
+ scout:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6.5" cy="15" r="4"/><circle cx="17.5" cy="15" r="4"/><path d="M10.5 15h3M4 11l2-6h3l1 6M20 11l-2-6h-3l-1 6"/></svg>',
+ survivalist:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 7v10M7 12h10"/></svg>',
+ prestige:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>'};
+const LOCK='<svg class="ic tlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const TICK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 inits.traits=function(){
-  const stage=$('trStage');
-  let sel={},order=[],assigned={};
-  const nodes=[];
-  Object.entries(TREE_GEO).forEach(([tree,g])=>{
-    const maj=MAJOR[tree];let minor=0;
-    ROW_N.forEach((n,row)=>{
-      const tier=8-row,xs=n===3?g.x3:g.x2;
-      const majorList=row===0?maj.top:row===3?maj.middle:row===6?maj.lower:null;
-      xs.forEach((x,i)=>{
-        const t=majorList?{name:majorList[i][0],d:majorList[i][1],kind:'Major trait'}:{name:'Unknown minor trait',d:'Minor trait. Click to choose one from this tree\'s minor traits.',kind:'Minor trait // '+String(++minor).padStart(2,'0')};
-        nodes.push(mk(tree,g,String(tier),i,x,ROW_Y[row],n===3?5.3:6.2,t));
-      });
-    });
-    nodes.push(mk(tree,g,'root',0,g.root,ROOT_Y,5.6,{name:'Opening trait',d:'Random opening trait. Click to choose one from this tree\'s minor traits.',kind:'Opening trait'}));
+  const app=$('trApp');
+  let tab='warfighter',focus=null,sel={},assigned={},prest=[null,null,null];
+  /* slot list: id "tree:tier:i"; tier 0 = opening trait */
+  const slots={};
+  TREES.forEach(([tree])=>{
+    slots[tree+':0:0']={tree,tier:0,i:0,kind:'Opening trait'};
+    for(let tier=1;tier<=8;tier++)for(let i=0;i<TIER_N[tier];i++){
+      const mr=MAJ_ROW[tier];slots[`${tree}:${tier}:${i}`]=mr?{tree,tier,i,kind:'Major trait',name:MAJOR[tree][mr][i][0],d:MAJOR[tree][mr][i][1]}:{tree,tier,i,kind:'Minor trait'};
+    }
   });
-  function mk(tree,g,tier,i,x,y,size,t){
-    const b=document.createElement('button');b.type='button';b.className='tnode';
-    Object.assign(b.dataset,{tree,tier,pick:tier+'-'+i});b.style.cssText=`left:${x}%;top:${y}%;width:${size}%;aspect-ratio:1;--c:${g.c}`;
-    b.setAttribute('aria-label',`${g.label}: ${t.name}. ${t.d}`);b._t=t;b._g=g;
-    const show=()=>showTip(b,`${(TD[t.name]||{}).ic?`<img class="tip-ic" src="${TD[t.name].ic}" alt="">`:''}<strong>${esc(t.name)}</strong><em>${g.label} // ${esc(t.kind)}</em><p>${esc(t.d)}</p><p>${esc(status(b))}</p>`,g.c);
-    b.addEventListener('mouseenter',show);b.addEventListener('focus',show);b.addEventListener('mouseleave',hideTip);b.addEventListener('blur',hideTip);
-    b.addEventListener('click',()=>{if(/^(Minor|Opening)/.test(t.kind))openMinor(b);else{choose(b);show()}});
-    stage.appendChild(b);return b;
-  }
-  const PRNODES=[];
-  PRESTIGE.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.className='tnode prest';b.style.cssText=`left:93.8%;top:${[37.1,51.9,66.8][i]}%;width:6.6%;aspect-ratio:.86`;
-    b.setAttribute('aria-label',p.name+'. '+p.d);PRNODES.push(b);
-    const show=()=>showTip(b,`<strong>${b._p?esc(b._p.n):p.name}</strong><em>Operator Prestige</em><p>${esc(b._p?b._p.d:p.d)}</p>${b._p?'<p>Requirements: '+esc(p.d)+'</p>':''}<p>${total()===18?'Trait tree complete. Requirements above apply.':'Locked: reach 18 traits first ('+total()+' / 18).'}</p><p>The Operator must not be MIA. Prestiging consumes the gear and cash and resets all Traits.</p>`,'#e8a848');
-    b.addEventListener('click',()=>openPrestige(i));b.addEventListener('mouseenter',show);b.addEventListener('focus',show);b.addEventListener('mouseleave',hideTip);b.addEventListener('blur',hideTip);stage.appendChild(b)});
+  const rowKey=s=>s.tree+':'+s.tier;
   const total=()=>Object.keys(sel).length;
-  const key=b=>b.dataset.tree+'-'+b.dataset.tier;
-  const prereq=b=>b.dataset.tier==='root'?null:b.dataset.tree+'-'+(b.dataset.tier==='1'?'root':(+b.dataset.tier-1));
-
-  const MINORS=TRAIT_MINOR;
-  function canPick(b){const k=key(b);if(sel[k]&&sel[k]!==b.dataset.pick){toast('One trait per row. Use Reset to start a new build.');return false}
-    const p=prereq(b);if(p&&!sel[p]){toast('Unlock the row below in this tree first.');return false}
-    if(!sel[k]&&total()>=18){toast('All 18 trait points are spent.');return false}return true}
-  function setMinor(b,tr){
-    const k=key(b);assigned[b.dataset.pick]=tr.id;
-    b._t={name:tr.n,d:tr.d,kind:b._t.kind};b.setAttribute('aria-label',`${b._g.label}: ${tr.n}. ${tr.d}`);
-    b.querySelector('.tn-ic')?.remove();b.insertAdjacentHTML('beforeend',tr.ic?`<img class="tn-ic" src="${tr.ic}" alt="">`:`<span class="tn-ic tn-txt">${esc(tr.n.slice(0,2))}</span>`);
-    if(sel[k]!==b.dataset.pick){sel[k]=b.dataset.pick;order.push(k)}paint();}
-  function openMinor(b){
-    if(!canPick(b))return;hideTip();
-    const g=b._g,tree=b.dataset.tree,used=new Set(Object.entries(assigned).filter(([p,id])=>p!==b.dataset.pick&&p.startsWith(tree+'-')||p.split('-')[0]===tree&&p!==b.dataset.pick).map(([p,id])=>id));
-    let dlg=document.getElementById('minorDlg');if(!dlg){dlg=document.createElement('div');dlg.id='minorDlg';dlg.className='ing-dlg minor-dlg';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');document.body.appendChild(dlg)}
-    const list=MINORS;
-    dlg.innerHTML=`<div class="ing-card minor-card" style="--c:${g.c}"><button type="button" class="ing-x" aria-label="Close">✕</button><div class="eyebrow">${esc(g.label)} // ${b.dataset.tier==='root'?'Opening trait':'Row '+esc(b.dataset.tier)}</div><h3 class="mc-h">${b.dataset.tier==='root'?'Choose your opening trait':'Choose a minor trait'}</h3><p class="mc-sub">Pick one. Every minor trait can appear in any tree. It takes this box and costs 1 trait point.</p><div class="mc-grid">${list.map(m=>`<button type="button" class="mc-t${assigned[b.dataset.pick]===m.id?' on':''}" data-id="${m.id}"${used.has(m.id)?' disabled':''}>${m.ic?`<img src="${m.ic}" alt="">`:'<i></i>'}<span><b>${esc(m.n)}</b><em>${used.has(m.id)?'Already chosen':''}</em><p>${esc(m.d)}</p></span></button>`).join('')}</div></div>`;
+  const treeCount=tr=>Object.keys(sel).filter(k=>k.startsWith(tr+':')).length;
+  const info=id=>{const s=slots[id];if(s.kind==='Major trait')return {name:s.name,d:s.d,ic:(TD[s.name]||{}).ic||''};const m=assigned[id]&&TRAIT_MINOR.find(x=>x.id===assigned[id]);return m?{name:m.n,d:m.d,ic:m.ic}:{name:s.kind==='Opening trait'?'Opening trait':'Minor trait',d:s.kind==='Opening trait'?'Your random opening trait. Choose which one you have from the minor traits.':'Choose which minor trait you have in this box from the minor traits.',ic:'',empty:true}};
+  function state(id){const s=slots[id],rk=rowKey(s);if(sel[rk]===id)return 'on';if(sel[rk])return 'taken';if(s.tier>0&&!sel[s.tree+':'+(s.tier-1)])return 'locked';if(total()>=18)return 'full';return 'open'}
+  const why={taken:'Another trait in this tier is already chosen.',locked:'Choose a trait in the tier below first.',full:'All 18 trait points are spent.'};
+  function pick(id){
+    const st=state(id);if(st==='on')return;if(st!=='open'){toast(why[st]);return}
+    const s=slots[id];if(s.kind!=='Major trait'&&!assigned[id]){openMinor(id);return}
+    sel[rowKey(s)]=id;paint();
+  }
+  function openMinor(id){
+    const s=slots[id],st=state(id);if(st!=='open'&&st!=='on'){toast(why[st]);return}
+    const used=new Set(Object.entries(assigned).filter(([k])=>k!==id&&k.startsWith(s.tree+':')).map(([,v])=>v));
+    let dlg=$('minorDlg');if(!dlg){dlg=document.createElement('div');dlg.id='minorDlg';dlg.className='ing-dlg minor-dlg';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');document.body.appendChild(dlg)}
+    const lab=TREES.find(x=>x[0]===s.tree)[1];
+    dlg.innerHTML=`<div class="ing-card minor-card" style="--c:var(--red)"><button type="button" class="ing-x" aria-label="Close">✕</button><div class="eyebrow">${esc(lab)} // ${s.tier?'Tier '+s.tier:'Opening trait'}</div><h3 class="mc-h">${s.tier?'Choose a minor trait':'Choose your opening trait'}</h3><p class="mc-sub">Pick the one you have. Every minor trait can appear in any tree. It takes this box and costs 1 trait point.</p><div class="mc-grid">${TRAIT_MINOR.map(m=>`<button type="button" class="mc-t${assigned[id]===m.id?' on':''}" data-id="${m.id}"${used.has(m.id)?' disabled':''}>${m.ic?`<img src="${m.ic}" alt="">`:'<i></i>'}<span><b>${esc(m.n)}</b><em>${used.has(m.id)?'Already chosen in this tree':''}</em><p>${esc(m.d)}</p></span></button>`).join('')}</div></div>`;
     dlg.hidden=false;const close=()=>{dlg.hidden=true};
     dlg.querySelector('.ing-x').onclick=close;dlg.onclick=e=>{if(e.target===dlg)close()};
-    dlg.querySelectorAll('.mc-t').forEach(x=>x.onclick=()=>{const tr=MINORS.find(m=>m.id===x.dataset.id);setMinor(b,tr);close()});
-    dlg.querySelector('.mc-t:not([disabled])')?.focus();
+    dlg.querySelectorAll('.mc-t').forEach(x=>x.onclick=()=>{assigned[id]=x.dataset.id;sel[rowKey(s)]=id;focus=id;close();paint()});
+    (dlg.querySelector('.mc-t.on')||dlg.querySelector('.mc-t:not([disabled])')).focus();
   }
-
-  function setPrestige(i,tr){const b=PRNODES[i];b._p=tr;b.setAttribute('aria-label',`${PRESTIGE[i].name}: ${tr.n}. ${tr.d}`);b.querySelector('.tn-ic')?.remove();b.insertAdjacentHTML('beforeend',`<img class="tn-ic" src="${tr.ic}" alt="">`);b.classList.add('on')}
   function openPrestige(i){
-    hideTip();const used=new Set(PRNODES.filter((n,j)=>j!==i&&n._p).map(n=>n._p.id));
-    let dlg=document.getElementById('prestDlg');if(!dlg){dlg=document.createElement('div');dlg.id='prestDlg';dlg.className='ing-dlg minor-dlg';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');document.body.appendChild(dlg)}
-    const TREES=[['warfighter','Warfighter','var(--war,#e0594a)'],['scout','Scout','var(--scout,#e2c04a)'],['survivalist','Survivalist','var(--surv,#4cc3d9)']];
-    dlg.innerHTML=`<div class="ing-card minor-card" style="--c:var(--gold)"><button type="button" class="ing-x" aria-label="Close">✕</button><div class="eyebrow">${esc(PRESTIGE[i].name)}</div><h3 class="mc-h">Choose a prestige trait</h3><p class="mc-sub">${esc(PRESTIGE[i].d)}</p><p class="mc-sub">Prestige traits are permanent and do not use trait points.</p><div class="mc-grid">${TREES.map(([k,l,c])=>`<div class="mc-sec" style="--c:${c}">${l}</div>`+PRESTIGE_TRAITS.filter(x=>x.tree===k).map(x=>`<button type="button" class="mc-t${PRNODES[i]._p&&PRNODES[i]._p.id===x.id?' on':''}" style="--c:${c}" data-id="${x.id}"${used.has(x.id)?' disabled':''}><img src="${x.ic}" alt=""><span><b>${esc(x.n)}</b><em>${used.has(x.id)?'Already chosen':''}</em><p>${esc(x.d)}</p></span></button>`).join('')).join('')}</div></div>`;
+    if(total()<18){toast('Prestige unlocks when all 18 trait points are spent.');return}
+    const used=new Set(prest.filter((p,j)=>p&&j!==i).map(p=>p.id));
+    let dlg=$('prestDlg');if(!dlg){dlg=document.createElement('div');dlg.id='prestDlg';dlg.className='ing-dlg minor-dlg';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');document.body.appendChild(dlg)}
+    dlg.innerHTML=`<div class="ing-card minor-card" style="--c:var(--red)"><button type="button" class="ing-x" aria-label="Close">✕</button><div class="eyebrow">${esc(PRESTIGE[i].name)}</div><h3 class="mc-h">Choose a prestige trait</h3><p class="mc-sub">Prestige traits are permanent and do not use trait points.</p><div class="mc-grid">${TREES.map(([k,l])=>`<div class="mc-sec">${l}</div>`+PRESTIGE_TRAITS.filter(x=>x.tree===k).map(x=>`<button type="button" class="mc-t${prest[i]&&prest[i].id===x.id?' on':''}" data-id="${x.id}"${used.has(x.id)?' disabled':''}><img src="${x.ic}" alt=""><span><b>${esc(x.n)}</b><em>${used.has(x.id)?'Already chosen':''}</em><p>${esc(x.d)}</p></span></button>`).join('')).join('')}</div></div>`;
     dlg.hidden=false;const close=()=>{dlg.hidden=true};
     dlg.querySelector('.ing-x').onclick=close;dlg.onclick=e=>{if(e.target===dlg)close()};
-    dlg.querySelectorAll('.mc-t').forEach(x=>x.onclick=()=>{setPrestige(i,PRESTIGE_TRAITS.find(p=>p.id===x.dataset.id));close()});
-    dlg.querySelector('.mc-t:not([disabled])')?.focus();
+    dlg.querySelectorAll('.mc-t').forEach(x=>x.onclick=()=>{prest[i]=PRESTIGE_TRAITS.find(p=>p.id===x.dataset.id);close();paint()});
+    (dlg.querySelector('.mc-t:not([disabled])')||dlg.querySelector('.mc-t')).focus();
   }
-  function status(b){const k=key(b);if(sel[k]===b.dataset.pick)return'Selected.';if(sel[k])return'Locked: another trait in this row was chosen.';const p=prereq(b);if(p&&!sel[p])return'Unlock the row below first.';if(total()>=18)return'All 18 trait points spent.';return'Click to select.'}
-  function choose(b){const k=key(b);if(sel[k]){if(sel[k]!==b.dataset.pick)toast('One trait per row. Use Reset to start a new build.');return}
-    const p=prereq(b);if(p&&!sel[p]){toast('Unlock the row below in this tree first.');return}
-    if(total()>=18){toast('All 18 trait points are spent.');return}
-    sel[k]=b.dataset.pick;order.push(k);paint()}
+  const boxHTML=id=>{const st=state(id),f=info(id);return `<button type="button" class="tbox ${st}${focus===id?' focus':''}" data-id="${id}" aria-pressed="${st==='on'}"><span class="tb-ic">${f.ic?`<img src="${f.ic}" alt="">`:'<i>?</i>'}</span><span class="tb-n">${esc(f.name)}</span><span class="tb-st">${st==='on'?`<span class="tb-chk">${TICK}</span>`:st==='locked'||st==='full'?LOCK:st==='taken'?'':'<span class="tb-chk"></span>'}</span></button>`};
+  function treeHTML(tr){
+    const [k,l,d]=TREES.find(x=>x[0]===tr);let rows='';
+    for(let tier=8;tier>=0;tier--){const n=tier?TIER_N[tier]:1,lab=tier?('Tier '+tier+(MAJ_ROW[tier]?' (Major)':' (Minor)')):'Opening';
+      rows+=`<div class="trow${tier&&MAJ_ROW[tier]?' major':''}"><span class="tr-lab">${lab}</span><div class="tr-opts n${n}">${Array.from({length:n},(_,i)=>boxHTML(`${k}:${tier}:${i}`)).join('')}</div></div>`}
+    return `<div class="tt-h"><h2>${esc(l)} tree</h2><p>${esc(d)} Build from the bottom up: one trait per tier.</p><div class="tt-pts"><span>Traits in this tree</span><b>${treeCount(k)} / 9</b><div class="trk-bar sm"><i style="width:${100*treeCount(k)/9}%"></i></div></div></div>
+      <div class="tt-rows">${rows}</div>
+      <div class="tt-leg"><span><span class="tb-chk on">${TICK}</span>Selected</span><span><span class="tb-chk"></span>Available</span><span>${LOCK}Locked (tier below not chosen)</span></div>`;
+  }
+  function prestigeHTML(){
+    const n=total();
+    return `<div class="tt-h"><h2>Prestige</h2><p>Spend all 18 trait points to unlock Prestige. Each Prestige adds one permanent trait that does not use trait points.</p><div class="tt-pts"><span>Trait points spent</span><b>${n} / 18</b><div class="trk-bar sm"><i style="width:${100*n/18}%"></i></div></div></div>
+      <div class="pr-list">${PRESTIGE.map((p,i)=>`<div class="pr-card${n<18?' locked':''}${prest[i]?' on':''}"><div class="pr-h"><h3>${esc(p.name)}</h3>${n<18?LOCK:''}</div>${prest[i]?`<div class="pr-pick"><img src="${prest[i].ic}" alt=""><div><b>${esc(prest[i].n)}</b><p>${esc(prest[i].d)}</p></div></div>`:''}<p class="pr-req"><b>Requirements:</b> ${esc(p.d)}</p><button type="button" class="pr-go" data-p="${i}">${prest[i]?'Change trait':'Choose prestige trait'}</button></div>`).join('')}</div>
+      <p class="up-hint">The Operator must not be MIA. Prestiging uses up the gear and cash and resets all traits.</p>`;
+  }
+  function detailHTML(){
+    if(tab==='prestige')return `<div class="td-h"><span class="td-ic">${TR_IC.prestige}</span><div><h2>Prestige</h2><span class="td-tag">Permanent traits</span></div></div><p class="td-d">Prestige traits stay with your Operator through every reset. Pick one for each Prestige you reach.</p>`;
+    const id=focus&&slots[focus]&&slots[focus].tree===tab?focus:null;
+    if(!id)return `<div class="td-h"><span class="td-ic">${TR_IC[tab]}</span><div><h2>Pick a trait</h2></div></div><p class="td-d">Select any box in the tree to see what it does and whether you can take it.</p>`;
+    const s=slots[id],f=info(id),st=state(id),below=s.tier>0?sel[s.tree+':'+(s.tier-1)]:true;
+    const req=[[s.tier?'Trait chosen in tier '+(s.tier-1||'Opening').toString().replace(/^0$/,'Opening'):'No tier below needed',!!below],['A free trait point ('+(18-total())+' left)',total()<18||st==='on'],['No other trait in this tier',st!=='taken']];
+    if(s.tier===1)req[0][0]='Opening trait chosen';
+    const isMinor=s.kind!=='Major trait';
+    return `<div class="td-h"><span class="td-ic">${f.ic?`<img src="${f.ic}" alt="">`:TR_IC[s.tree]}</span><div><h2>${esc(f.name)}</h2><span class="td-tag">${esc(s.kind)}${s.tier?' // Tier '+s.tier:''}</span></div></div>
+      <p class="td-d">${esc(f.d)}</p>
+      <h3 class="td-sh">Requirements</h3><ul class="td-req">${req.map(([t,ok])=>`<li class="${ok?'ok':''}"><span class="tb-chk${ok?' on':''}">${ok?TICK:''}</span>${esc(t)}</li>`).join('')}</ul>
+      ${st==='on'?(isMinor?'<button type="button" class="td-go ghost" id="tdChange">Change minor trait</button>':'<div class="td-done">✓ Selected</div>'):`<button type="button" class="td-go" id="tdGo"${st!=='open'?' disabled':''}>${isMinor&&!assigned[id]?'Choose trait':'Select trait'}</button>`}`;
+  }
+  function loadoutHTML(){
+    const picks=[];TREES.forEach(([k])=>{for(let tier=0;tier<=8;tier++){const id=sel[k+':'+tier];if(id)picks.push(id)}});
+    return `<div class="tl-h"><h3>Selected loadout</h3><b>${total()} / 18 traits</b></div>${picks.length?`<div class="tl-chips">${picks.map(id=>{const f=info(id);return `<button type="button" class="tl-chip" data-id="${id}">${f.ic?`<img src="${f.ic}" alt="">`:''}<span>${esc(f.name)}</span></button>`}).join('')}${prest.filter(Boolean).map(p=>`<span class="tl-chip pr"><img src="${p.ic}" alt=""><span>${esc(p.n)}</span></span>`).join('')}</div>`:'<p class="up-hint">No traits chosen yet.</p>'}`;
+  }
   function paint(){
-    nodes.forEach(b=>{const k=key(b),s=sel[k],p=prereq(b);b.classList.toggle('selected',s===b.dataset.pick);b.classList.toggle('blocked',!!s&&s!==b.dataset.pick);b.classList.toggle('next',!s&&(!p||!!sel[p])&&total()<18);b.setAttribute('aria-pressed',String(s===b.dataset.pick))});
-    Object.keys(TREE_GEO).forEach(t=>$('cnt-'+t).textContent=Object.keys(sel).filter(k=>k.startsWith(t+'-')).length+'/9');
+    const tabs=TREES.map(([k,l])=>[k,l,treeCount(k)+'/9']).concat([['prestige','Prestige',prest.filter(Boolean).length+'/3']]);
+    $('trTabs2').innerHTML=tabs.map(([k,l,c])=>`<button type="button" role="tab" class="ttab${k===tab?' on':''}" data-t="${k}" aria-selected="${k===tab}">${TR_IC[k]}<span>${l}</span><em>${c}</em></button>`).join('');
+    $('trTree').innerHTML=tab==='prestige'?prestigeHTML():treeHTML(tab);
+    $('trDetail').innerHTML=detailHTML();$('trLoadout').innerHTML=loadoutHTML();
+    TREES.forEach(([k])=>{const e=$('cnt-'+k);if(e)e.textContent=treeCount(k)+'/9'});
     const n=total();$('trTotal').textContent=n+' / 18';$('trPrestige').textContent=n===18?'Prestige ready':(18-n)+' points left';
+    $('trTabs2').querySelectorAll('.ttab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;focus=null;paint()});
+    $('trTree').querySelectorAll('.tbox').forEach(b=>b.onclick=()=>{focus=b.dataset.id;const st=state(focus);if(st==='open'||(st==='on'&&slots[focus].kind!=='Major trait'))pick(focus);paint();if(matchMedia('(max-width:1100px)').matches&&state(focus)!=='on')$('trDetail').scrollIntoView({behavior:'smooth',block:'nearest'})});
+    $('trTree').querySelectorAll('.pr-go').forEach(b=>b.onclick=()=>openPrestige(+b.dataset.p));
+    const go=$('tdGo');if(go)go.onclick=()=>pick(focus);const ch=$('tdChange');if(ch)ch.onclick=()=>openMinor(focus);
+    $('trLoadout').querySelectorAll('.tl-chip[data-id]').forEach(b=>b.onclick=()=>{focus=b.dataset.id;tab=slots[focus].tree;paint()});
   }
-  $('trReset').onclick=()=>{sel={};order=[];assigned={};PRNODES.forEach(b=>{b._p=null;b.classList.remove('on');b.querySelector('.tn-ic')?.remove();b.setAttribute('aria-label',PRESTIGE[PRNODES.indexOf(b)].name+'. '+PRESTIGE[PRNODES.indexOf(b)].d)});nodes.forEach(n=>{if(n._t&&n._t.kind&&/^(Minor|Opening)/.test(n._t.kind)){n.querySelector('.tn-ic')?.remove();n._t={name:n._t.kind.startsWith('Opening')?'Opening trait':'Unknown minor trait',d:n._t.kind.startsWith('Opening')?'Random opening trait. Click to choose one from this tree\'s minor traits.':'Minor trait. Click to choose one from this tree\'s minor traits.',kind:n._t.kind};n.setAttribute('aria-label',`${n._g.label}: ${n._t.name}. ${n._t.d}`)}});paint();hideTip();toast('Trait build reset.')};
-  stage.addEventListener('scroll',hideTip);
+  $('trReset').onclick=()=>{if(total()&&!confirm('Clear your whole trait build?'))return;sel={};assigned={};prest=[null,null,null];focus=null;paint();toast('Trait build reset.')};
   paint();
 };
-/* phones: the tree picture is shown large and these tabs jump between the four trees */
-(function(){
-  const tabs=document.getElementById('trTabs');if(!tabs)return;
-  const body=()=>document.querySelector('#screen-traits .tr-body'),stage=()=>document.getElementById('trStage');
-  const btns=[...tabs.querySelectorAll('button')];
-  function go(b,smooth){const bd=body(),st=stage();if(!bd||!st)return;const x=st.offsetWidth*(+b.dataset.x)/100-bd.clientWidth/2;bd.scrollTo({left:Math.max(0,x),behavior:smooth?'smooth':'auto'});btns.forEach(o=>{o.classList.toggle('on',o===b);o.setAttribute('aria-selected',o===b)})}
-  btns.forEach(b=>{b.setAttribute('role','tab');b.onclick=()=>go(b,true)});
-  let t=0;document.addEventListener('scroll',e=>{if(e.target!==body())return;clearTimeout(t);t=setTimeout(()=>{const bd=body(),st=stage();const mid=(bd.scrollLeft+bd.clientWidth/2)/st.offsetWidth*100;let best=btns[0];btns.forEach(b=>{if(Math.abs(+b.dataset.x-mid)<Math.abs(+best.dataset.x-mid))best=b});btns.forEach(o=>{o.classList.toggle('on',o===best);o.setAttribute('aria-selected',o===best)})},80)},true);
-  window.trTabsReset=()=>{if(getComputedStyle(tabs).display!=='none'){const on=btns.find(b=>b.classList.contains('on'))||btns[0];requestAnimationFrame(()=>go(on,false))}};
-})();
+window.trTabsReset=function(){};
 
-/* ===== DYNAMIC OPS ===== */
+/* ===== DYNAMIC OPS: list on the left, the selected op on the right ===== */
 inits.dynops=function(){
-  $('dopRules').innerHTML='<div class="box-head eyebrow">How it works</div><dl class="dop-dl">'+DYN_RULES.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')+'</dl>';
-  $('dopGrid').innerHTML=DYN_OPS.map((o,i)=>`<article class="dop"><button type="button" class="dop-h" aria-expanded="false" data-i="${i}"><span class="dop-n">${esc(o.n)}</span><span class="dop-t">${esc(o.t)}</span><span class="dop-c"><b>$10,000–20,000</b> cash</span><span class="dop-x" aria-hidden="true">▾</span></button>
-    <div class="dop-b" hidden><dl class="dop-m"><div><dt>How to start</dt><dd>${esc(o.start)}</dd></div>${o.xp?`<div><dt>XP seen</dt><dd>${esc(o.xp)}</dd></div>`:''}${o.v?`<div><dt>Variants</dt><dd>${esc(o.v)}</dd></div>`:''}</dl>
-    ${o.s.length?`<div class="sub-h">Objectives</div><ol class="dop-s">${o.s.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}${o.d?`<div class="sub-h">Good to know</div><p class="dop-p">${esc(o.d)}</p>`:''}</div></article>`).join('');
-  $('dopGrid').querySelectorAll('.dop-h').forEach(b=>b.onclick=()=>{const body=b.nextElementSibling,o=body.hidden;body.hidden=!o;b.setAttribute('aria-expanded',String(o));b.classList.toggle('open',o)});
+  $('dopRules').innerHTML='<h2 class="box-h">How it works</h2><dl class="dop-dl">'+DYN_RULES.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')+'</dl>';
+  let sel=0,q='';
+  const box=$('dopGrid');
+  box.innerHTML=`<section class="box dop-list"><div class="dop-lh"><h2 class="box-h">Operations (${DYN_OPS.length})</h2><label class="trk-search"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><input type="search" id="dopQ" placeholder="Search operations..." aria-label="Search operations"></label></div><div class="dop-cards" id="dopCards"></div></section><section class="box dop-det" id="dopDet" aria-live="polite"></section>`;
+  const ICON=(window.UI_ICONS||{}).dynops||'';
+  function cards(){
+    const nq=q.trim().toLowerCase(),L=DYN_OPS.map((o,i)=>[o,i]).filter(([o])=>!nq||(o.n+' '+o.t+' '+o.s.join(' ')).toLowerCase().includes(nq));
+    $('dopCards').innerHTML=L.length?L.map(([o,i])=>`<button type="button" class="dop-card${i===sel?' on':''}" data-i="${i}" aria-pressed="${i===sel}"><span class="dpc-ic">${ICON}</span><span class="dpc-t"><b>${esc(o.n)}</b><small>${esc(o.t)}</small></span><span class="dpc-c"><span>Cash</span><b>$10,000–20,000</b></span><span class="dpc-go">View details ›</span></button>`).join(''):'<p class="up-empty">No operations match that search.</p>';
+    $('dopCards').querySelectorAll('.dop-card').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;cards();det();if(matchMedia('(max-width:1100px)').matches)$('dopDet').scrollIntoView({behavior:'smooth',block:'start'})});
+  }
+  function det(){
+    const o=DYN_OPS[sel];
+    $('dopDet').innerHTML=`<div class="dpd-h"><span class="dpc-ic big">${ICON}</span><h2>${esc(o.n)}</h2><span class="dpd-tag">Operation</span></div><p class="dpd-t">${esc(o.t)}</p>
+      <div class="dpd-cols"><div class="dpd-obj">${o.s.length?`<h3>Objectives</h3><ol class="bsd-steps">${o.s.map((s,i)=>`<li><span class="bsd-n">${i+1}</span><p>${esc(s)}</p></li>`).join('')}</ol>`:''}${o.v?`<h3>Variants</h3><p>${esc(o.v)}</p>`:''}</div>
+      <div class="dpd-side"><div class="bsd-box"><h3>How to start</h3><p>${esc(o.start)}</p></div><div class="bsd-box"><h3>Rewards</h3><p><b class="dpd-cash">$10,000–20,000</b> DMZ Cash</p>${o.xp?`<p>XP seen: ${esc(o.xp)}</p>`:''}</div>${o.d?`<div class="bsd-box"><h3>Good to know</h3><p>${esc(o.d)}</p></div>`:''}</div></div>`;
+  }
+  $('dopQ').oninput=e=>{q=e.target.value;cards()};
+  cards();det();
 };
 
 /* ===== LOOT HOT SPOTS ===== */
@@ -682,24 +732,28 @@ function copyLink(url){
   function fallback(){const t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){toast(url)}t.remove()}
 }
 let lootFilter='All';
+const LOOT_COVER={'irradiated-items':'about:blank#img:cover-irradiated-items.webp','river-heights':'about:blank#img:cover-river-heights.webp','bunker-route':'about:blank#img:cover-bunker-route.webp','hanex-bank-vault':'about:blank#img:cover-hanex-bank-vault.webp','deadtown-waterfront-run':'about:blank#img:cover-deadtown-waterfront-run.webp'};
+const lootCard=(x,on)=>`<li><a class="lc-card${on?' on':''}" href="/loot/${x.id}/" data-go="${x.id}"${on?' aria-current="page"':''}><span class="lc-img">${LOOT_COVER[x.id]?`<img src="${LOOT_COVER[x.id]}" alt="" loading="lazy">`:''}</span><span class="lc-t"><strong>${esc(x.name)}</strong><span class="lc-m">${esc(x.place)}</span><span class="lc-tag">${esc(x.type)}</span><span class="lc-d">${esc(x.summary)}</span></span></a></li>`;
 window.lootShow=function(arg){
   const main=$('lootMain'),s=LOOT_SPOTS.find(x=>x.id===arg);
   $('lootSub').textContent=s?s.place:'Guides to the best places to loot';
   if(!s){
     const types=['All',...new Set(LOOT_SPOTS.map(x=>x.type))];
     const list=LOOT_SPOTS.filter(x=>lootFilter==='All'||x.type===lootFilter);
-    main.innerHTML=`<section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Loot Hot Spots</h1><p>Where to go for the best loot, and how to get in. Pick a hot spot for the full walkthrough.</p></section><div class="lt-chips" role="group" aria-label="Guide type">${types.map(t=>`<button type="button" class="lt-chip${t===lootFilter?' on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div><ul class="lt-cards">${list.map(x=>`<li><a class="lt-card" href="/loot/${x.id}/" data-go="${x.id}"><span class="lr-t">${esc(x.type)} // ${esc(x.place)}</span><strong>${esc(x.name)}</strong><span class="lr-d">${esc(x.summary)}</span><span class="lr-go">View</span></a></li>`).join('')}</ul><p class="lt-note">Know a hot spot or have a guide? Submit it in our Discord: discord.gg/nomadoce</p>`;
+    main.innerHTML=`<section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Loot Hot Spots</h1><p>Where to go for the best loot, and how to get in. Pick a hot spot for the full walkthrough.</p></section><div class="lt-chips" role="group" aria-label="Guide type">${types.map(t=>`<button type="button" class="lt-chip${t===lootFilter?' on':''}" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</div><ul class="lc-grid">${list.map(x=>lootCard(x,false)).join('')}</ul><p class="lt-note">Know a hot spot or have a guide? Submit it in our Discord: discord.gg/nomadoce</p>`;
     main.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openView('loot/'+b.dataset.go)}));
     main.querySelectorAll('.lt-chip').forEach(b=>b.onclick=()=>{lootFilter=b.dataset.t;lootShow()});return}
   const url=SITE_URL+'/loot/'+s.id+'/';
   const fig=(im)=>im?`<figure class="lt-fig"><img class="lt-img" src="${im.src}" alt="${esc(im.alt)}" loading="lazy"><figcaption>${esc(im.cap)}</figcaption></figure>`:'';
-  main.innerHTML=`<section class="gear-hero"><div class="eyebrow">${esc(s.type)} // ${esc(s.place)}</div><h1>${esc(s.name)}</h1><p>${esc(s.intro)}</p><div class="lt-actions">${s.map?'<button type="button" class="lt-btn" id="ltMap">Show on map</button>':''}<button type="button" class="lt-btn" id="ltCopy">Copy link</button>${navigator.share?'<button type="button" class="lt-btn" id="ltShare">Share</button>':''}<button type="button" class="lt-btn ghost" id="ltAll">All hot spots</button></div></section>
+  main.innerHTML=`<ul class="lc-strip" aria-label="All hot spots">${LOOT_SPOTS.map(x=>lootCard(x,x.id===s.id)).join('')}</ul>
+    <section class="lt-guide box">${LOOT_COVER[s.id]?`<div class="lt-cover"><img src="${LOOT_COVER[s.id]}" alt=""></div>`:''}<section class="gear-hero"><div class="eyebrow">${esc(s.type)} // ${esc(s.place)}</div><h1>${esc(s.name)}</h1><p>${esc(s.intro)}</p><div class="lt-actions">${s.map?'<button type="button" class="lt-btn" id="ltMap">Show on map</button>':''}<button type="button" class="lt-btn" id="ltCopy">Copy link</button>${navigator.share?'<button type="button" class="lt-btn" id="ltShare">Share</button>':''}<button type="button" class="lt-btn ghost" id="ltAll">All hot spots</button></div></section>
     ${fig(s.hero)}
     ${s.find.length?`<div class="box lt-find"><div class="box-head eyebrow">What you can find</div><ul>${s.find.map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div>`:''}
     <ol class="lt-steps">${s.steps.map((st,i)=>`<li class="lt-step"><span class="lt-num">${String(i+1).padStart(2,'0')}</span><div><h3>${esc(st.h)}</h3><p>${esc(st.p)}</p>${fig(st.img)}</div></li>`).join('')}</ol>
     ${s.tip?`<div class="box lt-tip"><div class="box-head eyebrow">Tip</div><p>${esc(s.tip)}</p></div>`:''}
     <div class="lt-share"><span>Share this guide</span><code>${esc(url)}</code><button type="button" class="lt-btn" id="ltCopy2">Copy link</button></div>
-    <p class="lt-note">Know a hot spot or have a guide? Submit it in our Discord: discord.gg/nomadoce</p>`;
+    <p class="lt-note">Know a hot spot or have a guide? Submit it in our Discord: discord.gg/nomadoce</p></section>`;
+  main.querySelectorAll('.lc-strip [data-go]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();openView('loot/'+b.dataset.go)}));
   const all=$('ltAll');if(all)all.onclick=()=>openView('loot');
   const mp=$('ltMap');if(mp)mp.onclick=()=>{openView('map');requestAnimationFrame(()=>{if(s.route){window.mapShowRoute&&mapShowRoute(s)}else if(String(s.map).startsWith('layer:')){window.mapShowLayer&&mapShowLayer(s.map.slice(6))}else{window.mapFocus&&mapFocus(s.map)}})};
   ['ltCopy','ltCopy2'].forEach(i=>{const b=$(i);if(b)b.onclick=()=>copyLink(url)});
@@ -755,7 +809,7 @@ inits.loot=function(){};
   function paintTotals(){
     const t=totals(),items=Object.entries(t.items).filter(e=>e[1]>0).sort((a,b)=>b[1]-a[1]);
     const total=UPG.length,dn=LINES.reduce((s,L)=>s+done(L),0);
-    $('upDone').textContent=dn+' / '+total;$('upBar').style.width=(100*dn/total)+'%';$('upStat').textContent=dn;
+    $('upDone').textContent=dn+' / '+total;$('upBar').style.width=(100*dn/total)+'%';$('upStat').textContent=dn;if($('upPct'))$('upPct').textContent=Math.round(100*dn/total)+'%';paintLines();
     $('upNeed').innerHTML=(items.length||t.cash)?`<div class="up-need-list">${t.cash?`<button type="button" class="up-chip cash" data-n="DMZ Cash"><b>$${nfmt(t.cash)}</b> DMZ Cash</button>`:''}${items.map(([n,q])=>`<button type="button" class="up-chip" data-n="${esc(n)}"><img src="${ingIcon(n)}" alt=""><b>${nfmt(q)}</b> ${esc(n)}</button>`).join('')}</div>`:'<p class="up-empty">Everything for your current upgrades is collected.</p>';bindChips()}
   function paintCard(L,card){
     const d=done(L),t=L.tiers[d];if(!t)return;const rs=reqs(t);let ready=0;
@@ -772,7 +826,22 @@ inits.loot=function(){};
       ${t.d?`<p class="up-eff">${esc(t.d)}</p>`:''}${chips}
       <div class="up-reqs">${rs.map((r,k)=>{const step=r.cash?(r.need>=100000?10000:1000):1;return `<div class="up-req" data-r="${k}"><div class="up-rn">${r.cash?'<span class="up-cash-ic">$</span>':`<img src="${ingIcon(r.m)}" alt="">`}<span>${esc(r.m)}</span><em>need ${nfmt(r.need)}</em></div>${(()=>{const o=r.cash?[]:sharedWith(L,r.m);return o.length?`<p class="up-share">Same count as ${esc(o.join(', '))}</p>`:''})()}<div class="up-ctl"><button type="button" class="up-step" data-d="-${step}" aria-label="Less ${esc(r.m)}">−</button><input type="text" inputmode="numeric" value="${nfmt(haveOf(t,r.m))}" aria-label="${esc(r.m)} you have" data-m="${esc(r.m)}"><button type="button" class="up-step" data-d="${step}" aria-label="More ${esc(r.m)}">+</button></div><div class="up-bar"><i></i></div></div>`}).join('')}${t.cu?'<p class="up-unk">Cash cost not known yet.</p>':''}${rs.length?'':'<p class="up-unk">No materials listed.</p>'}</div>
       <div class="up-foot"><span class="up-ready"></span><button type="button" class="up-go">Mark complete</button></div></article>`}
+  /* the list of upgrade lines on the left; the selected one shows in full on the right */
+  let sel=-1;
+  const CHEV='<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  function paintLines(){
+    const box=$('upLines');if(!box)return;
+    box.innerHTML=LINES.map((L,i)=>{const d=done(L),n=L.tiers.length,t=L.tiers[Math.min(d,n-1)],all=d>=n;
+      return `<button type="button" class="up-line${i===sel?' sel':''}${all?' complete':''}" data-l="${i}" role="listitem" aria-current="${i===sel}"><span class="ul-ic">${L.tiers[0].p?`<img src="${L.tiers[0].p}" alt="">`:''}</span><span class="ul-t"><b>${esc(lineName(L))}</b><small>${esc((L.tiers[0].d||'').split('. ')[0].replace(/\.$/,''))}</small></span><span class="ul-tier">${all?'Done':'Tier '+(d+1)+' / '+n}</span><span class="ul-p"><span class="ul-pl"><span>${all?'All tiers complete':esc(t.n)}</span><span>${d} / ${n} done</span></span><span class="trk-bar sm"><i style="width:${100*d/n}%"></i></span></span>${CHEV}</button>`}).join('');
+    box.querySelectorAll('.up-line').forEach(b=>b.onclick=()=>{sel=+b.dataset.l;showSel(true)});
+  }
+  function showSel(scroll){
+    document.querySelectorAll('#upGrid .up-card').forEach(c=>c.classList.toggle('sel',+c.dataset.l===sel));
+    document.querySelectorAll('#upLines .up-line').forEach(b=>{const on=+b.dataset.l===sel;b.classList.toggle('sel',on);b.setAttribute('aria-current',on)});
+    if(scroll&&matchMedia('(max-width:980px)').matches){const c=document.querySelector('#upGrid .up-card.sel');if(c)c.scrollIntoView({behavior:'smooth',block:'start'})}
+  }
   function render(){
+    if(sel<0){sel=LINES.findIndex(L=>done(L)<L.tiers.length);if(sel<0)sel=0}
     const g=$('upGrid');g.innerHTML=LINES.map(cardHTML.bind(null)).join('');
     g.querySelectorAll('.up-card').forEach(card=>{const L=LINES[+card.dataset.l];
       card.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{const to=+b.dataset.back,s=st();for(let k=done(L)-1;k>=to;k--)refund(L.tiers[k]);s.done=s.done||{};s.done[L.key]=to;Store.save();render();toast('Back to '+L.tiers[to].n+'. Its items are back in your counts.')});
@@ -785,7 +854,7 @@ inits.loot=function(){};
         inp.oninput=()=>{const v=parseInt(inp.value.replace(/[^0-9]/g,''),10)||0;setHave(t,r.m,v);paintCard(L,card);paintTotals()};
         inp.onkeydown=e=>{if(e.key==='Enter')inp.blur();if(e.key==='ArrowUp'){e.preventDefault();apply(haveOf(t,r.m)+(r.cash?1000:1))}if(e.key==='ArrowDown'){e.preventDefault();apply(haveOf(t,r.m)-(r.cash?1000:1))}}});
       paintCard(L,card)});
-    paintTotals();
+    paintTotals();showSel(false);
   }
   window.upRender=()=>render();
   inits.upgrades=function(){
@@ -810,54 +879,66 @@ inits.loot=function(){};
   const lvlOf=id=>((st().lvl||{})[id])||0;
   const req=c=>/not (extracted|fully shown)/i.test(c[2])?'Challenge not known yet':c[2].replace(/\.$/,'');
   const sw=(c,i)=>c[3]?`<img class="cm-sw" src="${c[3]}" alt="">`:`<span class="cm-sw mil">${c[0]==='M'?(c[4]?c[4]:i+1):''}</span>`;
-  let filter='All',query='',open=null;
+  let filter='All',query='',open=null,tab='M',selI=-1;
   const gimg=W=>(GUNS[W.id]||{}).img||'';
   function totals(){let d=0,t=0;CAMO_WEAPONS.forEach(W=>{d+=cnt(W);t+=W.c.length});CAMO_GLOBAL.forEach((_,i)=>{t++;if(gDone(i))d++});return [d,t]}
-  function paintTop(){const [d,t]=totals();$('cmDone').textContent=d+' / '+t;$('cmBar').style.width=(100*d/t)+'%';$('cmStat').textContent=d}
-  function cardHTML(W){
-    const d=cnt(W),n=W.c.length,i=W.c.findIndex((_,k)=>!isDone(W.id,k)),c=i>=0?W.c[i]:null;
-    return `<article class="cm-card" data-w="${W.id}"><button type="button" class="cm-open" data-open-w="${W.id}"><span class="cm-pic">${gimg(W)?`<img src="${gimg(W)}" alt="">`:''}</span><span class="cm-n">${esc(W.n)}</span><span class="cm-cat">${esc(W.cat)}</span></button>
-      <div class="cm-prog"><div class="up-bar"><i style="width:${100*d/n}%"></i></div><span>${d} / ${n}</span></div>
-      ${c?`<div class="cm-next"><span class="cm-nl">Next up // ${TN[c[0]]}</span><div class="cm-nrow">${sw(c,i)}<div><b>${esc(c[1])}</b><small>${esc(req(c))}</small></div></div><button type="button" class="cm-done" data-done="${W.id}:${i}">Done</button></div>`:'<div class="cm-next all"><b>All camos complete</b></div>'}</article>`}
+  function paintTop(){const [d,t]=totals();$('cmDone').textContent=d+' / '+t;$('cmPct').textContent='('+Math.round(100*d/t)+'%)';$('cmBar').style.width=(100*d/t)+'%';$('cmStat').textContent=d;if(window.tileProgress)tileProgress()}
+  const list=()=>{const q=query.trim().toLowerCase();return CAMO_WEAPONS.filter(W=>(filter==='All'||W.cat===filter)&&(!q||W.n.toLowerCase().includes(q)))};
+  function renderCats(){
+    const chips=['All',...CATS];
+    $('cmChips').innerHTML=chips.map(c=>{const n=c==='All'?CAMO_WEAPONS.length:CAMO_WEAPONS.filter(W=>W.cat===c).length;return `<button type="button" class="cm-cat${c===filter?' on':''}" data-c="${esc(c)}" aria-pressed="${c===filter}"><span>${esc(c==='All'?'All weapons':c)}</span><b>${n}</b></button>`}).join('');
+    $('cmChips').querySelectorAll('.cm-cat').forEach(b=>b.onclick=()=>{filter=b.dataset.c;renderCats();renderGrid()});
+  }
   function renderGrid(){
-    const q=query.trim().toLowerCase(),list=CAMO_WEAPONS.filter(W=>(filter==='All'||W.cat===filter)&&(!q||W.n.toLowerCase().includes(q)));
-    $('cmGrid').innerHTML=list.length?list.map(cardHTML).join(''):'<p class="up-empty">No weapons match that search.</p>';
-    $('cmGrid').querySelectorAll('[data-open-w]').forEach(b=>b.onclick=()=>openW(b.dataset.openW));
-    $('cmGrid').querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{const[id,i]=b.dataset.done.split(':');setDone(id,+i,true);const W=CAMO_WEAPONS.find(x=>x.id===id);const nx=W.c.findIndex((_,k)=>!isDone(id,k));toast(W.c[+i][1]+' done'+(nx>=0?'. Next: '+W.c[nx][1]:'. All '+W.n+' camos complete.'));const card=b.closest('.cm-card');card.outerHTML=cardHTML(W);renderGridEvents(W.id);paintTop()});
+    const L=list();$('cmListH').textContent=(filter==='All'?'All weapons':filter)+' ('+L.length+')';
+    $('cmGrid').innerHTML=L.length?L.map(W=>{const d=cnt(W),n=W.c.length;return `<button type="button" class="cm-wi${W.id===open?' on':''}" data-w="${W.id}" role="option" aria-selected="${W.id===open}"><span class="cm-wpic">${gimg(W)?`<img src="${gimg(W)}" alt="" loading="lazy">`:''}</span><span class="cm-wn">${esc(W.n)}</span><span class="cm-wc${d===n?' all':''}">${d}/${n}</span></button>`}).join(''):'<p class="up-empty">No weapons match that search.</p>';
+    $('cmGrid').querySelectorAll('.cm-wi').forEach(b=>b.onclick=()=>openW(b.dataset.w,true));
   }
-  function renderGridEvents(id){const card=$('cmGrid').querySelector(`[data-w="${id}"]`);if(!card)return;card.querySelector('[data-open-w]').onclick=()=>openW(id);const b=card.querySelector('[data-done]');if(b)b.onclick=()=>{const[w,i]=b.dataset.done.split(':');setDone(w,+i,true);const W=CAMO_WEAPONS.find(x=>x.id===w);const nx=W.c.findIndex((_,k)=>!isDone(w,k));toast(W.c[+i][1]+' done'+(nx>=0?'. Next: '+W.c[nx][1]:'. All '+W.n+' camos complete.'));card.outerHTML=cardHTML(W);renderGridEvents(w);paintTop()}}
-  function rowHTML(W,i){const c=W.c[i],on=isDone(W.id,i);return `<button type="button" class="cm-row${on?' on':''}" data-i="${i}" role="checkbox" aria-checked="${on}"><span class="cm-tick">${on?'✓':''}</span>${sw(c,i)}<span class="cm-rt"><b>${esc(c[1])}</b><small>${esc(req(c))}</small></span></button>`}
-  function openW(id){
-    open=id;const W=CAMO_WEAPONS.find(x=>x.id===id);
-    let dlg=$('camoDlg');if(!dlg){dlg=document.createElement('div');dlg.id='camoDlg';dlg.className='ing-dlg minor-dlg';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-modal','true');document.body.appendChild(dlg)}
-    const groups=['M','S','C','P'].map(t=>{const idx=W.c.map((c,i)=>c[0]===t?i:-1).filter(i=>i>=0);return idx.length?`<div class="cm-sec">${TN[t]} camos</div>${idx.map(i=>rowHTML(W,i)).join('')}`:''}).join('');
-    dlg.innerHTML=`<div class="ing-card minor-card cm-dlg" style="--c:var(--gold)"><button type="button" class="ing-x" aria-label="Close">✕</button>
-      <div class="cm-dh"><span class="cm-pic big">${gimg(W)?`<img src="${gimg(W)}" alt="">`:''}</span><div><div class="eyebrow">${esc(W.cat)}</div><h3 class="mc-h">${esc(W.n)}</h3><div class="cm-dp"><div class="up-bar"><i id="cmdBar"></i></div><span id="cmdTxt"></span></div></div></div>
-      <label class="cm-lvl">My weapon level <input type="text" inputmode="numeric" id="cmLvl" value="${lvlOf(id)||''}" placeholder="0"><small>Military camos up to this level are ticked for you.</small></label>
-      <div class="cm-list">${groups}</div><div class="cm-df"><button type="button" class="up-undo" id="cmReset">Reset this weapon</button></div></div>`;
-    dlg.hidden=false;const close=()=>{dlg.hidden=true;open=null;renderGrid();paintTop()};
-    const paint=()=>{const n=cnt(W);$('cmdBar').style.width=(100*n/W.c.length)+'%';$('cmdTxt').textContent=n+' / '+W.c.length};paint();
-    dlg.querySelector('.ing-x').onclick=close;dlg.onclick=e=>{if(e.target===dlg)close()};
-    dlg.querySelectorAll('.cm-row').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,v=!isDone(id,i);setDone(id,i,v);b.classList.toggle('on',v);b.setAttribute('aria-checked',v);b.querySelector('.cm-tick').textContent=v?'✓':'';paint()});
-    const lv=$('cmLvl');lv.oninput=()=>{const v=parseInt(lv.value.replace(/[^0-9]/g,''),10)||0;const s=st();s.lvl=s.lvl||{};s.lvl[id]=v;Store.save();W.c.forEach((c,i)=>{if(c[0]==='M'&&c[4]&&c[4]<=v)setDone(id,i,true)});dlg.querySelectorAll('.cm-row').forEach(b=>{const on=isDone(id,+b.dataset.i);b.classList.toggle('on',on);b.setAttribute('aria-checked',on);b.querySelector('.cm-tick').textContent=on?'✓':''});paint()};
-    $('cmReset').onclick=()=>{if(confirm('Clear all '+W.n+' camos?')){const s=st();s.w=s.w||{};delete s.w[id];if(s.lvl)delete s.lvl[id];Store.save();openW(id)}};
-    dlg.querySelector('.cm-row').focus();
+  function openW(id,scroll){
+    if(open!==id){open=id;tab='M';selI=-1}
+    $('cmGrid').querySelectorAll('.cm-wi').forEach(b=>{const on=b.dataset.w===id;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
+    renderDetail();
+    if(scroll&&matchMedia('(max-width:980px)').matches)$('cmDetail').scrollIntoView({behavior:'smooth',block:'start'});
   }
+  function renderDetail(){
+    const W=CAMO_WEAPONS.find(x=>x.id===open);if(!W){$('cmDetail').innerHTML='';return}
+    const types=['M','S','C','P'].filter(k=>W.c.some(c=>c[0]===k));if(!types.includes(tab))tab=types[0];
+    const idx=W.c.map((c,i)=>c[0]===tab?i:-1).filter(i=>i>=0);
+    if(!idx.includes(selI))selI=idx.find(i=>!isDone(W.id,i));if(selI===undefined)selI=idx[0];
+    const d=cnt(W),n=W.c.length,c=W.c[selI],on=isDone(W.id,selI);
+    $('cmDetail').innerHTML=`<div class="cmd-h"><div class="cmd-t"><b>${esc(W.n)}</b><small>${esc(W.cat)}</small></div><span class="cmd-pic">${gimg(W)?`<img src="${gimg(W)}" alt="">`:''}</span>
+      <div class="cmd-lvl"><span>Weapon level</span><div class="cmd-step"><button type="button" data-lv="-1" aria-label="Lower weapon level">−</button><input type="text" inputmode="numeric" id="cmLvl" value="${lvlOf(W.id)||0}" aria-label="My weapon level"><button type="button" data-lv="1" aria-label="Raise weapon level">+</button></div><small>Military camos up to this level tick themselves.</small></div>
+      <div class="cmd-comp"><span>Camo completion (${esc(W.n)})</span><div class="cmd-cb"><div class="trk-bar"><i style="width:${100*d/n}%"></i></div><b>${d} / ${n} (${Math.round(100*d/n)}%)</b></div></div></div>
+      <div class="cmd-tabs" role="tablist">${types.map(k=>{const ii=W.c.map((c,i)=>c[0]===k?i:-1).filter(i=>i>=0);return `<button type="button" role="tab" class="cmd-tab${k===tab?' on':''}" data-t="${k}" aria-selected="${k===tab}">${TN[k]} (${ii.filter(i=>isDone(W.id,i)).length}/${ii.length})</button>`}).join('')}</div>
+      <div class="cmd-body"><div class="cmd-sw">${idx.map(i=>{const cc=W.c[i],dn=isDone(W.id,i);return `<button type="button" class="cm-tile${dn?' done':''}${i===selI?' sel':''}" data-i="${i}" aria-pressed="${i===selI}"><span class="cmt-sw">${sw(cc,i)}</span><span class="cmt-n">${esc(cc[1].replace(/^Military camo /,'Military '))}</span>${dn?'<span class="cmt-ok" aria-label="done">✓</span>':''}</button>`}).join('')}</div>
+      <div class="cmd-info"><div class="cmi-h"><span class="cmi-sw">${sw(c,selI)}</span><div><b>${esc(c[1])}</b><small>${TN[c[0]]} camo</small></div>${on?'<span class="cmi-st ok">✓ Completed</span>':'<span class="cmi-st">Not done</span>'}</div>
+        <div class="cmi-ch"><h3>Challenge</h3><p>${esc(req(c))}${c[0]==='M'&&c[4]&&!/level/i.test(req(c))?' (weapon level '+c[4]+')':''}.</p></div>
+        <button type="button" class="cmi-go${on?' undo':''}" id="cmDoneBtn">${on?'Undo':'✓ Done'}</button></div></div>
+      <div class="cmd-f"><button type="button" class="up-undo" id="cmWReset">Reset this weapon</button></div>`;
+    const D=$('cmDetail');
+    D.querySelectorAll('.cmd-tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;selI=-1;renderDetail()});
+    D.querySelectorAll('.cm-tile').forEach(b=>b.onclick=()=>{selI=+b.dataset.i;renderDetail()});
+    $('cmDoneBtn').onclick=()=>{const v=!isDone(W.id,selI);setDone(W.id,selI,v);if(v)toast(W.c[selI][1]+' done');refresh()};
+    const lv=$('cmLvl'),setLv=v=>{v=Math.max(0,Math.min(250,v));const s=st();s.lvl=s.lvl||{};s.lvl[W.id]=v;Store.save();W.c.forEach((cc,i)=>{if(cc[0]==='M'&&cc[4]&&cc[4]<=v)setDone(W.id,i,true)})};
+    lv.onchange=()=>{setLv(parseInt(lv.value.replace(/[^0-9]/g,''),10)||0);refresh()};lv.onkeydown=e=>{if(e.key==='Enter')lv.blur()};
+    lv.onfocus=()=>lv.select();
+    D.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{setLv(lvlOf(W.id)+ +b.dataset.lv);refresh()});
+    $('cmWReset').onclick=()=>{if(confirm('Clear all '+W.n+' camos?')){const s=st();s.w=s.w||{};delete s.w[W.id];if(s.lvl)delete s.lvl[W.id];Store.save();refresh()}};
+  }
+  function refresh(){renderGrid();renderDetail();paintTop()}
   function renderGlobal(){
     $('cmGlobal').innerHTML=CAMO_GLOBAL.map((c,i)=>{const on=gDone(i);return `<button type="button" class="cm-row${on?' on':''}" data-g="${i}" role="checkbox" aria-checked="${on}"><span class="cm-tick">${on?'✓':''}</span>${sw(c,i)}<span class="cm-rt"><b>${esc(c[1])}</b><small>${esc(c[0]==='X'?'Mastery // ':'')}${esc(req(c))}</small></span></button>`}).join('');
     $('cmGlobal').querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{const i=+b.dataset.g,v=!gDone(i);setG(i,v);b.classList.toggle('on',v);b.setAttribute('aria-checked',v);b.querySelector('.cm-tick').textContent=v?'✓':'';paintTop()});
   }
-  window.cmRender=()=>{renderGrid();renderGlobal();paintTop()};
+  window.cmRender=()=>{renderCats();renderGrid();renderDetail();renderGlobal();paintTop()};
   inits.camos=function(){
     Account.paintNotes();
-    const chips=['All',...CATS];$('cmChips').innerHTML=chips.map(c=>`<button type="button" class="lt-chip${c===filter?' on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('');
-    $('cmChips').querySelectorAll('.lt-chip').forEach(b=>b.onclick=()=>{filter=b.dataset.c;$('cmChips').querySelectorAll('.lt-chip').forEach(x=>x.classList.toggle('on',x===b));renderGrid()});
     $('cmSearch').oninput=e=>{query=e.target.value;renderGrid()};
-    $('cmReset').onclick=()=>{if(confirm(Account.user?'Clear all of your camo progress? It will also be cleared from your account.':'Clear all of your camo progress in this browser?')){Store.get('camos');Store.data.camos={};Store.save();renderGrid();renderGlobal();paintTop()}};
-    renderGrid();renderGlobal();paintTop();
+    $('cmReset').onclick=()=>{if(confirm(Account.user?'Clear all of your camo progress? It will also be cleared from your account.':'Clear all of your camo progress in this browser?')){Store.get('camos');Store.data.camos={};Store.save();renderGrid();renderDetail();renderGlobal();paintTop()}};
+    open=CAMO_WEAPONS[0].id;renderCats();renderGrid();renderDetail();renderGlobal();paintTop();
   };
-  window.camoClose=function(){open=null;renderGrid();paintTop()};
-  window.camoShow=function(){if($('cmGrid').children.length)paintTop()};
+  window.camoClose=function(){};
+  window.camoShow=function(){if($('cmGrid').children.length){renderGrid();renderDetail();paintTop()}};
 })();
 
 /* ===== DMZ PATCH NOTES (data comes from /api/dmz-patches/*, filled by the scheduled checker) ===== */
@@ -986,18 +1067,18 @@ inits.loot=function(){};
   }
 
   /* ---------- drop-down used on the home page and on the Items page ---------- */
-  function mount(input,list,onPick){
+  function mount(input,list,onPick,find=search){
     let hits=[],cur=-1;
     const close=()=>{list.hidden=true;input.setAttribute('aria-expanded','false');cur=-1;input.removeAttribute('aria-activedescendant')};
     const paint=()=>{
-      list.innerHTML=hits.length?hits.map((x,i)=>`<li role="option" id="${list.id}-${i}" data-i="${i}" class="${i===cur?'on':''}" aria-selected="${i===cur}">${x.icon?`<img src="${x.icon}" alt="">`:`<span class="is-key">${KEY_SVG}</span>`}<span class="is-nm">${esc(x.name)}</span><span class="is-tp t-${x.type.toLowerCase()}">${esc(x.type)}</span></li>`).join(''):`<li class="is-none" role="option" aria-disabled="true">No match. Try another name.</li>`;
+      list.innerHTML=hits.length?hits.map((x,i)=>`<li role="option" id="${list.id}-${i}" data-i="${i}" class="${i===cur?'on':''}" aria-selected="${i===cur}">${x.svg?`<span class="is-sv">${x.svg}</span>`:x.icon?`<img src="${x.icon}" alt="">`:`<span class="is-key">${KEY_SVG}</span>`}<span class="is-nm">${esc(x.name)}</span><span class="is-tp t-${x.type.toLowerCase()}">${esc(x.type)}</span></li>`).join(''):`<li class="is-none" role="option" aria-disabled="true">No match. Try another name.</li>`;
       list.hidden=false;input.setAttribute('aria-expanded','true');
       list.querySelectorAll('li[data-i]').forEach(li=>{li.onmousedown=e=>{e.preventDefault();pick(+li.dataset.i)};li.onmousemove=()=>{if(cur!==+li.dataset.i){cur=+li.dataset.i;mark()}}});
     };
     const mark=()=>{list.querySelectorAll('li[data-i]').forEach((li,i)=>{li.classList.toggle('on',i===cur);li.setAttribute('aria-selected',i===cur)});if(cur>=0){input.setAttribute('aria-activedescendant',list.id+'-'+cur);const el=list.children[cur];if(el&&el.scrollIntoView)el.scrollIntoView({block:'nearest'})}};
     const pick=i=>{const x=hits[i];if(!x)return;input.value=x.name;close();onPick(x)};
-    input.addEventListener('input',()=>{const q=input.value;if(!q.trim()){hits=[];close();return}hits=search(q);cur=hits.length?0:-1;paint()});
-    input.addEventListener('focus',()=>{if(input.value.trim()){hits=search(input.value);cur=hits.length?0:-1;paint()}});
+    input.addEventListener('input',()=>{const q=input.value;if(!q.trim()){hits=[];close();return}hits=find(q);cur=hits.length?0:-1;paint()});
+    input.addEventListener('focus',()=>{if(input.value.trim()){hits=find(input.value);cur=hits.length?0:-1;paint()}});
     input.addEventListener('keydown',e=>{
       if(e.key==='ArrowDown'){e.preventDefault();if(list.hidden&&input.value.trim()){hits=search(input.value);cur=0;paint()}else if(hits.length){cur=(cur+1)%hits.length;mark()}}
       else if(e.key==='ArrowUp'){e.preventDefault();if(hits.length){cur=(cur-1+hits.length)%hits.length;mark()}}
@@ -1126,11 +1207,41 @@ inits.loot=function(){};
   };
   window.itemsShow=function(arg){build();const inp=$('isPage');if(inp){const x=BY.get(arg);inp.value=x?x.name:(arg?inp.value:'')}renderItem(arg)};
 
-  /* ---------- the search box on the home page ---------- */
+  /* ---------- the search box on the home page: searches the whole site ---------- */
+  const SV=k=>(window.UI_ICONS&&UI_ICONS[k])||'';
+  let SITE=null;
+  function siteBuild(){
+    if(SITE)return;SITE=[];
+    const add=(type,name,go,alias,svg,icon)=>{const x={id:'s-'+SITE.length,type,name,go,alias:alias||'',svg:icon?null:svg,icon:icon||null};x.n=norm(name);x.t=x.n.split(' ');x.hay=norm(name+' '+x.alias);SITE.push(x)};
+    [['Hajin Map','map','map','map markers exfil sam silo poi locations'],['Loot Hot Spots','loot','loot','loot guides routes vault bunker'],['Upgrades','upgrades','upgrades','upgrade tracker fob'],['Schematic Tracker','schematics','schematics','schematic recipe found blueprint'],['Weapon Manual Tracker','manuals','manuals','weapon manual'],['Camo Tracker','camos','camos','camo challenge'],['Gunsmith','gunsmith','gunsmith','weapon builder attachments build cost'],['Gear Recipes','gear','gear','3d printer crafting recipe'],['Operator Traits','traits','traits','trait tree warfighter scout survivalist prestige'],['Dynamic Ops','dynops','dynops','dynamic operations missions'],['Boss Strats','bosses','bosses','boss lieutenant commander'],['Full Upgrade Item List','upgradeitems','upgradeitems','upgrade items materials list'],['Known Issues and Fixes','patches','patches','patch notes bugs updates']].forEach(([n,v,ic,al])=>add('Page',n,()=>openView(v),al,SV(ic)));
+    try{CATALOG.weapons.forEach(w=>add('Weapon',w.name,()=>{openView('gunsmith');const s=$('gsWeapon');if(s&&s.value!==w.id){s.value=w.id;s.dispatchEvent(new Event('change'))}},w.category+' gun weapon',SV('gunsmith')))}catch(e){}
+    try{BOSS_STRATS.forEach(b=>add('Boss',b.name,()=>openView('bosses/'+b.id),b.kind+' boss '+(b.location||''),SV('bosses')))}catch(e){}
+    try{LOOT_SPOTS.forEach(s=>add('Guide',s.name,()=>openView('loot/'+s.id),'loot guide '+(s.summary||''),SV('loot')))}catch(e){}
+    try{DYN_OPS.forEach(o=>add('Op',o.n,()=>openView('dynops'),'dynamic op '+(o.t||''),SV('dynops')))}catch(e){}
+    try{const seen=new Set();[].concat(TRAIT_DATA,TRAIT_MINOR,PRESTIGE_TRAITS).forEach(x=>{if(!x||seen.has(x.n))return;seen.add(x.n);add('Trait',x.n,()=>openView('traits'),'trait '+(x.tree||''),SV('traits'),x.ic||null)})}catch(e){}
+    try{const seen=new Set();CAMO_WEAPONS.forEach(w=>w.c.forEach(c=>{if(c[0]==='M'||seen.has(c[1]))return;seen.add(c[1]);add('Camo',c[1],()=>openView('camos'),'camo',SV('camos'),c[3]||null)}));CAMO_GLOBAL.forEach(c=>{if(!seen.has(c[1])){seen.add(c[1]);add('Camo',c[1],()=>openView('camos'),'camo mastery',SV('camos'),c[3]||null)}})}catch(e){}
+    try{const seen=new Set();MAP_MK.forEach(m=>{const c=MAP_CATS[m[2]];if(!c||c.g!=='Places'||seen.has(m[1]))return;seen.add(m[1]);add('Place',m[1],()=>{openView('map');requestAnimationFrame(()=>window.mapFocus&&mapFocus(m[1]))},'map place location',SV('pin'))})}catch(e){}
+  }
+  const SITE_ORDER={Page:0,Material:1,Gear:2,Weapon:3,Boss:4,Guide:5,Place:6,Key:7,Upgrade:8,Trait:9,Op:10,Camo:11};
+  function siteSearch(q,max=10){
+    build();siteBuild();const nq=norm(q);if(!nq)return[];const qt=nq.split(' ');const out=[];
+    ITEMS.concat(SITE).forEach(x=>{
+      let s=0;
+      if(x.n===nq)s=100;else if(x.n.startsWith(nq))s=80;
+      else if(qt.every(t=>x.t.some(w=>w.startsWith(t))))s=60;
+      else if(nq.length>=4&&x.n.includes(nq))s=45;
+      else if(qt.every(t=>x.hay.includes(t))&&nq.length>=3)s=20;
+      if(s){if(x.isLine)s+=2;out.push([s-(SITE_ORDER[x.type]||0)*0.4-x.n.length*0.01,x])}
+    });
+    return out.sort((a,b)=>b[0]-a[0]).slice(0,max).map(a=>a[1]);
+  }
+  window.siteSearch=siteSearch;
   function homeInit(){
     const inp=$('isHome'),list=$('isHomeList');if(!inp)return;
-    mount(inp,list,x=>{inp.value='';openView('items/'+x.id)});
-    document.querySelectorAll('#itemSearchBox [data-q]').forEach(b=>b.onclick=()=>{build();const h=search(b.dataset.q,1)[0];if(h)openView('items/'+h.id)});
+    const go=x=>{inp.value='';list.hidden=true;inp.setAttribute('aria-expanded','false');if(x.go)x.go();else openView('items/'+x.id)};
+    mount(inp,list,go,siteSearch);
+    const btn=$('isHomeGo');if(btn)btn.onclick=()=>{const q=inp.value.trim();if(!q){inp.focus();return}const h=siteSearch(q,1)[0];if(h)go(h);else{inp.dispatchEvent(new Event('input'));inp.focus()}};
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&list.hidden&&inp.value.trim()){e.preventDefault();btn&&btn.click()}});
   }
   homeInit();
 
@@ -1225,6 +1336,38 @@ inits.loot=function(){};
   };
 })();
 
+/* ===== Shared tracker page (Schematic Tracker, Weapon Manual Tracker): progress, search, filters, cards ===== */
+window.TrackerUI=function(o){
+  const el=s=>document.getElementById(o.px+s);
+  const TICK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  let state='all',cat='all',q='';
+  const norm=s=>String(s).toLowerCase();
+  function paintTop(){
+    const L=o.list(),d=L.filter(x=>o.isOn(x.id)).length,t=L.length,pc=t?Math.round(100*d/t):0;
+    el('Done').textContent=d+' / '+t;el('Pct').textContent='('+pc+'%)';el('Bar').style.width=(t?100*d/t:0)+'%';
+    if(window.tileProgress)tileProgress();
+  }
+  function chips(){
+    const L=o.list(),on=L.filter(x=>o.isOn(x.id)).length;
+    const S=[['all','All',L.length],['on',o.onLabel,on],['off',o.offLabel,L.length-on]];
+    el('State').innerHTML=S.map(([k,l,n])=>`<button type="button" class="trk-chip${state===k?' on':''}" data-s="${k}" aria-pressed="${state===k}">${esc(l)} (${n})</button>`).join('');
+    const cats=[];L.forEach(x=>{if(!cats.includes(x.cat))cats.push(x.cat)});
+    el('Cats').innerHTML=[['all',o.allCats||'All categories',L.length]].concat(cats.map(c=>[c,c,L.filter(x=>x.cat===c).length])).map(([k,l,n])=>`<button type="button" class="trk-chip${cat===k?' on':''}" data-c="${esc(k)}" aria-pressed="${cat===k}">${esc(o.catLabel?o.catLabel(l):l)} (${n})</button>`).join('');
+    el('State').querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{state=b.dataset.s;chips();grid()});
+    el('Cats').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{cat=b.dataset.c;chips();grid()});
+  }
+  function card(x){const on=o.isOn(x.id);return `<button type="button" class="trk-card${on?' on':''}" data-id="${esc(x.id)}" aria-pressed="${on}"><span class="tc-h"><b class="tc-n">${esc(x.name)}</b><small>${esc(o.sub(x))}</small></span><span class="tc-pic">${x.pic?`<img src="${x.pic}" alt="" loading="lazy">`:''}</span><span class="tc-f"><span class="tc-box">${TICK}</span><span class="tc-st">${on?esc(o.onLabel):esc(o.offLabel)}</span></span></button>`}
+  function grid(){
+    const nq=norm(q.trim()),L=o.list().filter(x=>(cat==='all'||x.cat===cat)&&(state==='all'||(state==='on')===o.isOn(x.id))&&(!nq||norm(x.name+' '+x.cat).includes(nq)));
+    const g=el('Grid');g.innerHTML=L.length?L.map(card).join(''):'<p class="up-empty">Nothing matches. Try another search or filter.</p>';
+    g.querySelectorAll('.trk-card').forEach(c=>c.onclick=()=>{o.toggle(c.dataset.id);const on=o.isOn(c.dataset.id);c.classList.toggle('on',on);c.setAttribute('aria-pressed',on);c.querySelector('.tc-st').textContent=on?o.onLabel:o.offLabel;paintTop();chips();
+      if(state!=='all')setTimeout(grid,350)});
+  }
+  function render(){chips();grid();paintTop();if(window.Account)Account.paintNotes()}
+  function init(){const s=el('Q');if(s)s.oninput=()=>{q=s.value;grid()};render()}
+  return {render,init,paintTop};
+};
+
 /* ===== SCHEMATIC TRACKER: every recipe that has to be found in Hajin; click one when you have found it ===== */
 (function(){
   const slug=s=>String(s).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
@@ -1236,31 +1379,11 @@ inits.loot=function(){};
   }
   const found=()=>{const s=Store.get('schematics');if(!s.found)s.found={};return s.found};
   window.schematicCounts=()=>{const L=list(),f=found();return [L.filter(x=>f[x.id]).length,L.length]};
-  const TICK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.500 8.500l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  let tipT=0;
-  function paintTop(){
-    const [d,t]=schematicCounts();document.getElementById('scDone').textContent=d+' / '+t;document.getElementById('scBar').style.width=(100*d/t)+'%';
-    if(window.tileProgress)tileProgress();
-  }
-  function render(){
-    const grid=document.getElementById('scGrid');if(!grid)return;const f=found();
-    grid.innerHTML=list().map(x=>`<button type="button" class="sc-card${f[x.id]?' on':''}" data-id="${esc(x.id)}" aria-pressed="${!!f[x.id]}" aria-label="${esc(x.name)}"><span class="sc-pic"><img src="${x.pic}" alt=""></span><span class="sc-name">${esc(x.name)}</span><span class="sc-tick">${TICK}</span></button>`).join('');
-    const by=new Map(list().map(x=>[x.id,x])),canHover=!!(window.matchMedia&&matchMedia('(hover:hover)').matches);
-    grid.querySelectorAll('.sc-card').forEach(el=>{
-      const x=by.get(el.dataset.id),tip=()=>showTip(el,`<b>${esc(x.name)}</b><i>${esc(x.cat)}${x.rar?' · '+esc(x.rar):''}</i>`,f[x.id]?'#35e0a0':undefined);
-      if(canHover){el.onmouseenter=tip;el.onmouseleave=hideTip;el.onfocus=tip;el.onblur=hideTip}
-      el.onclick=()=>{
-        const s=found();if(s[x.id])delete s[x.id];else s[x.id]=1;Store.save();
-        const on=!!s[x.id];el.classList.toggle('on',on);el.setAttribute('aria-pressed',on);paintTop();
-        tip();if(!canHover){clearTimeout(tipT);tipT=setTimeout(hideTip,1600)}   // no hover on a phone, so the name shows for a moment
-      };
-    });
-    paintTop();if(window.Account)Account.paintNotes();
-  }
-  window.scRender=render;
+  const UI=TrackerUI({px:'sc',list,isOn:id=>!!found()[id],toggle:id=>{const s=found();if(s[id])delete s[id];else s[id]=1;Store.save()},onLabel:'Collected',offLabel:'Missing',sub:x=>x.cat+(x.rar?' · '+x.rar:'')});
+  window.scRender=()=>UI.render();
   inits.schematics=function(){
-    document.getElementById('scReset').onclick=()=>{if(confirm(Account.user?'Clear every schematic you have ticked? It will also be cleared from your account.':'Clear every schematic you have ticked in this browser?')){Store.get('schematics').found={};Store.save();render()}};
-    render();
+    document.getElementById('scReset').onclick=()=>{if(confirm(Account.user?'Clear every schematic you have ticked? It will also be cleared from your account.':'Clear every schematic you have ticked in this browser?')){Store.get('schematics').found={};Store.save();UI.render()}};
+    UI.init();
   };
 })();
 
@@ -1273,24 +1396,11 @@ inits.loot=function(){};
   }
   const got=()=>{const s=Store.get('manuals');if(!s.got)s.got={};return s.got};
   window.manualCounts=()=>{const L=list(),g=got();return [L.filter(x=>g[x.id]).length,L.length]};
-  const TICK='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.500 8.500l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  function paintTop(){
-    const [d,t]=manualCounts();$('wmDone').textContent=d+' / '+t;$('wmBar').style.width=(100*d/t)+'%';
-    if(window.tileProgress)tileProgress();
-  }
-  function render(){
-    const grid=$('wmGrid');if(!grid)return;const g=got();
-    grid.innerHTML=list().map(x=>`<button type="button" class="sc-card wm-card${g[x.id]?' on':''}" data-id="${esc(x.id)}" aria-pressed="${!!g[x.id]}"><span class="sc-pic">${x.pic?`<img src="${x.pic}" alt="">`:''}</span><span class="sc-name">${esc(x.name)}</span><span class="sc-tick">${TICK}</span></button>`).join('');
-    const by=new Map(list().map(x=>[x.id,x]));
-    grid.querySelectorAll('.wm-card').forEach(el=>{const x=by.get(el.dataset.id);
-      el.onclick=()=>{const s=got();if(s[x.id])delete s[x.id];else s[x.id]=1;Store.save();const on=!!s[x.id];el.classList.toggle('on',on);el.setAttribute('aria-pressed',on);paintTop()};
-    });
-    paintTop();if(window.Account)Account.paintNotes();
-  }
-  window.wmRender=render;
+  const UI=TrackerUI({px:'wm',list,isOn:id=>!!got()[id],toggle:id=>{const s=got();if(s[id])delete s[id];else s[id]=1;Store.save()},onLabel:'Owned',offLabel:'Missing',allCats:'All weapons',catLabel:l=>l==='All weapons'?l:l+'s',sub:x=>x.cat});
+  window.wmRender=()=>UI.render();
   inits.manuals=function(){
-    $('wmReset').onclick=()=>{if(confirm(Account.user?'Clear every weapon manual you have ticked? It will also be cleared from your account.':'Clear every weapon manual you have ticked in this browser?')){Store.get('manuals').got={};Store.save();render()}};
-    render();
+    $('wmReset').onclick=()=>{if(confirm(Account.user?'Clear every weapon manual you have ticked? It will also be cleared from your account.':'Clear every weapon manual you have ticked in this browser?')){Store.get('manuals').got={};Store.save();UI.render()}};
+    UI.init();
   };
 })();
 
@@ -1447,7 +1557,7 @@ const Account=(function(){
     const box=document.getElementById('acct');if(!box)return;
     if(!S.configured){box.hidden=true;box.replaceChildren();return}
     box.hidden=false;
-    if(!S.user){box.innerHTML=`<button type="button" class="acct-btn login" id="acctLogin">${DISCORD_SVG}<span>Log in with Discord</span></button>`;document.getElementById('acctLogin').onclick=login;return}
+    if(!S.user){box.innerHTML=`<button type="button" class="acct-btn login" id="acctLogin">${DISCORD_SVG}<span>Sign in with Discord</span></button>`;document.getElementById('acctLogin').onclick=login;return}
     const av=avatarUrl(S.user);
     box.innerHTML=`<button type="button" class="acct-btn on" id="acctBtn" aria-haspopup="true" aria-expanded="false">${av?`<img src="${av}" alt="" referrerpolicy="no-referrer">`:`<i>${esc(S.user.name.slice(0,1).toUpperCase())}</i>`}<span>${esc(S.user.name)}</span><b aria-hidden="true">▾</b></button>
     <div class="acct-menu" id="acctMenu" role="menu" hidden>
@@ -1595,28 +1705,30 @@ Account.init();
   const c=$('bossCount');if(c)c.textContent=BOSS_STRATS.length+' bosses';
   document.querySelectorAll('.bs-all').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openView('bosses')}));
 })();
-let bossFilter='All';
+let bossFilter='All',bossQ='';
 window.bossShow=function(arg){
   const main=$('bossMain'),b=BOSS_STRATS.find(x=>x.id===arg);
   $('bossSub').textContent=b?b.kind+' // '+b.subtitle:'Strategies for every Lieutenant and Commander';
-  if(!b){
-    const kinds=['All','Lieutenant','Commander'],list=BOSS_STRATS.filter(x=>bossFilter==='All'||x.kind===bossFilter);
-    main.innerHTML=`<section class="gear-hero"><div class="eyebrow">Hajin</div><h1>Boss Strats</h1><p>How to find and beat every Lieutenant and Commander on Hajin. Pick a boss for the full strategy.</p></section><div class="lt-chips" role="group" aria-label="Boss type">${kinds.map(k=>`<button type="button" class="lt-chip${k===bossFilter?' on':''}" data-t="${k}">${k==='All'?'All':k+'s'}</button>`).join('')}</div><ul class="lt-cards bs-cards">${list.map(x=>`<li><a class="lt-card bs-card" href="/boss-strats/${x.id}/" data-go="${x.id}"><span class="bs-photo"><img src="/boss-images/${x.id}.webp" alt="${esc(x.name)}" loading="lazy" onerror="this.parentNode.remove()"></span><span class="lr-t">${esc(x.kind)} // ${esc(x.subtitle)}</span><strong>${esc(x.name)}</strong><span class="lr-d">${esc(x.location)}</span><span class="lr-go">View</span></a></li>`).join('')}</ul><p class="lt-note">Boss locations, mechanics and drops can change. Spotted a change or have a tip? Tell us in our Discord: discord.gg/nomadoce</p>`;
-    main.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openView('bosses/'+a.dataset.go)}));
-    main.querySelectorAll('.lt-chip').forEach(x=>x.onclick=()=>{bossFilter=x.dataset.t;bossShow()});return}
-  const url=SITE_URL+'/boss-strats/'+b.id+'/';
-  main.innerHTML=`<figure class="lt-fig bs-fig"><img class="lt-img" src="/boss-images/${b.id}.webp" alt="${esc(b.name)}, ${esc(b.subtitle)}" onerror="this.parentNode.remove()"><figcaption>${esc(b.name)}</figcaption></figure><section class="gear-hero bs-hero"><div class="eyebrow">${esc(b.kind)} // ${esc(b.subtitle)}</div><h1>${esc(b.name)}</h1><p>${esc(b.threat)}.</p><div class="lt-actions">${b.map?'<button type="button" class="lt-btn" id="bsMap">Show on map</button>':''}<button type="button" class="lt-btn" id="bsCopy">Copy link</button>${navigator.share?'<button type="button" class="lt-btn" id="bsShare">Share</button>':''}<button type="button" class="lt-btn ghost" id="bsAll">All bosses</button></div></section>
-    <dl class="bs-facts"><div><dt>Where to find</dt><dd>${esc(b.location)}</dd></div><div><dt>Recommended kit</dt><dd>${esc(b.loadout)}</dd></div><div><dt>Possible rewards</dt><dd>${esc(b.rewards)}</dd></div></dl>
-    <div class="sub-h bs-h">Best strategy</div>
-    <ol class="lt-steps">${b.steps.map((s,i)=>`<li class="lt-step"><span class="lt-num">${String(i+1).padStart(2,'0')}</span><div><p>${esc(s)}</p></div></li>`).join('')}</ol>
-    <div class="box lt-tip"><div class="box-head eyebrow">Top tip</div><p>${esc(b.tip)}</p></div>
-    ${b.note?`<div class="box lt-tip"><div class="box-head eyebrow">Field note</div><p>${esc(b.note)}</p></div>`:''}
-    <div class="lt-share"><span>Share this guide</span><code>${esc(url)}</code><button type="button" class="lt-btn" id="bsCopy2">Copy link</button></div>
-    <p class="lt-note">Boss locations, mechanics and drops can change. Spotted a change or have a tip? Tell us in our Discord: discord.gg/nomadoce</p>`;
-  const go=(id,fn)=>{const e=$(id);if(e)e.onclick=fn};
-  go('bsAll',()=>openView('bosses'));go('bsMap',()=>{openView('map');requestAnimationFrame(()=>window.mapFocus&&mapFocus(b.map))});
-  ['bsCopy','bsCopy2'].forEach(i=>go(i,()=>copyLink(url)));go('bsShare',()=>navigator.share({title:b.name+' strategy',text:b.tip,url}).catch(()=>{}));
-  window.scrollTo(0,0);const sc=$('screen-bosses');if(sc)sc.scrollTop=0;
+  const kinds=['All','Lieutenant','Commander'],cnt=k=>k==='All'?BOSS_STRATS.length:BOSS_STRATS.filter(x=>x.kind===k).length;
+  const dir=`<section class="box bs-dir"><h2 class="box-h">Boss guide directory</h2><div class="bs-tools"><label class="trk-search"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><input type="search" id="bsQ" placeholder="Search bosses..." aria-label="Search bosses" value="${esc(bossQ)}"></label><div class="trk-chips">${kinds.map(k=>`<button type="button" class="trk-chip${k===bossFilter?' on':''}" data-t="${k}" aria-pressed="${k===bossFilter}">${k==='All'?'All':k+'s'} (${cnt(k)})</button>`).join('')}</div></div><ul class="bs-grid" id="bsGrid"></ul><p class="lt-note">Boss locations, mechanics and drops can change. Spotted a change or have a tip? Tell us in our Discord: discord.gg/nomadoce</p></section>`;
+  const url=b?SITE_URL+'/boss-strats/'+b.id+'/':'';
+  const det=b?`<section class="box bs-det"><div class="bsd-h"><h1>${esc(b.name)}</h1><span class="bsd-k">${esc(b.kind)}</span><span class="bsd-sub">${esc(b.subtitle)}</span><div class="bsd-act"><button type="button" class="lt-btn" id="bsCopy">Copy link</button>${navigator.share?'<button type="button" class="lt-btn" id="bsShare">Share</button>':''}<button type="button" class="lt-btn ghost bsd-back" id="bsAll">All bosses</button></div></div>
+    <div class="bsd-top"><figure class="bsd-pic"><img src="/boss-images/${b.id}.webp" alt="${esc(b.name)}, ${esc(b.subtitle)}" onerror="this.parentNode.remove()"></figure>
+      <div class="bsd-facts"><div class="bsd-f bsd-loc"><span class="bsd-ic">${(window.UI_ICONS||{}).pin||''}</span><div><h3>Location</h3><p>${esc(b.location)}</p></div>${b.map?'<button type="button" class="lt-btn red" id="bsMap">Show on map</button>':''}</div>
+      <div class="bsd-f"><div><h3>Recommended kit</h3><p>${esc(b.loadout)}</p></div></div><div class="bsd-f"><div><h3>Threat</h3><p>${esc(b.threat)}.</p></div></div></div></div>
+    <div class="bsd-cols"><div class="bsd-strat"><h2 class="box-h">Strategy</h2><ol class="bsd-steps">${b.steps.map((s,i)=>`<li><span class="bsd-n">${i+1}</span><p>${esc(s)}</p></li>`).join('')}</ol></div>
+      <div class="bsd-side"><div class="bsd-box"><h2 class="box-h">Possible rewards</h2><p>${esc(b.rewards)}</p></div><div class="bsd-box"><h2 class="box-h">Top tip</h2><p>${esc(b.tip)}</p></div>${b.note?`<div class="bsd-box"><h2 class="box-h">Field note</h2><p>${esc(b.note)}</p></div>`:''}</div></div></section>`:'';
+  main.innerHTML=`<div class="bs-cols${b?' has-det':''}">${dir}${det}</div>`;
+  const paintGrid=()=>{const q=bossQ.trim().toLowerCase(),list=BOSS_STRATS.filter(x=>(bossFilter==='All'||x.kind===bossFilter)&&(!q||(x.name+' '+x.location+' '+x.subtitle).toLowerCase().includes(q)));
+    $('bsGrid').innerHTML=list.length?list.map(x=>`<li><a class="bs-tile${b&&x.id===b.id?' on':''}" href="/boss-strats/${x.id}/" data-go="${x.id}"${b&&x.id===b.id?' aria-current="page"':''}><span class="bst-img"><img src="/boss-images/${x.id}.webp" alt="" loading="lazy" onerror="this.remove()"></span><span class="bst-k">${esc(x.kind)}</span><strong>${esc(x.name)}</strong></a></li>`).join(''):'<li class="up-empty">No bosses match that search.</li>';
+    $('bsGrid').querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openView('bosses/'+a.dataset.go)}))};
+  paintGrid();
+  $('bsQ').oninput=e=>{bossQ=e.target.value;paintGrid()};
+  main.querySelectorAll('.bs-tools .trk-chip').forEach(x=>x.onclick=()=>{bossFilter=x.dataset.t;main.querySelectorAll('.bs-tools .trk-chip').forEach(y=>{y.classList.toggle('on',y===x);y.setAttribute('aria-pressed',y===x)});paintGrid()});
+  if(b){const go=(id,fn)=>{const e=$(id);if(e)e.onclick=fn};
+    go('bsAll',()=>openView('bosses'));go('bsMap',()=>{openView('map');requestAnimationFrame(()=>window.mapFocus&&mapFocus(b.map))});
+    go('bsCopy',()=>copyLink(url));go('bsShare',()=>navigator.share({title:b.name+' strategy',text:b.tip,url}).catch(()=>{}));}
+  const sc=main;if(sc)sc.scrollTop=0;window.scrollTo(0,0);
 };
 inits.bosses=function(){};
 /* first render once every view is registered (this file loads last) */
