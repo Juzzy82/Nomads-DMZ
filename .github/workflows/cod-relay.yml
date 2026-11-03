@@ -1,0 +1,29 @@
+# NOMADS DMZ HUB - fetches the official Call of Duty patch notes from GitHub's servers
+# (callofduty.com refuses requests from Cloudflare) and hands them to the site's Worker.
+# Runs 15 minutes after each Cloudflare check, and can be run by hand from the Actions tab.
+name: COD patch notes relay
+on:
+  schedule:
+    - cron: '15 0,6,12,18 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cod-relay
+  cancel-in-progress: false
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch callofduty.com and send it to the site
+        run: node .github/scripts/cod-relay.mjs
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          SITE_URL: https://nomaddmzhub.com
