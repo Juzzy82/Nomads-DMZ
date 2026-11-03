@@ -77,6 +77,115 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 /* line icons used by scripts (made by tools_ui_round1.py) */
 window.UI_ICONS={"map":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z\"/><path d=\"M9 4v14M15 6v14\"/></svg>","loot":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 7c-1-2 0-3 1-3h6c1 0 2 1 1 3\"/><path d=\"M7 7h10l2 4v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7z\"/><path d=\"M12 11v6M10 12.5c0-1 4-1 4 0s-4 1-4 2.2 4 1.2 4 0\"/></svg>","upgrades":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 13l7-6 7 6\"/><path d=\"M5 18l7-6 7 6\"/><path d=\"M5 8l7-6 7 6\"/></svg>","schematics":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"1\"/><path d=\"M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4\"/><rect x=\"9.5\" y=\"9.5\" width=\"5\" height=\"5\"/></svg>","manuals":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 5c3-1 6-1 9 1v14c-3-2-6-2-9-1z\"/><path d=\"M21 5c-3-1-6-1-9 1v14c3-2 6-2 9-1z\"/></svg>","gunsmith":"<svg class=\"ic wide\" viewBox=\"0 6.6 24 10.8\" aria-hidden=\"true\"><path fill=\"currentColor\" stroke=\"none\" d=\"M0.6 9.4L5 9.4L5.8 10L7.4 10L7.4 8.9L9 8.9L9 8L10.2 8L10.2 8.9L15.2 8.9L15.2 8.4L16 8.4L16 9.2L20 9.2L20 9L23.4 9L23.4 10.2L20 10.2L20 10.6L15.6 10.6L15.6 11.4L13.4 11.4L13.9 15.8L12.2 16.2L11.4 11.6L10.4 11.6L9.6 14.8L8 14.8L8.7 11.6L7.2 11.6L6.2 12.4L1.6 14.2L0.6 13.6Z\"/></svg>","gear":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"3.2\"/><path d=\"M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1\"/></svg>","camos":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\"/><path d=\"M3 9h6V3M15 3v6h6M9 21v-6H3M21 15h-6v6M9 9h6v6H9z\"/></svg>","traits":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3a8 8 0 0 1 8 8v2\"/><path d=\"M4 13v-2a8 8 0 0 1 4.5-7.2\"/><path d=\"M8 20c1-2 1.5-4.5 1.5-8a2.5 2.5 0 0 1 5 0c0 3-.3 5.7-1 8\"/><path d=\"M12 11.5c0 3.5-.5 6.5-2 9.5M16.8 18c.4-1.8.7-4.2.7-7a5.5 5.5 0 0 0-11 0c0 2-.2 3.8-.8 5.5\"/></svg>","dynops":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><rect x=\"9\" y=\"5\" width=\"6\" height=\"5\"/><path d=\"M9.5 13h1M13.5 13h1M9.5 16h1M13.5 16h1M9.5 19h5\"/></svg>","bosses":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3c-4.4 0-7 3-7 7 0 2.2 1 3.7 2 4.6V18h2v2h6v-2h2v-3.4c1-.9 2-2.4 2-4.6 0-4-2.6-7-7-7z\"/><circle cx=\"9.3\" cy=\"11\" r=\"1.6\"/><circle cx=\"14.7\" cy=\"11\" r=\"1.6\"/><path d=\"M11.3 15h1.4\"/></svg>","patches":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"1\"/><path d=\"M9 2h6v4H9z\"/><path d=\"M8.5 11h7M8.5 14.5h7M8.5 18h4\"/></svg>","items":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2l9 5v10l-9 5-9-5V7z\"/><path d=\"M3 7l9 5 9-5M12 12v10\"/></svg>","upgradeitems":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6h12M9 12h12M9 18h12\"/><path d=\"M3.5 6h1M3.5 12h1M3.5 18h1\"/></svg>","search":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"M15.5 15.5L21 21\"/></svg>","pin":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z\"/><circle cx=\"12\" cy=\"9.5\" r=\"2.5\"/></svg>","home":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 11l9-8 9 8\"/><path d=\"M5 9.5V21h14V9.5\"/></svg>","chev":"<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\"/></svg>"};
 
+/* ===== MOTION AND APP EXTRAS (Update 7): page entrances, count-ups, live YouTube preview, install app, phone search =====
+   Nothing here changes how a tool works. Everything switches off when the device asks for reduced motion. */
+(function(){
+  const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ready=f=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',f):f();
+
+  /* ---- numbers that count up, bars that fill ---- */
+  function countText(el,ms=800){
+    const full=el.textContent,m=/\d[\d,]*/.exec(full);if(!m)return;
+    const to=+m[0].replace(/,/g,'');if(!to)return;
+    const fmt=n=>m[0].includes(',')?n.toLocaleString('en-US'):String(n);
+    const t0=performance.now();let last=null;
+    const step=t=>{
+      if(last!==null&&el.textContent!==last)return;          // the page changed it meanwhile: leave it alone
+      const k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3),n=Math.round(to*e);
+      last=full.slice(0,m.index)+fmt(n)+full.slice(m.index+m[0].length);el.textContent=last;
+      if(k<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  function fillBars(root){
+    root.querySelectorAll('.trk-bar i,.tp-bar i').forEach(b=>{
+      const w=b.style.width;if(!w||w==='0%'||parseFloat(w)===0)return;
+      b.classList.add('mo-fill');b.style.width='0%';void b.offsetWidth;
+      requestAnimationFrame(()=>{if(b.style.width==='0%')b.style.width=w;setTimeout(()=>b.classList.remove('mo-fill'),1000)});
+    });
+  }
+  const COUNT='#scDone,#scPct,#wmDone,#wmPct,#cmDone,#cmPct,#upDone,#upPct,.tile-prog .tp-txt';
+  function counts(root){if(reduce())return;fillBars(root);root.querySelectorAll(COUNT).forEach(el=>countText(el))}
+
+  /* ---- page entrances ---- */
+  let firstHome=true;
+  function enterHome(){
+    const h=document.getElementById('home');if(!h)return;
+    if(reduce()){firstHome=false;return}
+    const cls=firstHome?'mo-intro':'mo-back';firstHome=false;
+    let i=0;h.querySelectorAll('.hm-feature>li,.hm-track>li,.hm-small>li,.hm-main>.yt-banner,.hm-side>section').forEach(el=>el.style.setProperty('--d',(i++*55)+'ms'));
+    h.classList.remove('mo-intro','mo-back');void h.offsetWidth;h.classList.add(cls);
+    setTimeout(()=>h.classList.remove(cls),cls==='mo-intro'?2600:700);
+    setTimeout(()=>counts(h),cls==='mo-intro'?500:120);
+  }
+  function enterScreen(s){
+    if(reduce())return;
+    s.classList.remove('mo-enter');void s.offsetWidth;s.classList.add('mo-enter');setTimeout(()=>s.classList.remove('mo-enter'),500);
+    setTimeout(()=>counts(s),160);
+  }
+  function watchScreens(){
+    const seen=new WeakMap();
+    const check=()=>{
+      const inMod=document.body.classList.contains('in-module');
+      if(!inMod&&seen.get(document.body)!=='home'){seen.set(document.body,'home');enterHome();ytWake(true)}
+      if(inMod){if(seen.get(document.body)==='home')ytWake(false);seen.set(document.body,'mod')}
+      document.querySelectorAll('.screen').forEach(s=>{const on=s.classList.contains('active');if(on&&!seen.get(s))enterScreen(s);seen.set(s,on)});
+    };
+    const mo=new MutationObserver(check);mo.observe(document.body,{attributes:true,attributeFilter:['class']});
+    document.querySelectorAll('.screen').forEach(s=>mo.observe(s,{attributes:true,attributeFilter:['class']}));
+    setTimeout(check,0);                                   // after the page has decided which screen to show
+  }
+
+  /* ---- LIVE dot on Latest DMZ Update ---- */
+  function liveDot(){const h=document.querySelector('#latestUpdate .latest-head h2');if(h&&!h.querySelector('.live'))h.insertAdjacentHTML('beforeend','<span class="live" aria-label="Live feed"><i aria-hidden="true"></i>Live</span>')}
+
+  /* ---- latest YouTube video plays silently in the banner (desktop only) ---- */
+  let ytId=null,ytOn=false,ytIO=null;
+  const ytAllowed=()=>matchMedia('(min-width:981px)').matches&&!reduce()&&!(navigator.connection&&navigator.connection.saveData);
+  function ytMount(){
+    const box=document.querySelector('#ytBanner .yt-video');if(!box||!ytId||box.querySelector('.yt-frame')||!ytAllowed())return;
+    const f=document.createElement('iframe');f.className='yt-frame';f.title='Latest video preview';f.setAttribute('tabindex','-1');f.setAttribute('aria-hidden','true');
+    f.allow='autoplay; encrypted-media; picture-in-picture';f.referrerPolicy='strict-origin-when-cross-origin';
+    f.src=`https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=0&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
+    f.onload=()=>setTimeout(()=>f.classList.add('on'),1200);       // fade in once the player has started, hiding its loading screen
+    box.prepend(f);box.classList.add('has-frame');
+  }
+  function ytUnmount(){const box=document.querySelector('#ytBanner .yt-video');if(!box)return;const f=box.querySelector('.yt-frame');if(f)f.remove();box.classList.remove('has-frame')}
+  function ytWake(onHome){
+    ytOn=onHome;const a=document.getElementById('ytBanner');if(!a||!ytId)return;
+    if(!onHome){ytUnmount();return}
+    if(!ytIO){ytIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&ytOn)ytMount();else if(!e.isIntersecting)ytUnmount()}),{rootMargin:'120px'});ytIO.observe(a)}
+    else{ytIO.unobserve(a);ytIO.observe(a)}
+  }
+  window.ytLive=function(id){if(!/^[\w-]{11}$/.test(id))return;ytId=id;ytWake(!document.body.classList.contains('in-module'))};
+
+  /* ---- search button in the top bar (phones) ---- */
+  function phoneSearch(){
+    const b=document.getElementById('sbSearch');if(!b)return;
+    b.onclick=()=>{if(document.body.classList.contains('in-module')&&window.goHome)goHome();
+      setTimeout(()=>{const i=document.getElementById('isHome');if(!i)return;i.scrollIntoView({block:'center',behavior:reduce()?'auto':'smooth'});i.focus({preventScroll:true})},120)};
+  }
+
+  /* ---- install as an app ---- */
+  const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  let deferred=null;
+  function install(){
+    if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))
+      addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+    const btn=document.getElementById('sbInstall');
+    addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;if(btn&&!standalone())btn.hidden=false});
+    addEventListener('appinstalled',()=>{deferred=null;if(btn)btn.hidden=true;if(window.toast)toast('NOMADS DMZ HUB is installed.')});
+    if(btn)btn.onclick=async()=>{if(!deferred)return;deferred.prompt();try{await deferred.userChoice}catch(e){}deferred=null;btn.hidden=true};
+    // iPhone and iPad have no install button: show a one-time tip instead
+    const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+    const tip=document.getElementById('iosTip');let seen=false;try{seen=localStorage.getItem('nomads-ios-tip')==='1'}catch(e){}
+    if(tip&&ios&&!standalone()&&!seen){setTimeout(()=>{tip.hidden=false},3000);
+      document.getElementById('iosTipX').onclick=()=>{tip.hidden=true;try{localStorage.setItem('nomads-ios-tip','1')}catch(e){}}}
+  }
+
+  ready(()=>{watchScreens();liveDot();phoneSearch();install()});
+})();
+
 /* ===== BROWSER-SAVED PROGRESS (Upgrades and Camo Tracker) ===== */
 const Store={
   key:'nomads-dmz-hub.progress.v1',data:null,ok:true,
@@ -541,7 +650,9 @@ inits.map=function(){
   vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
   vp.addEventListener('keydown',e=>{const k={ArrowLeft:[60,0],ArrowRight:[-60,0],ArrowUp:[0,60],ArrowDown:[0,-60]}[e.key];if(k){e.preventDefault();st.x+=k[0];st.y+=k[1];place()}else if(e.key==='+'||e.key==='='){zoomAt(1.3,vw/2,vh/2)}else if(e.key==='-'){zoomAt(1/1.3,vw/2,vh/2)}});
   /* ---- legend behaviour ---- */
-  function vis(){let n=0;els.forEach(m=>{const show=m.ci>=0?on[m.ci]:keyOn[m.ai];m.el.hidden=!show;if(show)n++});$('mapCount').textContent=n;rail.querySelectorAll('[data-cats]').forEach(i=>i.checked=i.dataset.cats.split(',').every(k=>on[k]));zoneEls.forEach(z=>z.el.hidden=!on[radI]);rail.querySelectorAll('[data-key]').forEach(i=>i.checked=keyOn[i.dataset.key])}
+  const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function vis(){let n=0;const drop=[];els.forEach(m=>{const show=m.ci>=0?on[m.ci]:keyOn[m.ai];if(show&&m.el.hidden)drop.push(m.el);m.el.hidden=!show;if(show)n++});
+    if(!RM()&&drop.length&&drop.length<400){drop.forEach((el,i)=>{el.classList.remove('drop');el.style.setProperty('--dd',Math.min(i*6,360)+'ms')});void layer.offsetWidth;drop.forEach(el=>el.classList.add('drop'));setTimeout(()=>drop.forEach(el=>el.classList.remove('drop')),1100)}$('mapCount').textContent=n;rail.querySelectorAll('[data-cats]').forEach(i=>i.checked=i.dataset.cats.split(',').every(k=>on[k]));zoneEls.forEach(z=>z.el.hidden=!on[radI]);rail.querySelectorAll('[data-key]').forEach(i=>i.checked=keyOn[i.dataset.key])}
   rail.querySelectorAll('[data-cats]').forEach(i=>i.onchange=()=>{i.dataset.cats.split(',').forEach(k=>{on[k]=i.checked});vis()});
   rail.querySelectorAll('[data-key]').forEach(i=>i.onchange=()=>{keyOn[i.dataset.key]=i.checked;vis()});
   $('kAll').onclick=()=>{keyOn.fill(true);vis()};$('kNone').onclick=()=>{keyOn.fill(false);vis()};
@@ -556,14 +667,16 @@ inits.map=function(){
   function showIng(g){card.hidden=false;const n=g.m.length;
     card.innerHTML=`<button type="button" class="card-x" aria-label="Close">✕</button><div class="ing-head"><img src="${g.ic}" alt=""><div><h3>${esc(g.n)}</h3><span>${esc(g.t||'Ingredient')}</span></div></div><div class="sub-h">Where to look</div><p>${esc(g.w||'No fixed location.')}</p><div class="card-meta">${n?`Marked on ${n} place${n>1?'s':''} on the map.`:'No fixed map point for this one.'}</div>`;
     card.querySelector('.card-x').onclick=()=>{card.hidden=true}}
-  function selectKey(e){card.hidden=false;const f=(h,t)=>t?`<div class="sub-h">${h}</div><p>${esc(t)}</p>`:'';
+  function selectKey(e){const ke=els.find(x=>x.ci===-1&&x.name===e.n);markSel(ke&&ke.el);card.hidden=false;const f=(h,t)=>t?`<div class="sub-h">${h}</div><p>${esc(t)}</p>`:'';
     const body=f('Key',e.k)+f('Grid',e.g)+f('Entrance',e.h)+f('Where to get the key',e.w);
     card.innerHTML=`<button type="button" class="card-x" aria-label="Close">✕</button><div class="ing-head"><img src="${KEY_IMG}" alt=""><div><h3>${esc(e.n)}</h3><span>Locked door · ${esc(e.a2==='Unplaced'?(e.a&&e.a!=='Unknown'?e.a:'Location not known yet'):e.a2)}</span></div></div>${body||'<div class="card-meta">No further details yet.</div>'}`;
     card.querySelector('.card-x').onclick=()=>{card.hidden=true}}
   function showBoss(b){card.hidden=false;const f=(h,t)=>t?`<div class="sub-h">${h}</div><p>${esc(t)}</p>`:'';
     card.innerHTML=`<button type="button" class="card-x" aria-label="Close">✕</button><div class="ing-head"><img src="${MAP_CATS.find(c=>c.k==='Lieutenants').ic}" alt=""><div><h3>${esc(b.n)}</h3><span>${esc(b.tier)}</span></div></div>${f(b.tier==='Commander'?'Where':'Area',b.where)}${f('Intel',b.intel)}${f('Drops',b.drop)}<div class="card-meta">${b.approx?'Shown in the middle of its search area. Not present in every match.':b.placed?'Shown at the area where it appears. Not present in every match.':'No fixed location. Not present in every match.'}</div>`;
     card.querySelector('.card-x').onclick=()=>{card.hidden=true}}
-  function selectMk(id){const m=byId[id],c=MAP_CATS[m.ci],gs=ingAt[id]||[];if(c.k==='Lieutenants'){const b=MAP_BOSS.find(x=>x.n===m.name);if(b){showBoss(b);return}}const th=MAP_THREAT[m.name];card.hidden=false;
+  let selEl=null;function markSel(el){if(selEl)selEl.classList.remove('sel');selEl=el||null;if(selEl)selEl.classList.add('sel')}
+  new MutationObserver(()=>{if(card.hidden)markSel(null)}).observe(card,{attributes:true,attributeFilter:['hidden']});
+  function selectMk(id){markSel(byId[id]&&byId[id].el);const m=byId[id],c=MAP_CATS[m.ci],gs=ingAt[id]||[];if(c.k==='Lieutenants'){const b=MAP_BOSS.find(x=>x.n===m.name);if(b){showBoss(b);return}}const th=MAP_THREAT[m.name];card.hidden=false;
     card.innerHTML=`<button type="button" class="card-x" aria-label="Close">✕</button><div class="ing-head"><img src="${c.ic}" alt=""><div><h3>${esc(m.name)}</h3><span>${esc(c.l)}</span></div></div>${MAP_SOON[id]?`<div class="soon-badge">${esc(MAP_SOON[id])}</div>`:''}${MAP_PICS[id]?`<img class="card-pic" src="${MAP_PICS[id].src}" alt="${esc(MAP_PICS[id].alt)}" loading="lazy">`:''}${th?`<div class="sub-h">Starting threat</div><p><b class="thr thr-${esc(th.t.toLowerCase())}">${esc(th.t)}</b>${th.s?' '+esc(th.s)+'.':''}</p><div class="card-meta">Threat rises with combat. Rival Operators are not counted.</div>`:''}${(MAP_NOTES[id]||c.tip)?`<div class="sub-h">${MAP_NOTES[id]?'About this place':'What to expect'}</div><p>${esc(MAP_NOTES[id]||c.tip)}</p>`:''}${gs.length?`<div class="sub-h">Ingredients to look for here</div><div class="card-ings">${gs.map(g=>`<button type="button" class="ing-pill" data-n="${esc(g.n)}"><img src="${g.ic}" alt="">${esc(g.n)}</button>`).join('')}</div>`:''}`;
     card.querySelector('.card-x').onclick=()=>{card.hidden=true};
     card.querySelectorAll('.ing-pill').forEach(b=>b.onclick=()=>{const i=INGS.findIndex(g=>g.n===b.dataset.n);setIng(i,true);showIng(INGS[i])})}
@@ -962,8 +1075,11 @@ inits.loot=function(){};
   /* ---- home strip: top three updates ---- */
   async function loadStrip(){
     const box=document.getElementById('latestUpdate');if(!box)return;
+    // loading placeholder while the updates arrive
+    box.hidden=false;box.classList.add('is-loading');document.getElementById('latestList').innerHTML=Array.from({length:3},()=>'<li class="sk-item" aria-hidden="true"><span class="sk sk-badge"></span><span class="sk sk-line"></span><span class="sk sk-line short"></span></li>').join('');
     try{
       const d=await get('/latest?n=3');
+      box.classList.remove('is-loading');
       if(!d||d.notConfigured||!d.items||!d.items.length){box.hidden=true;return}
       const kind=e=>/resol|fixed/i.test(e.category||'')?'lt-ok':/investig|known|monitor/i.test(e.category||'')?'lt-watch':'lt-other';
       const shortDate=e=>e.published_at?D(e.published_at):(e.first_detected_at?D(e.first_detected_at,'Australia/Melbourne'):'');
@@ -971,7 +1087,7 @@ inits.loot=function(){};
       document.getElementById('latestMeta').textContent=d.last_success?'Last checked '+DT(d.last_success):'';
       document.querySelectorAll('#latestList .latest-item').forEach(b=>b.onclick=()=>{try{sessionStorage.setItem('pnFocus',b.dataset.id)}catch(e){}openView('patches')});
       box.hidden=false;
-    }catch(e){box.hidden=true}
+    }catch(e){box.classList.remove('is-loading');box.hidden=true}
   }
 
   /* ---- full page ---- */
@@ -1438,9 +1554,10 @@ window.TrackerUI=function(o){
     const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
     try{const r=await fetch('/api/cod-latest',{signal:c.signal,headers:{accept:'application/json'}});if(!r.ok)return null;const d=await r.json();return official(d&&d.post)?d.post:null}catch(e){return null}finally{clearTimeout(t)}
   }
+  box.classList.add('is-loading');                               // loading placeholder until the Worker answers (or 2.5 seconds)
   paint({...FALL,image:null});                                   // words first; the picture waits for the Worker so only one picture is ever fetched
-  let done=false;const wait=setTimeout(()=>{if(!done)picture(FALL.image)},2500);
-  latest().then(p=>{done=true;clearTimeout(wait);paint(p?{short:p.short,updated:p.updated||null,url:p.url,image:p.image||FALL.image}:FALL)});
+  let done=false;const wait=setTimeout(()=>{if(!done){box.classList.remove('is-loading');picture(FALL.image)}},2500);
+  latest().then(p=>{done=true;clearTimeout(wait);box.classList.remove('is-loading');paint(p?{short:p.short,updated:p.updated||null,url:p.url,image:p.image||FALL.image}:FALL)});
 })();
 
 /* ===== HOME EXTRAS: tile progress, phone bar highlight, floating Korean background, YouTube banner ===== */
@@ -1494,6 +1611,7 @@ window.TrackerUI=function(o){
       document.getElementById('ytThumb').style.backgroundImage=`url("https://i.ytimg.com/vi/${v.id}/hqdefault.jpg")`;
       document.getElementById('ytTitle').textContent=v.title;a.classList.add('has-video');
       a.setAttribute('aria-label','Watch the latest video: '+v.title);
+      if(window.ytLive)ytLive(v.id);
     }catch(e){}
   })();
 })();

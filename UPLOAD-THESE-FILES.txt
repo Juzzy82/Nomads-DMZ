@@ -1,11 +1,8 @@
 UPLOAD THESE FILES TO GITHUB (replace the ones already there)
 
-Update: Update 6: fixes, Bank VIII-XIII, per-tree minor traits, GitHub relay for COD patch notes
+Update: Update 7: motion pack, live YouTube banner, install as an app, search fixes
 
-.assetsignore                              patch notes system
-.github/scripts/cod-relay.mjs              file
-.github/workflows/cod-relay.yml            file
-PATCH-NOTES-SETUP.md                       file
+_headers                                   file
 app.css                                    the site styling
 app.js                                     the site code and data
 boss-strats/bale/index.html                page
@@ -26,9 +23,8 @@ camo-tracker/index.html                    page
 dynamic-ops/index.html                     page
 gear/index.html                            page
 gunsmith/index.html                        page
-imgs-3.js                                  pictures used by the site
-imgs-4.js                                  pictures used by the site
-imgs-5.js                                  pictures used by the site
+icon-512.png                               picture
+icon-maskable-512.png                      picture
 index.html                                 page (home)
 items/index.html                           page
 loot/bunker-route/index.html               page
@@ -37,15 +33,16 @@ loot/hanex-bank-vault/index.html           page
 loot/index.html                            page
 loot/irradiated-items/index.html           page
 loot/river-heights/index.html              page
+manifest.webmanifest                       file
 map/index.html                             page
-patch-admin/index.html                     page
 patch-notes/index.html                     page
+privacy/index.html                         page
 schematic-tracker/index.html               page
+sw.js                                      file
 traits/index.html                          page
 upgrade-items/index.html                   page
 upgrades/index.html                        page
 weapon-manual-tracker/index.html           page
 worker/index.mjs                           patch notes system
-worker/relay.mjs                           patch notes system
 
 Keep the folder structure. For example boss-strats/gorani/index.html goes inside the boss-strats/gorani folder.
