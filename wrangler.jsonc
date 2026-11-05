@@ -17,6 +17,6 @@
   ],
   // Discord accounts and saved progress (D1)
   "d1_databases": [
-    { "binding": "DB", "database_name": "nomads-dmz", "database_id": "Pcfcb4f25515f47e4a0a5d3b9f2976c5c" }
+    { "binding": "DB", "database_name": "nomads-dmz", "database_id": "9413be09-4616-4b33-b43a-3c62485e2d21" }
   ]
 }
