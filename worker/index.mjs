@@ -8,8 +8,9 @@ import { relayPlan, cleanPages, relayFetch } from './relay.mjs';
 const patchPagesOn = (env) => !!(env && env.ENABLE_PATCH_PAGES === '1');   // local copy so this file does not depend on check.mjs exporting it
 
 const JSON_HEADERS = { 'content-type': 'application/json; charset=utf-8', 'x-content-type-options': 'nosniff' };
-const json = (obj, status = 200, cache = 'no-store') => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, 'cache-control': cache } });
+const json = (obj, status = 200, cache = 'no-store', extra = {}) => new Response(JSON.stringify(obj), { status, headers: { ...JSON_HEADERS, 'cache-control': cache, ...extra } });
 
+export const ADMIN_MAX_FAILS = 10;
 function tokenOk(request, env) {
   const given = (request.headers.get('authorization') || '').replace(/^Bearer\s+/i, '').trim();
   const want = String(env.ADMIN_TOKEN || '').trim();   // stray spaces or a line break pasted into the secret no longer break it
@@ -29,7 +30,15 @@ export async function handleApi(request, env, ctx) {
     if (request.method === 'GET' && path === '/api/dmz-patches/status') return json(await status(env), 200, 'public, max-age=60, s-maxage=60');
 
     if (path.startsWith('/api/dmz-patches/admin/')) {
-      if (!tokenOk(request, env)) return json({ error: 'forbidden' }, 403);
+      // after 10 wrong passwords from one address in 15 minutes, that address is locked out for the rest of the 15 minutes
+      const ip = request.headers.get('cf-connecting-ip') || 'unknown', failKey = 'admin_fail:' + ip;
+      const fails = env.PATCHES ? +((await env.PATCHES.get(failKey)) || 0) : 0;
+      if (fails >= ADMIN_MAX_FAILS) return json({ error: 'locked', retry_after_minutes: 15 }, 429, 'no-store', { 'retry-after': '900' });
+      if (!tokenOk(request, env)) {
+        if (env.PATCHES) await env.PATCHES.put(failKey, String(fails + 1), { expirationTtl: 900 });
+        return json({ error: 'forbidden' }, 403);
+      }
+      if (fails && env.PATCHES) await env.PATCHES.delete(failKey);
       if (request.method === 'POST' && path === '/api/dmz-patches/admin/refresh') {
         const last = await env.PATCHES.get('manual_last');
         if (last && Date.now() - Date.parse(last) < 300000) return json({ ok: false, error: 'A manual check finished less than 5 minutes ago. Please wait a few minutes.' }, 429);
