@@ -1441,3 +1441,8 @@ body.dp-page .sb-logo{visibility:visible}
 .dp-foot{margin-top:34px}
 @media (max-width:860px){.dp-grid{grid-template-columns:1fr}.dp-pic{order:-1}.dp-facts div{grid-template-columns:1fr;gap:4px}}
 @media (max-width:760px){.dp-rel li a,.about-links li a{min-height:40px}.dp-page .sb-btn:not(.sb-discord){display:none}}
+/* Fix (6 Nov): the weapon picture spilled out of the preview and covered the weapon list, so some guns could not be clicked */
+.gs-stage{overflow:hidden}
+.gs-stage svg{overflow:hidden}
+.gs-stage svg image{pointer-events:none}
+.gs-left{position:relative;z-index:2}
