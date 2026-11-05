@@ -3,5 +3,12 @@ tests/
 wrangler.jsonc
 .assetsignore
 PATCH-NOTES-SETUP.md
+package.json
+node_modules/
+.wrangler/
+ACCOUNTS-SETUP.md
+schema.sql
 .git/
 .wrangler/
+.github
+.github/
