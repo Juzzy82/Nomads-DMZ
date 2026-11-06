@@ -1474,3 +1474,23 @@ body.dp-page .sb-logo{visibility:visible}
 @media (max-width:900px){.x01-wrap{display:flex;flex-direction:column;overflow:auto}.x01-view{order:-1;flex:none}.x01-view{height:62vh;min-height:380px}.x01-rail{border-right:0;border-top:1px solid var(--edge);overflow:visible}.x01-card{left:8px;right:8px;width:auto;top:auto;bottom:8px}.x01-floors{bottom:8px}.x01-floors button{padding:0 12px;font-size:.88rem}}
 
 .x01-cic{display:flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;color:#fff}.x01-cic .ic{width:30px;height:30px}
+/* Update 11: FOB / X01 printer switch on Gear Recipes */
+.g-printers{display:inline-flex;margin:0 0 12px;border:1px solid #3a3a3e;border-radius:4px;overflow:hidden;background:#0d0d0e}
+.g-printers button{min-height:44px;padding:0 20px;border:0;background:none;color:#e6e6e6;font:800 1rem/1 var(--f-display);letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.g-printers button+button{border-left:1px solid #3a3a3e}.g-printers button.on{background:var(--red);color:#fff}
+.g-prnote{margin:0 0 12px;color:#cfcfcf;font-size:.92rem}.g-prnote a{color:#ff6b70}
+.it-sublbl{margin:6px 0 4px;color:#9c9c9c;font:700 .78rem/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+#x01Markers .mk.ico{z-index:3}#x01Markers .mk.lbl{z-index:2}
+/* X01 tile: very subtle rolling fog in the foreground */
+@keyframes fogRoll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.ft-fog{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 30%,#000 75%);mask-image:linear-gradient(to bottom,transparent 30%,#000 75%)}
+.ft-fog i{position:absolute;left:0;bottom:-12%;width:200%;height:70%;opacity:.32;filter:blur(14px);will-change:transform;
+  background:radial-gradient(ellipse 18% 46% at 10% 60%,rgba(210,222,232,.55),transparent 70%),radial-gradient(ellipse 22% 40% at 32% 70%,rgba(210,222,232,.45),transparent 70%),
+    radial-gradient(ellipse 16% 50% at 52% 58%,rgba(210,222,232,.5),transparent 70%),radial-gradient(ellipse 20% 42% at 74% 68%,rgba(210,222,232,.45),transparent 70%),
+    radial-gradient(ellipse 18% 46% at 90% 62%,rgba(210,222,232,.5),transparent 70%);
+  animation:fogRoll 48s linear infinite}
+.ft-fog i+i{bottom:-20%;height:55%;opacity:.22;animation-duration:75s;animation-direction:reverse;filter:blur(18px)}
+a.ftile[data-open=x01] .ft-txt{z-index:1}
+body.in-module .ft-fog i{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){.ft-fog i{animation:none}}

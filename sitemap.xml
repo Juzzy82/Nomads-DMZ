@@ -118,6 +118,8 @@
 <url><loc>https://nomaddmzhub.com/materials/experimental-compounds/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/stock-rod/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/volatile-explosives/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/materials/printed-circuit-board/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/materials/control-unit/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/reactive-metals/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/structural-alloy/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/ballistic-fabric/</loc><lastmod>2026-11-06</lastmod></url>
@@ -130,13 +132,13 @@
 <url><loc>https://nomaddmzhub.com/materials/nylon-laminate/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/prototype-rf-module/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/electronic-sensors/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://nomaddmzhub.com/materials/control-unit/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/power-regulator/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/comms-module/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/nitro-compounds/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/cpu/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/turned-components/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://nomaddmzhub.com/materials/printed-circuit-board/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/materials/specter-fabric-sample/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/materials/sr-16-bio-agent-sample/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/infantry-invasion-plans/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/ballistic-flight-logs/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/materials/regional-combat-notes/</loc><lastmod>2026-11-06</lastmod></url>
@@ -165,6 +167,7 @@
 <url><loc>https://nomaddmzhub.com/gear/smelling-salts/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/self-revive-kit/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/door-breacher-charge/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/staff-emergency-exfil-keycard/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/1-plate-armor-vest/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/2-plate-armor-vest/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/2-plate-ballistic-gel-vest/</loc><lastmod>2026-11-06</lastmod></url>
@@ -220,6 +223,9 @@
 <url><loc>https://nomaddmzhub.com/gear/revive-pistol/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/fulton-drop-marker/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/recon-drone/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/consumable-box/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/medical-box/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/utility-box/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/care-package/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/bombing-run/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/combat-drone/</loc><lastmod>2026-11-06</lastmod></url>
@@ -237,6 +243,11 @@
 <url><loc>https://nomaddmzhub.com/gear/durable-gas-mask/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/elite-night-vision-goggles/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gear/parachute/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/35-plate-armor-vest/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/survivor-box/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/argonaut-armor/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/encodable-blank-keycard/</loc><lastmod>2026-11-06</lastmod></url>
+<url><loc>https://nomaddmzhub.com/gear/staff-emergency-exfil-keycard-x01/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gunsmith/han-86/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gunsmith/m4/</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://nomaddmzhub.com/gunsmith/hyeon-burst/</loc><lastmod>2026-11-06</lastmod></url>
