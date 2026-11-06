@@ -1446,3 +1446,31 @@ body.dp-page .sb-logo{visibility:visible}
 .gs-stage svg{overflow:hidden}
 .gs-stage svg image{pointer-events:none}
 .gs-left{position:relative;z-index:2}
+/* ===== Update 10: X01 Facility page and home layout ===== */
+.hm-small{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:700px){.hm-small{grid-template-columns:repeat(2,minmax(0,1fr))}.hm-small li:last-child{grid-column:auto}}
+.x01-wrap{flex:1;min-height:0;display:grid;grid-template-columns:310px minmax(0,1fr)}
+.x01-rail{overflow:auto;border-right:1px solid var(--edge);background:#0b0b0c;display:flex;flex-direction:column}
+.x01-rail .lg-body,.x01-rail .panel-head,.x01-info{flex:none}.x01-rail .lg-body{overflow:visible}
+.x01-info{padding:14px 18px 16px;border-top:1px solid var(--edge)}
+.x01-info p{color:#cfcfcf;font-size:.9rem;line-height:1.5;margin:0 0 10px}.x01-info .box-h{margin-top:14px;font-size:1.05rem}.x01-info .box-h:first-child{margin-top:0}
+.x01-orders{margin:0;padding-left:1.2em;color:#d6d6d6;font-size:.88rem;line-height:1.5}.x01-orders b{display:block;color:#fff}
+.x01-view{position:relative;overflow:hidden;background:#050506;touch-action:none;cursor:grab;user-select:none}
+.x01-view:active{cursor:grabbing}
+.x01-stage{position:absolute;left:0;top:0;width:1984px;height:1790px;transform-origin:0 0;will-change:transform}
+.x01-stage img{display:block;width:1984px;height:1790px;pointer-events:none}
+.x01-markers{position:absolute;inset:0;pointer-events:none;z-index:2}
+.x01-grid{position:absolute;inset:0;pointer-events:none;z-index:1}
+.x01-grid span{position:absolute;left:0;top:0;color:rgba(255,255,255,.6);font:800 .85rem/1 var(--f-display);text-shadow:0 0 4px #000}
+.x01-grid .gc{margin-left:-4px}.x01-grid .gr{margin-top:-6px}
+.x01-floors{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:5;display:flex;border:1px solid #3a3a3e;border-radius:4px;overflow:hidden;background:rgba(10,10,11,.92)}
+.x01-floors button{min-height:42px;padding:0 18px;border:0;background:none;color:#e6e6e6;font:800 .98rem/1 var(--f-display);letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.x01-floors button+button{border-left:1px solid #3a3a3e}.x01-floors button.on{background:var(--red);color:#fff}
+.x01-ctl{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
+.x01-ctl button{width:42px;height:42px;border:1px solid #3a3a3e;border-radius:4px;background:rgba(10,10,11,.9);color:#fff;font-size:1.3rem;cursor:pointer}.x01-ctl button:hover{border-color:var(--red)}
+.x01-zoom{position:absolute;right:14px;bottom:12px;padding:4px 8px;border:1px solid #3a3a3e;border-radius:3px;background:rgba(10,10,11,.9);color:#cfcfcf;font:600 .75rem/1 var(--f-mono);z-index:5}
+.x01-card{z-index:8}
+#screen-x01 .about-page{margin:16px 0 8px}
+@media (max-width:900px){.x01-wrap{display:flex;flex-direction:column;overflow:auto}.x01-view{order:-1;flex:none}.x01-view{height:62vh;min-height:380px}.x01-rail{border-right:0;border-top:1px solid var(--edge);overflow:visible}.x01-card{left:8px;right:8px;width:auto;top:auto;bottom:8px}.x01-floors{bottom:8px}.x01-floors button{padding:0 12px;font-size:.88rem}}
+
+.x01-cic{display:flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;color:#fff}.x01-cic .ic{width:30px;height:30px}
