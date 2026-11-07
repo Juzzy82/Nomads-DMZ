@@ -1494,3 +1494,6 @@ body.dp-page .sb-logo{visibility:visible}
 a.ftile[data-open=x01] .ft-txt{z-index:1}
 body.in-module .ft-fog i{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.ft-fog i{animation:none}}
+/* Boss pages show the whole picture */
+.bsd-pic img{height:auto;max-height:none;object-fit:contain}
+.bsd-pic{align-self:start}
